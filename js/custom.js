@@ -27,8 +27,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const html = document.documentElement;
 
     if (brightness < 128) {
+      localStorage.setItem("darkmode", "dark");   // 覆盖掉旧值
       html.setAttribute("data-theme", "dark");
     } else {
+      localStorage.setItem("darkmode", "light");  // 覆盖掉旧值
       html.setAttribute("data-theme", "light");
     }
   };
