@@ -7409,3 +7409,60 @@ pre {
   border-radius: 0 12px 12px 0;
   -webkit-border-radius: 0 12px 12px 0;
 }
+
+
+/* ===== 🎯 Language Menu Styles Start ===== */
+.nav-lang-switch {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+.nav-lang-switch .lang-toggle i {
+  font-size: 1.6em;
+  color: #000;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.nav-lang-switch .lang-menu {
+  display: none !important;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--color-card);
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  padding: 5px 0;
+  min-width: 100px;
+  z-index: 2000;
+}
+.nav-lang-switch .lang-menu li {
+  list-style: none;
+}
+.nav-lang-switch .lang-menu a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 0.875rem;
+  font-weight: bold;
+  white-space: nowrap;
+  line-height: 36px;
+  padding: 0 20px 0 16px; 
+  margin: 0 4px;
+  text-overflow: ellipsis;
+}
+
+.nav-lang-switch .lang-menu a:hover {
+  background: var(--color-site-bg);
+  color: var(--color-list-hl);
+}
+.nav-lang-switch:hover .lang-menu {
+  display: block !important;
+}
+/* ===== 🎯 Language Menu Styles End ===== */
+
+:root {
+  --color-list: #000000; /*顶部菜单文字颜色 */
+}
