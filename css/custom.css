@@ -1,0 +1,74 @@
+/* ==============================
+   全局背景：渐变 + 光影 + 光斑
+   ============================== */
+body {
+  background: linear-gradient(135deg, #0a0f29, #002fa7, #06bee1);
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  font-family: 'Inter', 'Poppins', 'Noto Sans JP', sans-serif;
+  color: #eaeaea;
+  position: relative;
+}
+
+/* 背景光影层次 */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent 70%),
+              radial-gradient(circle at bottom right, rgba(0,0,0,0.25), transparent 70%);
+  z-index: 1;
+}
+
+/* 氛围光斑 */
+body::after {
+  content: "";
+  position: fixed;
+  top: 20%;
+  left: 60%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 1;
+}
+
+/* ==============================
+   玻璃拟态：导航栏 + 卡片
+   ============================== */
+.l_header {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(12px) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* hover 时有轻微放大 + 发光 */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* ==============================
+   链接与交互
+   ============================== */
+a {
+  color: #06bee1;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 8px #06bee1;
+}
+
+.container, .l_main {
+  position: relative;
+  z-index: 1; /* 保证文字内容在光斑上层 */
+}
