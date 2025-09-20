@@ -7453,7 +7453,6 @@ pre {
   margin: 0 4px;
   text-overflow: ellipsis;
 }
-
 .nav-lang-switch .lang-menu a:hover {
   background: var(--color-site-bg);
   color: var(--color-list-hl);
@@ -7466,3 +7465,43 @@ pre {
 :root {
   --color-list: #000000; /*顶部菜单文字颜色 */
 }
+
+ .cover-wrapper .cover-body .title {
+  font-size: 4em;
+  margin-bottom:  0.2em;
+  line-height: 1.2;
+}
+ .cover-wrapper .cover-body .subtitle {
+  font-size: 22px;
+}
+
+/* 封面标题区域加毛玻璃效果 */
+.cover-body .top {
+  position: relative;
+  display: inline-block;
+  padding: 150px 200px;
+  border-radius: 10px;
+  color: #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* 淡化边缘用 mask-image */
+  mask-image: radial-gradient(circle at center, 
+                              rgba(0,0,0,1) 46%, 
+                              rgba(0,0,0,0) 76%);
+  -webkit-mask-image: radial-gradient(ellipse 635px 200px at center, 
+                                     rgba(0,0,0,1) 50%, 
+                                     rgba(0,0,0,0) 80%);
+  overflow: hidden;
+
+  /* 👇 动画效果：延迟 0.5s 再淡入 */
+  opacity: 0;
+  animation: fadeIn 0.8s ease 1s forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+/* 封面描述区域加毛玻璃效果 */
