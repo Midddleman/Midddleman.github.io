@@ -1,11 +1,4 @@
-/* 在小屏幕下强制作者卡片文字为黑色 */
-@media screen and (max-width: 768px) {
-  .author-card,
-  .author-card .author-name,
-  .author-card .author-desc {
-    color: #000 !important;
-  }
-}
+
 a#safearea {
   display: block;
 }
@@ -7410,6 +7403,14 @@ pre {
   -webkit-border-radius: 0 12px 12px 0;
 }
 
+/* 在小屏幕下强制作者卡片文字为黑色 */
+@media screen and (max-width: 768px) {
+  .author-card,
+  .author-card .author-name,
+  .author-card .author-desc {
+    color: #000 !important;
+  }
+}
 
 /* ===== 🎯 Language Menu Styles Start ===== */
 .nav-lang-switch {
@@ -7453,7 +7454,6 @@ pre {
   margin: 0 4px;
   text-overflow: ellipsis;
 }
-
 .nav-lang-switch .lang-menu a:hover {
   background: var(--color-site-bg);
   color: var(--color-list-hl);
@@ -7461,8 +7461,126 @@ pre {
 .nav-lang-switch:hover .lang-menu {
   display: block !important;
 }
-/* ===== 🎯 Language Menu Styles End ===== */
 
 :root {
   --color-list: #000000; /*顶部菜单文字颜色 */
+}
+
+/* 改cover的文字布局 */
+ .cover-wrapper .cover-body .title {
+  font-size: 4em;
+  margin-bottom:  0.2em;
+  line-height: 1.2;
+}
+ .cover-wrapper .cover-body .subtitle {
+  font-size: 22px;
+}
+
+/* 封面标题区域加毛玻璃和渐入效果 */
+.cover-body .top {
+  position: relative;
+  display: inline-block;
+  padding: 150px 200px;
+  border-radius: 10px;
+  color: #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* 淡化边缘用 mask-image */
+  mask-image: radial-gradient(circle at center, 
+                              rgba(0,0,0,1) 46%, 
+                              rgba(0,0,0,0) 76%);
+  -webkit-mask-image: radial-gradient(ellipse 635px 200px at center, 
+                                     rgba(0,0,0,1) 50%, 
+                                     rgba(0,0,0,0) 80%);
+  overflow: hidden;
+
+  /* 👇 动画效果：延迟 0.5s 再淡入 */
+  opacity: 0;
+  animation: fadeIn 2s ease 1s forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@media screen and (max-width: 768px) {
+   .cover-wrapper .cover-body .top {
+    padding: 30px 40px;  /* 两边留一点点就好 */
+    font-size: 0.5rem;   /* 字体缩小，避免挤出屏幕 */
+    mask-image: radial-gradient(circle at center, 
+                              rgba(0,0,0,1) 46%, 
+                              rgba(0,0,0,0) 76%);
+    -webkit-mask-image: radial-gradient(ellipse 22rem 8rem at center, 
+                                     rgba(0,0,0,1) 50%, 
+                                     rgba(0,0,0,0) 80%);
+  }
+}
+
+/* header添加弹跳下落效果 */
+header {
+  transform: translateY(-200%);
+  opacity: 0;
+  animation: dropBounce 2s cubic-bezier(.28,.84,.42,1) 1s forwards;
+}
+@keyframes dropBounce {
+  0%   { transform: translateY(-200%); opacity: 0; }
+  25%  { transform: translateY(0);     opacity: 1; }
+  45%  { transform: translateY(-30px); opacity: 1; }
+  65%  { transform: translateY(0);     opacity: 1; }
+  80%  { transform: translateY(-15px); opacity: 1; }
+  90%  { transform: translateY(0);     opacity: 1; }
+  95%  { transform: translateY(-6px);  opacity: 1; }
+  100% { transform: translateY(0);     opacity: 1; }
+}
+
+/* ==== Daily 分类页卡片布局 ==== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+}
+.card a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.card:hover img {
+  transform: scale(1.05);
+}
+.card .card-body {
+  padding: 1rem;
+  text-align: center;
+}
+.card .card-body h3 {
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+  color: #333;
+  font-weight: 600;
+}
+.card .card-body p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
 }
