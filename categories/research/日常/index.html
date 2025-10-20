@@ -2340,7 +2340,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1760965879187),
+    lastupdate: new Date(1760966188830),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2926,10 +2926,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md article-desc' itemprop="articleBody">
     
       
-        2025/10/15 周三
+        2025/10/20 周一
 
-写模型的老师告诉了我把 AIMPLUM的Aglu版 的设定更改为 global: on之后应该对应修改Plum.sh 。至此，困扰了我和前辈一个月的模型bug终于被解决了。其实这不是bug，而是沟通问题，如果老师能在递交模型的时候告诉我们参数设定对应的改动，就不会有后续的麻烦了（因为模型本身并没有readme或者说明doc）。
-截止写总结，模型已经运行了3.5小...
+本来以为上周进展挺顺利，这周任务应该不重。但是今天又和老师来回mail了无数轮来确认模型运转时间长的原因，导致也没能早回家。
+和老师交流后目前确认到的内容如下：
+
+之前downscale AIMHUB的时候，模型输出的是17地域数据，也就是把世界分成17份。downscale一共用时90分钟。现在AgLU模型把全世界分成400份（虽然不均匀）但是其中有一些区域的...
       
     
   </div>
