@@ -46,7 +46,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://middlemanz.com/favicon.ico">
 <meta property="article:published_time" content="2025-10-16T07:19:07.000Z">
-<meta property="article:modified_time" content="2025-10-17T05:11:41.106Z">
+<meta property="article:modified_time" content="2025-10-20T13:09:59.334Z">
 <meta property="article:author" content="Middleman">
 <meta property="article:tag" content="日常">
 <meta property="article:tag" content="研究">
@@ -2343,7 +2343,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1760711766995),
+    lastupdate: new Date(1760965879187),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2962,13 +2962,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：831 字</p>
+      <p>字数：1.2k 字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fa-solid fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：2 分钟</p>
+      <p>时长：4 分钟</p>
     </a>
   </div>
 
@@ -3033,6 +3033,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li>更改AIM-PLUM的数据输入部分使其能直接对应AgLU的最新标准输出</li>
 </ul>
 <p>接下来就是一点一点做了。</p>
+<h4 id="20251020" style="text-align:center; font-weight:bold;">2025/10/20 周一</h4>
+
+<p>本来以为上周进展挺顺利，这周任务应该不重。但是今天又和老师来回mail了无数轮来确认模型运转时间长的原因，导致也没能早回家。</p>
+<p>和老师交流后目前确认到的内容如下：</p>
+<ul>
+<li>之前downscale AIMHUB的时候，模型输出的是17地域数据，也就是把世界分成17份。downscale一共用时90分钟。现在AgLU模型把全世界分成400份（虽然不均匀）但是其中有一些区域的用时反而比之前多了。也就是说模型下推小的面积比大的面积用时还要长。老师怀疑模型根本没有输出确定解但是没有证据。</li>
+<li>模型一共用32个CPU线程；整个模型里一共400个流域，每一个流域要按时间计算10次（2010，2020，…，2100），所以一共是4000次计算。这四千个计算是随机分配到32个CPU线程里的！（当然对于每一个流域而言，靠后的年份肯定是在所有的前置年份计算完成后再计算的（因为后面的需要前面的数据））我之前以为是把400个流域随机分给32个线程，没想到是完全随机分的。</li>
+<li>两个很有经验的学长以及老师们对原因毫无头绪😅</li>
+</ul>
 
   </div>
   
@@ -3057,10 +3066,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-10-17T14:11:41+09:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-10-20T22:09:59+09:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2025年10月17日</p>
+    <p>更新于：2025年10月20日</p>
   </a>
 </div>
 
@@ -3158,7 +3167,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251015"><span class="toc-text">2025&#x2F;10&#x2F;15 周三</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251016"><span class="toc-text">2025&#x2F;10&#x2F;16 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251017"><span class="toc-text">2025&#x2F;10&#x2F;17 周五</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251015"><span class="toc-text">2025&#x2F;10&#x2F;15 周三</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251016"><span class="toc-text">2025&#x2F;10&#x2F;16 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251017"><span class="toc-text">2025&#x2F;10&#x2F;17 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251020"><span class="toc-text">2025&#x2F;10&#x2F;20 周一</span></a></li></ol>
   </div>
 </section>
 
@@ -3809,7 +3818,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/","name":"research"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/日常/","name":"日常"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/research/日常/研究日常/","name":"研究日常"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"研究日常","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/","wordCount":0,"datePublished":"2025-10-16T07:19:07.000Z","dateModified":"2025-10-17T05:11:41.106Z","articleSection":"research","keywords":"日常,研究","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/","name":"research"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/日常/","name":"日常"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/research/日常/研究日常/","name":"研究日常"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"研究日常","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/","wordCount":0,"datePublished":"2025-10-16T07:19:07.000Z","dateModified":"2025-10-20T13:09:59.334Z","articleSection":"research","keywords":"日常,研究","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
 
 
 

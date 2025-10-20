@@ -7589,38 +7589,15 @@ header {
   content: none !important;
 }
 
-/* 默认背景 */
+/* 设置默认背景颜色或备用图 */
 body {
-  background-color: #f5f5f5;
-  background-image: url('/images/background.png'); /* 本地备用图 */
+  background-color: #f5f5f5; /* 默认浅灰色，防止白屏 */
+  background-image: url('/images/background.png'); /* 可选：本地备用图 */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  transition: background 0.5s ease;
+  transition: background 0.5s ease; /* 平滑过渡 */
 }
+/* 当第三方背景加载成功后，会覆盖这里的默认背景 */
 
-/* 模糊+闪烁层：只用固定的底色，不继承body */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: #f5f5f5 url('/images/background.png') center/cover no-repeat;
-  filter: blur(10px) brightness(0.8);
-  animation: pulse 2s infinite ease-in-out;
-  z-index: -1;
-}
 
-/* 闪烁动画 */
-@keyframes pulse {
-  0% { opacity: 0.9; }
-  50% { opacity: 0.6; }
-  100% { opacity: 0.9; }
-}
-
-/* 第三方背景加载完成后去掉模糊层 */
-body.loaded::before {
-  animation: none;
-  filter: none;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
