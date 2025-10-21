@@ -7592,7 +7592,7 @@ header {
 /* 设置默认背景颜色或备用图 */
 body {
   background-color: #f5f5f5; /* 默认浅灰色，防止白屏 */
-  background-image: url('/images/background.png'); /* 可选：本地备用图 */
+  background-image: url('/images/background1.jpg'); /* 可选：本地备用图 */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -7600,4 +7600,49 @@ body {
 }
 /* 当第三方背景加载成功后，会覆盖这里的默认背景 */
 
+/* 初始显示 tooltip */
+.bing-tip .tooltip {
+  position: absolute;
+  bottom: 40%;
+  right: 20%;
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+  font-size: 15px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  z-index: 3;
+  opacity: 1;
+  animation: fadeOut 2s ease-in-out forwards; /* ✅ 控制消失时间 */
+  animation-delay: 2s; /* ✅ 等进度条走完后再开始淡出 */
+  overflow: hidden;
+}
+
+/* 伪元素做进度条 */
+.bing-tip .tooltip::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #06bee1, #002fa7);
+  animation: progress 2s linear forwards; /* ✅ 进度条 2 秒走完 */
+  border-radius: 6px;
+  z-index: -1;
+}
+
+/* 进度条从左到右 */
+@keyframes progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* tooltip 自身淡出消失 */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/*设置首页bing壁纸提示框*/
 
