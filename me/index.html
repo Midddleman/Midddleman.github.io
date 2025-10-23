@@ -33,6 +33,7 @@
 <link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
   <!-- feed -->
+      <link rel="alternate" href="/atom.xml" title="Middleman的博客" type="application/atom+xml">
   <!-- 页面元数据 -->
   <title>Me - Middleman的博客</title>
   <meta name="keywords" content="blog,research,personal,hobbies">
@@ -2342,7 +2343,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1758359404522),
+    lastupdate: new Date(1761190759059),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2392,6 +2393,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <!-- Custom Files headEnd begin-->
   
   <!-- Custom Files headEnd end-->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="d6fba575-7bf3-4930-a807-124d1f6bfa1d"></script>
 
 </head>
   <body itemscope itemtype="https://schema.org.cn/WebPage">
@@ -2450,11 +2452,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/categories/" title="分类"
+                 title="分类"
                   
                   
-                  
-                    active-action="action-categories"
                   >
                   <i class='fa-solid fa-folder-open fa-fw'></i>分类
                 </a>
@@ -2465,11 +2465,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/categories/research/" title="研究"
+                href="/research/" title="研究"
                   
                   
                   
-                    active-action="action-categoriesresearch"
+                    active-action="action-research"
                   >
                   <i class='fa-solid fa-laptop-code fa-fw'></i>研究
                 </a>
@@ -2482,11 +2482,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/categories/daily/" title="日常"
+                href="/daily/" title="日常"
                   
                   
                   
-                    active-action="action-categoriesdaily"
+                    active-action="action-daily"
                   >
                   <i class='fa-solid fa-calendar-day fa-fw'></i>日常
                 </a>
@@ -2716,11 +2716,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/categories/" title="分类"
+                 title="分类"
                   
                   
-                  
-                    active-action="action-categories"
                   >
                   <i class='fa-solid fa-folder-open fa-fw'></i>分类
                 </a>
@@ -2731,11 +2729,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/categories/research/" title="研究"
+                href="/research/" title="研究"
                   
                   
                   
-                    active-action="action-categoriesresearch"
+                    active-action="action-research"
                   >
                   <i class='fa-solid fa-laptop-code fa-fw'></i>研究
                 </a>
@@ -2748,11 +2746,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/categories/daily/" title="日常"
+                href="/daily/" title="日常"
                   
                   
                   
-                    active-action="action-categoriesdaily"
+                    active-action="action-daily"
                   >
                   <i class='fa-solid fa-calendar-day fa-fw'></i>日常
                 </a>
@@ -3123,7 +3121,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         本站使用
         <a href="https://github.com/volantis-x/hexo-theme-volantis/#6.0.0-alpha.1" target="_blank" class="codename">Volantis</a>
         作为主题，总访问量为
-          <span id="busuanzi_site_pv"><i class="fa-solid fa-loader fa-spin fa-fw" aria-hidden="true"></i></span>
+          <span id="busuanzi_value_site_pv"><i class="fa-solid fa-loader fa-spin fa-fw" aria-hidden="true"></i></span>
           次
         
       
@@ -3406,7 +3404,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
 
-  <script defer src="https://jsd.onmicrosoft.cn/npm/penndu@17.0.0/bsz.js"></script>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/busuanzi/2.3.0/bsz.pure.mini.js"></script>
 
 
 <!-- optional -->
