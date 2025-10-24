@@ -18,9 +18,7 @@ h1 {
   font-size: 1.5rem;
 }
 h2 {
-    text-align: center;
-  font-size: 1.8em; /* 调整字号 */
-  font-weight: 600;
+  font-size: 1.35rem;
 }
 h3 {
   font-size: 1.25rem;
@@ -7660,4 +7658,6 @@ body {
   to { opacity: 0; }
 }
 
-
+html {
+  font-size: 18px !important;   /* 全局字号 */
+}
