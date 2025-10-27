@@ -18,7 +18,7 @@ h1 {
   font-size: 1.5rem;
 }
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
 }
 h3 {
   font-size: 1.25rem;
@@ -2098,6 +2098,11 @@ img.lazyload:not(.placeholder).loaded {
   pointer-events: none;
   margin-top: 0;
   font-weight: 500;
+}
+.md h2{
+  text-align: center;
+  font-size: 1.2em; /* 调整字号 */
+  font-weight: 700;
 }
 .md h1 >a,
 .md h2 >a,
@@ -7651,4 +7656,8 @@ body {
 @keyframes fadeOut {
   from { opacity: 1; }
   to { opacity: 0; }
+}
+
+html {
+  font-size: 18px !important;   /* 全局字号 */
 }
