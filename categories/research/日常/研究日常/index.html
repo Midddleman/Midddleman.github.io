@@ -23,6 +23,7 @@
   <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
   <!-- import head_begin begin -->
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700&family=DM+Sans:wght@500;700&display=swap" rel="stylesheet">
   <!-- import head_begin end -->
   <!-- Custom Files headBegin begin-->
   
@@ -30,7 +31,7 @@
     <link rel="shortcut icon" type='image/x-icon' href="/favicon.ico">
   <link rel="preload" href="/css/style.css" as="style">
   <link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/VarelaRound/VarelaRound-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-<link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="/fonts/NotoSerifSC-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
   <!-- feed -->
       <link rel="alternate" href="/atom.xml" title="Middleman的博客" type="application/atom+xml">
@@ -47,7 +48,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://middlemanz.com/favicon.ico">
 <meta property="article:published_time" content="2025-10-16T07:19:07.000Z">
-<meta property="article:modified_time" content="2025-10-22T11:44:01.893Z">
+<meta property="article:modified_time" content="2025-11-03T02:53:26.135Z">
 <meta property="article:author" content="Middleman">
 <meta property="article:tag" content="日常">
 <meta property="article:tag" content="研究">
@@ -111,7 +112,7 @@ html {
   color: var(--color-text);
   width: 100%;
   height: 100%;
-  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "Noto Serif SC", "DM Sans", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif, Menlo, Monaco, monospace, sans-serif;
   font-size: 16px;
 }
 html >::-webkit-scrollbar {
@@ -970,9 +971,9 @@ button {
   filter: brightness(0.8);
 }
 @font-face {
-  font-family: 'UbuntuMono';
-  src: url("https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf");
-  font-weight: 'normal';
+  font-family: 'Noto Serif SC';
+  src: url("/fonts/NotoSerifSC-VariableFont_wght.ttf");
+  font-weight: 600;
   font-style: 'normal';
   font-display: swap;
 }
@@ -1141,12 +1142,12 @@ button {
   height: 64px;
 }
 .l_header .nav-sub {
-  max-width: 1080px;
+  max-width: 1500px;
   margin: auto;
 }
 .l_header .nav-sub .title {
   font-weight: bold;
-  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "Noto Serif SC", "DM Sans", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif, Menlo, Monaco, monospace, sans-serif;
   line-height: 1.2;
   max-height: 64px;
   white-space: normal;
@@ -1771,7 +1772,7 @@ ul.list-v >li>a:hover {
   right: calc(100% - 0.5 * 16px);
 }
 #wrapper {
-  max-width: 1080px;
+  max-width: 1500px;
   margin: auto;
 }
 @media screen and (min-width: 2048px) {
@@ -1821,11 +1822,11 @@ ul.list-v >li>a:hover {
 }
 @media screen and (max-width: 2048px) {
   .l_header {
-    max-width: 1112px;
-    left: calc((100% - 1112px) * 0.5);
+    max-width: 1532px;
+    left: calc((100% - 1532px) * 0.5);
   }
 }
-@media screen and (max-width: 1112px) {
+@media screen and (max-width: 1532px) {
   .l_header {
     left: 0;
     border-radius: 0;
@@ -2344,7 +2345,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1761291197559),
+    lastupdate: new Date(1762180432413),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2453,9 +2454,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                 title="分类"
+                href="/categories" title="分类"
                   
                   
+                  
+                    active-action="action-categories"
                   >
                   <i class='fa-solid fa-folder-open fa-fw'></i>分类
                 </a>
@@ -2483,13 +2486,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/daily/" title="日常"
+                href="/daily/" title="生活"
                   
                   
                   
                     active-action="action-daily"
                   >
-                  <i class='fa-solid fa-calendar-day fa-fw'></i>日常
+                  <i class='fa-solid fa-calendar-day fa-fw'></i>生活
                 </a>
                 
               </li>
@@ -2553,11 +2556,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/me/" title="关于我"
+                href="/about/" title="关于我"
                   
                   
                   
-                    active-action="action-me"
+                    active-action="action-about"
                   >
                   <i class='fa-solid fa-user-astronaut fa-fw'></i>关于我
                 </a>
@@ -2717,9 +2720,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                 title="分类"
+                href="/categories" title="分类"
                   
                   
+                  
+                    active-action="action-categories"
                   >
                   <i class='fa-solid fa-folder-open fa-fw'></i>分类
                 </a>
@@ -2747,13 +2752,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/daily/" title="日常"
+                href="/daily/" title="生活"
                   
                   
                   
                     active-action="action-daily"
                   >
-                  <i class='fa-solid fa-calendar-day fa-fw'></i>日常
+                  <i class='fa-solid fa-calendar-day fa-fw'></i>生活
                 </a>
                 
               </li>
@@ -2817,11 +2822,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/me/" title="关于我"
+                href="/about/" title="关于我"
                   
                   
                   
-                    active-action="action-me"
+                    active-action="action-about"
                   >
                   <i class='fa-solid fa-user-astronaut fa-fw'></i>关于我
                 </a>
@@ -2928,14 +2933,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <div class='new-meta-item category'>
     <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
-    <a class="category-link" href="/categories/research/">research</a><span class="sep"></span><a class="category-link" href="/categories/research/%E6%97%A5%E5%B8%B8/">日常</a>
+    <a class="category-link" href="/categories/research/">research</a><span class="sep"></span><a class="category-link" href="/categories/research/researchrecord/">研究日常</a>
     
       <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
         <a href="/categories/research/" itemprop="url"><span itemprop="name">research</span></a>
       </span>
     
       <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
-        <a href="/categories/research/%E6%97%A5%E5%B8%B8/" itemprop="url"><span itemprop="name">日常</span></a>
+        <a href="/categories/research/researchrecord/" itemprop="url"><span itemprop="name">研究日常</span></a>
       </span>
     
   </div>
@@ -2960,13 +2965,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：1.2k 字</p>
+      <p>字数：1.6k 字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fa-solid fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：4 分钟</p>
+      <p>时长：5 分钟</p>
     </a>
   </div>
 
@@ -3004,9 +3009,32 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <p>这是我记录研究进展与思考轨迹的地方，若你对这一领域感兴趣，不妨读一读。</p>
-<span id="more"></span>
+    <div class="note info"><p>这是我记录研究进展与思考轨迹的地方，若你对这一领域感兴趣，不妨读一读。</p></div>
 
+<span id="more"></span>
+<h4 id="20251101" style="text-align:center; font-weight:bold;">2025/11/01 周六</h4>
+今天终于有机会去大佬家里一睹大佬的收藏了。
+
+<p>最开始是在小红书上刷到了大佬的帖子，当时就被大佬的丰富的桌游收藏和舒适的配套设备给震惊到了。正好大佬也在找人一起玩，遂联系了大佬。（大佬的网名叫KUMA，以后就用KUMA来简称。）</p>
+<p>无奈他工作比较忙，一直等到了这个三连休才有了一些空闲时间。我就终于如愿去拜访KUMA了</p>
+<h3 style="text-align:center; font-weight:bold;">2025年10月</h3>
+
+<h4 id="20251030" style="text-align:center; font-weight:bold;">2025/10/30 周四</h4>
+周一跑的两个模型都没有跑通，于是准备用之前的develop_basin_mode分支来跑AgLU/AIM-PLUM的basinmode + predict。
+
+<p>但是之前merge了老师上传的PR之后 这个分支就充斥着bug，根本无法运行。于是只能一遍一遍退回commit来找到一个可以运行的版本。</p>
+<p>回退了两次之后终于找到了一个似乎能用的，截止写文模型还在运行。</p>
+<p>（晚上八点多模型终于跑完了，这次比上次还多用了2个小时，模型模拟的时间已经来到了8小时）</p>
+<h4 id="20251027" style="text-align:center; font-weight:bold;">2025/10/27 周一</h4>
+
+<p>今天主要内容就是和学长确认了一下整个模型的进度以及接下来的やること。</p>
+<div class='checkbox green checked'><input type="checkbox" checked="checked"/>
+            <p>用master分支跑一下AgLU&#x2F;AIM-PLUM的basinmode + predict</p>
+            </div>
+<div class='checkbox red checked'><input type="checkbox" checked="checked"/>
+            <p>用master分支测试一下AgLU&#x2F;AIM-PLUM的regionmode</p>
+            </div>
+<p>截止本文时间，模型已经跑完了但是结果确认需要等到周三去研究室才能进行</p>
 <h4 id="20251020" style="text-align:center; font-weight:bold;">2025/10/20 周一</h4>
 
 <p>本来以为上周进展挺顺利，这周任务应该不重。但是今天又和老师来回mail了无数轮来确认模型运转时间长的原因，导致也没能早回家。</p>
@@ -3016,6 +3044,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li>模型一共用32个CPU线程；整个模型里一共400个流域，每一个流域要按时间计算10次（2010，2020，…，2100），所以一共是4000次计算。这四千个计算是随机分配到32个CPU线程里的！（当然对于每一个流域而言，靠后的年份肯定是在所有的前置年份计算完成后再计算的（因为后面的需要前面的数据））我之前以为是把400个流域随机分给32个线程，没想到是完全随机分的。</li>
 <li>两个很有经验的学长以及老师们对原因毫无头绪😅</li>
 </ul>
+<p>接下来是等待小老板把需要改动的regionmode做完。</p>
 <h4 id="20251017" style="text-align:center; font-weight:bold;">2025/10/17 周五</h4>
 
 <p>今天小老板给了我新版的AgLU模型，好像解决了昨天说的问题。截止写文模型还在跑。</p>
@@ -3029,7 +3058,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <h4 id="20251016" style="text-align:center; font-weight:bold;">2025/10/16 周四</h4>
 
 <p>模型运行结束了，虽然中间过程数据已生成，但最终的 nc 文件未出现预期更新，还是之前的零星几个国家的程度。</p>
-<p>于是开始从头看代码，运行文件，报错文件。最后定位到 base year simulation那里，有20个流域（多为热带岛国，可能由于这些流域在地理或数据特征上的共性所致）在进行基准年计算的时候显示 <code>Equation infeasible due to rhs value （约束条件右端值设置不当导致方程不可行）</code> 所以导致该流域的base.gdx, 2005.gdx无法生成。后续也就无法继续根据基准年数据来模拟未来的结果（2010…2100.gdx）。因为没有后续数据，所以在整合gdx的时候，形成了一个空文件，导致在进行计算的时候报错，无法形成base_SSP2_BaU_NoCC.gdx导致后续所有都生成失败。</p>
+<p>于是开始从头看代码，运行文件，报错文件。最后定位到 base year simulation那里，有20个流域（多为热带岛国，可能由于这些流域在地理或数据特征上的共性所致）在进行基准年计算的时候显示<br> <div class="note bug red"><p><code>Equation infeasible due to rhs value （约束条件右端值设置不当导致方程不可行）</code></p></div><br>  所以导致该流域的base.gdx, 2005.gdx无法生成。后续也就无法继续根据基准年数据来模拟未来的结果（2010…2100.gdx）。因为没有后续数据，所以在整合gdx的时候，形成了一个空文件，导致在进行计算的时候报错，无法形成base_SSP2_BaU_NoCC.gdx导致后续所有都生成失败。</p>
 <p>作为解决方法，我在第一次生成数据之后手动修改Plum_exe.sh；执行脚本文件，阻止其粘贴空文件到下一个执行文件夹。这样的话虽然少了20个流域，但是模型可以执行到最后并输出数据。后续计划加入在执行脚本中添加条件判断，避免空文件被复制至下一阶段目录。</p>
 <p>下面这张图是本次进展的结果之一：这张是模型预测的2100年全球农作物分布图。图片下方的scale的caption有一个小错误——并不是%百分率而是占比，也就是说<span style="color:darkred;">深红</span>的那个格子百分之百都是农作物，而<span style="color:darkblue;">深蓝</span>格子没有农作物出现。</p>
 <figure style="text-align:center">
@@ -3066,10 +3095,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-10-22T20:44:01+09:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-11-03T11:53:26+09:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2025年10月22日</p>
+    <p>更新于：2025年11月3日</p>
   </a>
 </div>
 
@@ -3110,16 +3139,19 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         </a>
       
       
-        <a class='next' href='/categories/daily/%E6%97%A5%E5%B8%B8/%E6%AF%8F%E6%97%A5%E8%AE%B0%E5%BD%95/'>
-          <p class='title'>每日记录<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>这里记录我的每一天🎭，如果每天都能想起来的话。记录的内容为流水账📰与心流📖的不可观测态————如果你想观察的话，那他就是流水账，反之亦然。
+        <a class='next' href='/categories/daily/%E6%A1%8C%E6%B8%B8/%E6%A1%8C%E6%B8%B8%E8%AE%B0%E5%BD%95/'>
+          <p class='title'>桌游记录<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>记录每一次桌游🎲
 
 
 
+2025/11/01 周六
 
-2025/10/20 周一
+今日桌游:
 
-今天wee...</p>
+            阿瑞迪亚
+            
+今天第一次去大佬家玩桌游，玩了阿瑞迪亚,一款类似于dnd的美式角...</p>
         </a>
       
     </div>
@@ -3180,7 +3212,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251020"><span class="toc-text">2025&#x2F;10&#x2F;20 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251017"><span class="toc-text">2025&#x2F;10&#x2F;17 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251016"><span class="toc-text">2025&#x2F;10&#x2F;16 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251015"><span class="toc-text">2025&#x2F;10&#x2F;15 周三</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251101"><span class="toc-text">2025&#x2F;11&#x2F;01 周六</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">2025年10月</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251030"><span class="toc-text">2025&#x2F;10&#x2F;30 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251027"><span class="toc-text">2025&#x2F;10&#x2F;27 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251020"><span class="toc-text">2025&#x2F;10&#x2F;20 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251017"><span class="toc-text">2025&#x2F;10&#x2F;17 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251016"><span class="toc-text">2025&#x2F;10&#x2F;16 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251015"><span class="toc-text">2025&#x2F;10&#x2F;15 周三</span></a></li></ol>
   </div>
 </section>
 
@@ -3848,7 +3880,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/","name":"research"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/日常/","name":"日常"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/research/日常/研究日常/","name":"研究日常"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"研究日常","description":"这是我记录研究进展与思考轨迹的地方，若你对这一领域感兴趣，不妨读一读。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/","wordCount":35,"datePublished":"2025-10-16T07:19:07.000Z","dateModified":"2025-10-22T11:44:01.893Z","articleSection":"research","keywords":"日常,研究","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/","name":"research"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/researchrecord/","name":"研究日常"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/research/日常/研究日常/","name":"研究日常"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"研究日常","description":"这是我记录研究进展与思考轨迹的地方，若你对这一领域感兴趣，不妨读一读。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/","wordCount":35,"datePublished":"2025-10-16T07:19:07.000Z","dateModified":"2025-11-03T02:53:26.135Z","articleSection":"research","keywords":"日常,研究","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
 
 
 

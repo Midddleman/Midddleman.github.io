@@ -61,8 +61,13 @@ let SearchService = (() => {
       fn.data = await fn.fetchData();
     }
     let results = "";
-    results += fn.buildResultList(fn.data.pages);
-    results += fn.buildResultList(fn.data.posts);
+// 支持多种结构：[{...}] 或 {posts: [...], pages: [...]}
+    if (Array.isArray(fn.data)) {
+      results += fn.buildResultList(fn.data);
+    } else {
+      if (fn.data.pages) results += fn.buildResultList(fn.data.pages);
+      if (fn.data.posts) results += fn.buildResultList(fn.data.posts);
+    }
     if (results === "") {
       results = `<div id="resule-hits-empty"><i class="fa-solid fa-box-open"></i><p>${volantis.GLOBAL_CONFIG.languages.search.hits_empty.replace(/\$\{query}/, fn.queryText)}</p></div>`
     }
@@ -87,20 +92,33 @@ let SearchService = (() => {
       });
   };
   fn.buildResultList = (data) => {
-    let html = "";
-    data.forEach((post) => {
-      if (post.text) {
-        post.text = post.text.replace(/12345\d*/g, "") // 简易移除代码行号
+  let html = "";
+  data.forEach((post) => {
+    if (post.text) {
+      post.text = post.text.replace(/12345\d*/g, "");
+    }
+    if (!post.title && post.text) {
+      post.title = post.text.trim().slice(0, 15);
+    }
+
+    // ✅ 如果没有 permalink，则从 categories 推出一个链接
+    if (!post.permalink) {
+      if (Array.isArray(post.categories) && post.categories.length > 0) {
+        const lastCat = post.categories[post.categories.length - 1];
+        post.permalink = lastCat.permalink || "/";
+      } else {
+        post.permalink = "/";
       }
-      if (!post.title && post.text) {
-        post.title = post.text.trim().slice(0, 15)
-      }
-      if (fn.contentSearch(post)) {
-        html += fn.buildResult(post.permalink, post.title, post.digest);
-      }
-    });
-    return html;
-  };
+    }
+
+    // 仅当 text/title 匹配时才显示
+    if (fn.contentSearch(post)) {
+      html += fn.buildResult(post.permalink, post.title, post.digest || "");
+    }
+  });
+  return html;
+};
+
   fn.contentSearch = (post) => {
     let post_title = post.title.trim().toLowerCase();
     let post_content = post.text.trim().toLowerCase();
