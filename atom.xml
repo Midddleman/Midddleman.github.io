@@ -89,31 +89,6 @@
   </entry>
   
   <entry>
-    <title>桌游记录</title>
-    <link href="https://middlemanz.com/categories/daily/%E6%A1%8C%E6%B8%B8/%E6%A1%8C%E6%B8%B8%E8%AE%B0%E5%BD%95/"/>
-    <id>https://middlemanz.com/categories/daily/%E6%A1%8C%E6%B8%B8/%E6%A1%8C%E6%B8%B8%E8%AE%B0%E5%BD%95/</id>
-    <published>2025-10-15T08:45:30.000Z</published>
-    <updated>2025-11-03T09:00:51.394Z</updated>
-    
-    <content type="html"><![CDATA[<div class="note info"><p>记录每一次桌游🎲</p></div><span id="more"></span><h4 id="20251101" style="text-align:center; font-weight:bold;">2025/11/01 周六</h4><u>今日桌游:</u><div class='checkbox blue checked'><input type="checkbox" checked="checked"/>            <p><strong>阿瑞迪亚</strong></p>            </div><p>今天第一次去大佬家玩桌游，玩了阿瑞迪亚,一款类似于dnd的美式角色扮演游戏。</p><p>我玩的是奥术之路,也就是法师。<psw>可能是博德3选了盖尔之后有了一些执念</psw></p><p>前期的话，众所周知，法师基本属于废物。所以基本都在用普攻去戳人笑。玩的时候走错路跳关了，于是前两波架打的是非常痛苦，差点团灭。后面走回去升级技能的时候才发现前面有好几波比较基础的战斗😂。</p><p>一共玩了六七个小时，也没玩特别多的内容，听说游戏本体时长大概是100h+。我觉得就游戏而言，比方说阿瑞迪亚（这个是盗版）售价在450左右，能提供三四个人一两百小时的乐趣。这么来看的话一人一小时一元，在爱好中是非常便宜的了笑。<del>精神胜利法</del></p><p>期待下次去大佬那继续阿瑞。</p><div align="center">  <img src="/images/daily/boardgame/record/110101.jpg" class="lazyload" data-srcset="/images/daily/boardgame/record/110101.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="桌游" width="70%">  <p style="text-align:center;">阿瑞迪亚，这个地图应该是基普维克教区，在探索田野</p></div><div align="center">  <img src="/images/daily/boardgame/record/110102.jpg" class="lazyload" data-srcset="/images/daily/boardgame/record/110102.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="桌游" width="70%">  <p style="text-align:center;">在基普维克城里大战软泥怪</p></div>]]></content>
-    
-    
-    <summary type="html">&lt;div class=&quot;note info&quot;&gt;&lt;p&gt;记录每一次桌游🎲&lt;/p&gt;&lt;/div&gt;</summary>
-    
-    
-    
-    <category term="daily" scheme="https://middlemanz.com/categories/daily/"/>
-    
-    <category term="桌游" scheme="https://middlemanz.com/categories/daily/boardgame/"/>
-    
-    
-    <category term="桌游" scheme="https://middlemanz.com/tags/%E6%A1%8C%E6%B8%B8/"/>
-    
-    <category term="日常" scheme="https://middlemanz.com/tags/%E6%97%A5%E5%B8%B8/"/>
-    
-  </entry>
-  
-  <entry>
     <title>每日记录</title>
     <link href="https://middlemanz.com/categories/daily/%E6%AF%8F%E6%97%A5/%E6%AF%8F%E6%97%A5%E8%AE%B0%E5%BD%95/"/>
     <id>https://middlemanz.com/categories/daily/%E6%AF%8F%E6%97%A5/%E6%AF%8F%E6%97%A5%E8%AE%B0%E5%BD%95/</id>
@@ -132,9 +107,34 @@
     <category term="每日记录" scheme="https://middlemanz.com/categories/daily/dailyrecord/"/>
     
     
+    <category term="生活" scheme="https://middlemanz.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
     <category term="日常" scheme="https://middlemanz.com/tags/%E6%97%A5%E5%B8%B8/"/>
     
-    <category term="生活" scheme="https://middlemanz.com/tags/%E7%94%9F%E6%B4%BB/"/>
+  </entry>
+  
+  <entry>
+    <title>桌游记录</title>
+    <link href="https://middlemanz.com/categories/daily/%E6%A1%8C%E6%B8%B8/%E6%A1%8C%E6%B8%B8%E8%AE%B0%E5%BD%95/"/>
+    <id>https://middlemanz.com/categories/daily/%E6%A1%8C%E6%B8%B8/%E6%A1%8C%E6%B8%B8%E8%AE%B0%E5%BD%95/</id>
+    <published>2025-10-15T08:45:30.000Z</published>
+    <updated>2025-11-03T09:00:51.394Z</updated>
+    
+    <content type="html"><![CDATA[<div class="note info"><p>记录每一次桌游🎲</p></div><span id="more"></span><h4 id="20251101" style="text-align:center; font-weight:bold;">2025/11/01 周六</h4><u>今日桌游:</u><div class='checkbox blue checked'><input type="checkbox" checked="checked"/>            <p><strong>阿瑞迪亚</strong></p>            </div><p>今天第一次去大佬家玩桌游，玩了阿瑞迪亚,一款类似于dnd的美式角色扮演游戏。</p><p>我玩的是奥术之路,也就是法师。<psw>可能是博德3选了盖尔之后有了一些执念</psw></p><p>前期的话，众所周知，法师基本属于废物。所以基本都在用普攻去戳人笑。玩的时候走错路跳关了，于是前两波架打的是非常痛苦，差点团灭。后面走回去升级技能的时候才发现前面有好几波比较基础的战斗😂。</p><p>一共玩了六七个小时，也没玩特别多的内容，听说游戏本体时长大概是100h+。我觉得就游戏而言，比方说阿瑞迪亚（这个是盗版）售价在450左右，能提供三四个人一两百小时的乐趣。这么来看的话一人一小时一元，在爱好中是非常便宜的了笑。<del>精神胜利法</del></p><p>期待下次去大佬那继续阿瑞。</p><div align="center">  <img src="/images/daily/boardgame/record/110101.jpg" class="lazyload" data-srcset="/images/daily/boardgame/record/110101.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="桌游" width="70%">  <p style="text-align:center;">阿瑞迪亚，这个地图应该是基普维克教区，在探索田野</p></div><div align="center">  <img src="/images/daily/boardgame/record/110102.jpg" class="lazyload" data-srcset="/images/daily/boardgame/record/110102.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="桌游" width="70%">  <p style="text-align:center;">在基普维克城里大战软泥怪</p></div>]]></content>
+    
+    
+    <summary type="html">&lt;div class=&quot;note info&quot;&gt;&lt;p&gt;记录每一次桌游🎲&lt;/p&gt;&lt;/div&gt;</summary>
+    
+    
+    
+    <category term="daily" scheme="https://middlemanz.com/categories/daily/"/>
+    
+    <category term="桌游" scheme="https://middlemanz.com/categories/daily/boardgame/"/>
+    
+    
+    <category term="日常" scheme="https://middlemanz.com/tags/%E6%97%A5%E5%B8%B8/"/>
+    
+    <category term="桌游" scheme="https://middlemanz.com/tags/%E6%A1%8C%E6%B8%B8/"/>
     
   </entry>
   
