@@ -23,6 +23,7 @@
   <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
   <!-- import head_begin begin -->
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700&family=DM+Sans:wght@500;700&display=swap" rel="stylesheet">
   <!-- import head_begin end -->
   <!-- Custom Files headBegin begin-->
   
@@ -30,27 +31,28 @@
     <link rel="shortcut icon" type='image/x-icon' href="/favicon.ico">
   <link rel="preload" href="/css/style.css" as="style">
   <link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/VarelaRound/VarelaRound-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-<link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="/fonts/NotoSerifSC-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
   <!-- feed -->
       <link rel="alternate" href="/atom.xml" title="Middleman的博客" type="application/atom+xml">
   <!-- 页面元数据 -->
   <title>每日记录 - Middleman的博客</title>
-  <meta name="keywords" content="生活,日常,blog,research,personal,hobbies">
-  <meta desc name="description" content="info:这里记录我的每一天🎭，如果每天都能想起来的话。 记录的内容为流水账📰与心流📖的不可观测态————如果你想观察的话，那他就是流水账，反之亦然。 - Middleman - Middleman的博客">
+  <meta name="keywords" content="桌游,日常,生活,blog,research,personal,hobbies">
+  <meta desc name="description" content="这里记录我的每一天🎭，如果每天都能想起来的话。 记录的内容为流水账📰与心流📖的不可观测态————如果你想观察的话，那他就是流水账，反之亦然。 - Middleman - Middleman的博客">
   
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日记录">
 <meta property="og:url" content="https://middlemanz.com/categories/daily/%E6%AF%8F%E6%97%A5/%E6%AF%8F%E6%97%A5%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Middleman的博客">
-<meta property="og:description" content="info:这里记录我的每一天🎭，如果每天都能想起来的话。 记录的内容为流水账📰与心流📖的不可观测态————如果你想观察的话，那他就是流水账，反之亦然。">
+<meta property="og:description" content="这里记录我的每一天🎭，如果每天都能想起来的话。 记录的内容为流水账📰与心流📖的不可观测态————如果你想观察的话，那他就是流水账，反之亦然。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://middlemanz.com/favicon.ico">
 <meta property="article:published_time" content="2025-10-15T08:45:30.000Z">
-<meta property="article:modified_time" content="2025-10-31T09:34:47.171Z">
+<meta property="article:modified_time" content="2025-11-05T04:46:18.763Z">
 <meta property="article:author" content="Middleman">
-<meta property="article:tag" content="生活">
+<meta property="article:tag" content="桌游">
 <meta property="article:tag" content="日常">
+<meta property="article:tag" content="生活">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://middlemanz.com/favicon.ico">
   <style>
@@ -111,7 +113,7 @@ html {
   color: var(--color-text);
   width: 100%;
   height: 100%;
-  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "Noto Serif SC", "DM Sans", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif, Menlo, Monaco, monospace, sans-serif;
   font-size: 16px;
 }
 html >::-webkit-scrollbar {
@@ -970,9 +972,9 @@ button {
   filter: brightness(0.8);
 }
 @font-face {
-  font-family: 'UbuntuMono';
-  src: url("https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf");
-  font-weight: 'normal';
+  font-family: 'Noto Serif SC';
+  src: url("/fonts/NotoSerifSC-VariableFont_wght.ttf");
+  font-weight: 600;
   font-style: 'normal';
   font-display: swap;
 }
@@ -1141,12 +1143,12 @@ button {
   height: 64px;
 }
 .l_header .nav-sub {
-  max-width: 1080px;
+  max-width: 1500px;
   margin: auto;
 }
 .l_header .nav-sub .title {
   font-weight: bold;
-  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "Noto Serif SC", "DM Sans", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif, Menlo, Monaco, monospace, sans-serif;
   line-height: 1.2;
   max-height: 64px;
   white-space: normal;
@@ -1771,7 +1773,7 @@ ul.list-v >li>a:hover {
   right: calc(100% - 0.5 * 16px);
 }
 #wrapper {
-  max-width: 1080px;
+  max-width: 1500px;
   margin: auto;
 }
 @media screen and (min-width: 2048px) {
@@ -1821,11 +1823,11 @@ ul.list-v >li>a:hover {
 }
 @media screen and (max-width: 2048px) {
   .l_header {
-    max-width: 1112px;
-    left: calc((100% - 1112px) * 0.5);
+    max-width: 1532px;
+    left: calc((100% - 1532px) * 0.5);
   }
 }
-@media screen and (max-width: 1112px) {
+@media screen and (max-width: 1532px) {
   .l_header {
     left: 0;
     border-radius: 0;
@@ -2344,7 +2346,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1761906064827),
+    lastupdate: new Date(1762318453056),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2555,11 +2557,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/me/" title="关于我"
+                href="/about/" title="关于我"
                   
                   
                   
-                    active-action="action-me"
+                    active-action="action-about"
                   >
                   <i class='fa-solid fa-user-astronaut fa-fw'></i>关于我
                 </a>
@@ -2821,11 +2823,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/me/" title="关于我"
+                href="/about/" title="关于我"
                   
                   
                   
-                    active-action="action-me"
+                    active-action="action-about"
                   >
                   <i class='fa-solid fa-user-astronaut fa-fw'></i>关于我
                 </a>
@@ -2964,13 +2966,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：1.8k 字</p>
+      <p>字数：2.7k 字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fa-solid fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：6 分钟</p>
+      <p>时长：9 分钟</p>
     </a>
   </div>
 
@@ -3008,13 +3010,106 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <div class="note"><p>info:这里记录我的每一天🎭，如果每天都能想起来的话。<br> 记录的内容为流水账📰与心流📖的不可观测态————如果你想观察的话，那他就是流水账，反之亦然。</p></div>
+    <div class="note info"><p>这里记录我的每一天🎭，如果每天都能想起来的话。<br> 记录的内容为流水账📰与心流📖的不可观测态————如果你想观察的话，那他就是流水账，反之亦然。</p></div>
 
 <span id="more"></span>
 
+<h4 id="20251104" style="text-align:center; font-weight:bold;">2025/11/04 周二</h4>
+今天试着开了《方舟动物园ark nova》。整体玩下来感觉如下：
+<div class='checkbox green checked'><input type="checkbox" checked="checked"/>
+            <p>游戏入门不难，精通很难</p>
+            </div>
+<div class='checkbox green checked'><input type="checkbox" checked="checked"/>
+            <p>机制很多很杂糅但是融合的很好</p>
+            </div>
+<div class='checkbox green checked'><input type="checkbox" checked="checked"/>
+            <p>风味很足，卡面上的原画照片很写实出彩</p>
+            </div>
+<div class='checkbox green checked'><input type="checkbox" checked="checked"/>
+            <p>打出一串combo之后很爽</p>
+            </div>
+<div class='checkbox times red checked'><input type="checkbox" checked="checked"/>
+            <p>买的是鹿王的diy，不知道是什么原因灰很大，玩完了直接粉尘过敏</p>
+            </div>
+
+<h4 id="20251103" style="text-align:center; font-weight:bold;">2025/11/03 周一</h4>
+今天集运的桌游到货了!又能玩很长时间了😁
+新桌游收藏+：
+<div class='checkbox plus blue checked'><input type="checkbox" checked="checked"/>
+            <p>方舟动物园</p>
+            </div>
+<div class='checkbox plus blue checked'><input type="checkbox" checked="checked"/>
+            <p>灵迹岛+扩</p>
+            </div>
+<div class='checkbox plus blue checked'><input type="checkbox" checked="checked"/>
+            <p>权力的游戏版图版+扩</p>
+            </div>
+<div class='checkbox plus blue checked'><input type="checkbox" checked="checked"/>
+            <p>SETI</p>
+            </div>
+<div class='checkbox plus blue checked'><input type="checkbox" checked="checked"/>
+            <p>暗藏杀机</p>
+            </div>
+<div class='checkbox plus blue checked'><input type="checkbox" checked="checked"/>
+            <p>并购</p>
+            </div>
+在煤炉上购入了<br>
+<div class='checkbox plus blue checked'><input type="checkbox" checked="checked"/>
+            <p>惨剧轮回</p>
+            </div>
+
+<h4 id="20251102" style="text-align:center; font-weight:bold;">2025/11/02 周日</h4>
+今天女朋友给我烙一直想吃的牛肉馅饼了！🥙
+好吃！！完美符合心里的味道。
+
+<p>我也做了小白菜土豆汤🥬和西红柿牛腩。🐂</p>
+<p>两个人一起照着星露谷物语的食谱书做了爆炒青椒🌶(芝士青椒)</p>
+<p>图片详见foods页面。</p>
+<h4 id="20251101" style="text-align:center; font-weight:bold;">2025/11/01 周六</h4>
+今天终于有机会去大佬家里一睹大佬的收藏了。
+
+<p>最开始是在小红书上刷到了大佬的帖子，当时就被大佬的丰富的桌游收藏和舒适的配套设备给震惊到了。正好大佬也在找人一起玩，遂联系了大佬。</p>
+<p>无奈他工作比较忙，一直等到了这个三连休才有了一些空闲时间。于是终于如愿以偿去拜访大佬了。</p>
+<p>——————</p>
+<p>一进门，映入眼帘的是一个桌游专用桌子（似乎是满座家的）。围绕着桌椅有四个架子和数不清的柜子。左边先是一个小矮柜，放着一些毛线（作弊飞蛾、血蔷薇什么的），柜子的右边紧挨着一个挤满了中号盒子的德式+小美式的架子。大佬的收藏真的是包罗万象，就中号盒子大小的桌游来说，不存在我认识但是没看到的情况。新出至ARCS，经典如MANILA，无奇不有。</p>
+<div align="center">
+  <img src="/images/daily/daily/record/110101.jpg" class="lazyload" data-srcset="/images/daily/daily/record/110101.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="家" width="70%">
+  <p style="text-align:center;">大佬的家</p>
+</div>
+在右边是一个大美的战区，从上往下，诡镇惊魂、血源诅咒、德鲁纳格编年史等等琳琅满目，模型收纳在对应的盒子里，可以直接抽出来欣赏。
+<div align="center">
+  <img src="/images/daily/daily/record/110102.jpg" class="lazyload" data-srcset="/images/daily/daily/record/110102.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="家" width="70%">
+  <p style="text-align:center;">大美架子</p>
+</div>
+拐角的右面也是一个大美的架子，右面还是一个大美的架子（貌似大佬家里全是大美笑）。简单列一下大佬的收藏的话：大老鼠、COC、PRIMAL、Return to the darktower、阿瑞迪亚、霜港迷城 ......
+<div align="center">
+  <img src="/images/daily/daily/record/110103.jpg" class="lazyload" data-srcset="/images/daily/daily/record/110103.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="家" width="70%">
+  <p style="text-align:center;">大美架子2</p>
+</div>
+<div align="center">
+  <img src="/images/daily/daily/record/110104.jpg" class="lazyload" data-srcset="/images/daily/daily/record/110104.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="家" width="70%">
+  <p style="text-align:center;">大美架子n</p>
+</div>
+除了传统的桌游，当然还少不了各式模型。我对模型的了解不多，仅仅能从茫茫模型海中识别出来一部分：战锤的极限战士，COC的经典模型等等。
+<div align="center">
+  <img src="/images/daily/daily/record/110105.jpg" class="lazyload" data-srcset="/images/daily/daily/record/110105.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="家" width="70%">
+  <p style="text-align:center;">战锤的模型</p>
+</div>
+<div align="center">
+  <img src="/images/daily/daily/record/110106.jpg" class="lazyload" data-srcset="/images/daily/daily/record/110106.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="家" width="70%">
+  <p style="text-align:center;">未知模型不过很酷</p>
+</div>
+<psw>::从现在开始，我的人生目标变更为能拥有这样的收藏笑</psw>
+
+<p>题外话:我觉得拥有一个桌游专用的大桌子对于提升幸福感是非常重要的。无论是从便利方面还是从‘专用’方面都能很高的提升玩桌游的体验。争取到了东京之后搞一个大桌子。</p>
+<p>今天在大佬家玩了《阿瑞迪亚》,详见:</p>
+<p><a href="/categories/daily/%E6%A1%8C%E6%B8%B8/%E6%A1%8C%E6%B8%B8%E6%97%A5%E5%B8%B8/#20251101">今日桌游记录</a></p>
+<h3 id="202510" style="text-align:center; font-weight:bold;">2025年10月</h3>
+
 <h4 id="20251030" style="text-align:center; font-weight:bold;">2025/10/30 周四</h4>
 今天是研究室运动大会。因为周四一般不去研究室，早上生物钟没调过来，没起来去坐往常那班校车，只能坐下一班。不过好歹也是赶上了。
-着重说一下今天的研究室的スポーツ大会：
+
+<p>着重说一下今天的研究室的スポーツ大会：</p>
 <div class="note info"><p><strong>スポーツ大会スケジュール（体育大会安排）</strong><br> 12:15-13:00　サッカー(10分×2セット)<br> 13:00-13:30 バドミントン(ダブルス3面×3)<br> 13:40-14:10 バスケットボール(10分×2セット)<br> 14:20-14:50 バレー(30点先取・デュースあり)<br> <strong>Sports Tournament Schedule</strong><br> 12:15-1:00 PM Soccer (2 sets of 10 minutes)<br> 1:00-1:30 PM Badminton (3 courts of doubles)<br> 1:40-2:10 PM Basketball (2 sets of 10 minutes)<br> 2:20-2:50 PM Volleyball (First to 30 points, with deuce)</p></div>
 
 <p>日本人这个体能是真的强，从12:15到15:00点全是高强度有氧，可谓是铁人四项了。</p>
@@ -3100,10 +3195,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-10-31T18:34:47+09:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-11-05T13:46:18+09:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2025年10月31日</p>
+    <p>更新于：2025年11月5日</p>
   </a>
 </div>
 
@@ -3114,8 +3209,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%94%9F%E6%B4%BB/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>生活</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%97%A5%E5%B8%B8/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>日常</p></a></div>
-  <span hidden itemprop="keywords">生活 日常</span>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%A1%8C%E6%B8%B8/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>桌游</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%97%A5%E5%B8%B8/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>日常</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%94%9F%E6%B4%BB/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>生活</p></a></div>
+  <span hidden itemprop="keywords">桌游 日常 生活</span>
   
 
 
@@ -3134,13 +3229,24 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/'>
-          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>研究日常</p>
-          <p class='content'>这是我记录研究进展与思考轨迹的地方，若你对这一领域感兴趣，不妨读一读。
+        <a class='prev' href='/categories/daily/%E6%A1%8C%E6%B8%B8/%E6%A1%8C%E6%B8%B8%E8%AE%B0%E5%BD%95/'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>桌游记录</p>
+          <p class='content'>记录每一次桌游🎲
 
 
-2025/10/30 周四
-周一跑的两个模型都没有跑通，于是准备用之前的develop_basin_mode分支来跑A...</p>
+
+2025/11/04 周二
+今日桌游:
+
+            方舟动物园
+            
+
+
+2025/11/01 周六
+
+今日桌游:
+
+        ...</p>
         </a>
       
       
@@ -3202,7 +3308,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251030"><span class="toc-text">2025&#x2F;10&#x2F;30 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251028"><span class="toc-text">2025&#x2F;10&#x2F;28 周二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251027"><span class="toc-text">2025&#x2F;10&#x2F;27 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251020"><span class="toc-text">2025&#x2F;10&#x2F;20 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251019"><span class="toc-text">2025&#x2F;10&#x2F;19 周日</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251018"><span class="toc-text">2025&#x2F;10&#x2F;18 周六</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251017"><span class="toc-text">2025&#x2F;10&#x2F;17 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251016"><span class="toc-text">2025&#x2F;10&#x2F;16 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251015"><span class="toc-text">2025&#x2F;10&#x2F;15 周三</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251104"><span class="toc-text">2025&#x2F;11&#x2F;04 周二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251103"><span class="toc-text">2025&#x2F;11&#x2F;03 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251102"><span class="toc-text">2025&#x2F;11&#x2F;02 周日</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251101"><span class="toc-text">2025&#x2F;11&#x2F;01 周六</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#202510"><span class="toc-text">2025年10月</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251030"><span class="toc-text">2025&#x2F;10&#x2F;30 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251028"><span class="toc-text">2025&#x2F;10&#x2F;28 周二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251027"><span class="toc-text">2025&#x2F;10&#x2F;27 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251020"><span class="toc-text">2025&#x2F;10&#x2F;20 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251019"><span class="toc-text">2025&#x2F;10&#x2F;19 周日</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251018"><span class="toc-text">2025&#x2F;10&#x2F;18 周六</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251017"><span class="toc-text">2025&#x2F;10&#x2F;17 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251016"><span class="toc-text">2025&#x2F;10&#x2F;16 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251015"><span class="toc-text">2025&#x2F;10&#x2F;15 周三</span></a></li></ol>
   </div>
 </section>
 
@@ -3870,7 +3976,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/daily/","name":"daily"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/daily/dailyrecord/","name":"每日记录"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/daily/每日/每日记录/","name":"每日记录"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"每日记录","description":"info:这里记录我的每一天🎭，如果每天都能想起来的话。 记录的内容为流水账📰与心流📖的不可观测态————如果你想观察的话，那他就是流水账，反之亦然。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/daily/%E6%AF%8F%E6%97%A5/%E6%AF%8F%E6%97%A5%E8%AE%B0%E5%BD%95/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/daily/%E6%AF%8F%E6%97%A5/%E6%AF%8F%E6%97%A5%E8%AE%B0%E5%BD%95/","wordCount":78,"datePublished":"2025-10-15T08:45:30.000Z","dateModified":"2025-10-31T09:34:47.171Z","articleSection":"daily","keywords":"生活,日常","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/daily/","name":"daily"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/daily/dailyrecord/","name":"每日记录"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/daily/每日/每日记录/","name":"每日记录"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"每日记录","description":"这里记录我的每一天🎭，如果每天都能想起来的话。 记录的内容为流水账📰与心流📖的不可观测态————如果你想观察的话，那他就是流水账，反之亦然。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/daily/%E6%AF%8F%E6%97%A5/%E6%AF%8F%E6%97%A5%E8%AE%B0%E5%BD%95/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/daily/%E6%AF%8F%E6%97%A5/%E6%AF%8F%E6%97%A5%E8%AE%B0%E5%BD%95/","wordCount":73,"datePublished":"2025-10-15T08:45:30.000Z","dateModified":"2025-11-05T04:46:18.763Z","articleSection":"daily","keywords":"桌游,日常,生活","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
 
 
 

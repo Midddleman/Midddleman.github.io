@@ -23,6 +23,7 @@
   <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
   <!-- import head_begin begin -->
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700&family=DM+Sans:wght@500;700&display=swap" rel="stylesheet">
   <!-- import head_begin end -->
   <!-- Custom Files headBegin begin-->
   
@@ -30,7 +31,7 @@
     <link rel="shortcut icon" type='image/x-icon' href="/favicon.ico">
   <link rel="preload" href="/css/style.css" as="style">
   <link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/VarelaRound/VarelaRound-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-<link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="/fonts/NotoSerifSC-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
   <!-- feed -->
       <link rel="alternate" href="/atom.xml" title="Middleman的博客" type="application/atom+xml">
@@ -110,7 +111,7 @@ html {
   color: var(--color-text);
   width: 100%;
   height: 100%;
-  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "Noto Serif SC", "DM Sans", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif, Menlo, Monaco, monospace, sans-serif;
   font-size: 16px;
 }
 html >::-webkit-scrollbar {
@@ -969,9 +970,9 @@ button {
   filter: brightness(0.8);
 }
 @font-face {
-  font-family: 'UbuntuMono';
-  src: url("https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf");
-  font-weight: 'normal';
+  font-family: 'Noto Serif SC';
+  src: url("/fonts/NotoSerifSC-VariableFont_wght.ttf");
+  font-weight: 600;
   font-style: 'normal';
   font-display: swap;
 }
@@ -1140,12 +1141,12 @@ button {
   height: 64px;
 }
 .l_header .nav-sub {
-  max-width: 1080px;
+  max-width: 1500px;
   margin: auto;
 }
 .l_header .nav-sub .title {
   font-weight: bold;
-  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "Noto Serif SC", "DM Sans", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif, Menlo, Monaco, monospace, sans-serif;
   line-height: 1.2;
   max-height: 64px;
   white-space: normal;
@@ -1770,7 +1771,7 @@ ul.list-v >li>a:hover {
   right: calc(100% - 0.5 * 16px);
 }
 #wrapper {
-  max-width: 1080px;
+  max-width: 1500px;
   margin: auto;
 }
 @media screen and (min-width: 2048px) {
@@ -1820,11 +1821,11 @@ ul.list-v >li>a:hover {
 }
 @media screen and (max-width: 2048px) {
   .l_header {
-    max-width: 1112px;
-    left: calc((100% - 1112px) * 0.5);
+    max-width: 1532px;
+    left: calc((100% - 1532px) * 0.5);
   }
 }
-@media screen and (max-width: 1112px) {
+@media screen and (max-width: 1532px) {
   .l_header {
     left: 0;
     border-radius: 0;
@@ -2343,7 +2344,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1761906064827),
+    lastupdate: new Date(1762318453056),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2554,11 +2555,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/me/" title="关于我"
+                href="/about/" title="关于我"
                   
                   
                   
-                    active-action="action-me"
+                    active-action="action-about"
                   >
                   <i class='fa-solid fa-user-astronaut fa-fw'></i>关于我
                 </a>
@@ -2820,11 +2821,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/me/" title="关于我"
+                href="/about/" title="关于我"
                   
                   
                   
-                    active-action="action-me"
+                    active-action="action-about"
                   >
                   <i class='fa-solid fa-user-astronaut fa-fw'></i>关于我
                 </a>
@@ -2899,7 +2900,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                 <a class="" href="/categories/daily/">
                   <span><i class='fa-solid fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;daily</span>
                   <span class="title">
-                    (2)
+                    (3)
+                  </span>
+                </a>
+              
+                <a class=" child" href="/categories/daily/boardgame/">
+                  <span><i class='fa-solid fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;桌游</span>
+                  <span class="title">
+                    (1)
                   </span>
                 </a>
               

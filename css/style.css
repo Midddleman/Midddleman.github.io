@@ -39,6 +39,14 @@ h4,
 h6 {
   font-weight: normal;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Noto Serif SC", "DM Sans", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif !important
+}
 a:not([href]) {
   cursor: default;
 }
@@ -1575,12 +1583,12 @@ svg.loading {
 #l_main.no_sidebar {
   width: 100%;
   padding-right: 0;
-  max-width: 840px;
+  max-width: 1050px;
   margin: auto;
 }
 @media screen and (min-width: 2048px) {
   #l_main.no_sidebar {
-    max-width: calc(55vw - 240px);
+    max-width: calc(80vw - 220px);
   }
 }
 #l_main.no_sidebar ~#l_side {
@@ -7660,4 +7668,100 @@ body {
 
 html {
   font-size: 18px !important;   /* 全局字号 */
+}
+
+.food-timeline {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* 左列时间轴 */
+.timeline {
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border-right: 2px solid #ccc;
+  padding-right: 1rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #666;
+  padding-bottom: 50rem;
+}
+
+.time-item {
+  margin: 2rem 0;
+  font-size: 1rem;
+}
+
+/* 右列瀑布流 */
+.waterfall {
+  flex: 1;
+  column-count: 4;
+  column-gap: 1rem;
+}
+
+.food-item {
+  position: relative;
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.food-item img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+  transform: scale(1); 
+  transition: transform 1.5s ease-in-out; 
+}
+
+/* 悬停放大效果 */
+.food-item:hover img {
+  transform: scale(1.3);
+}
+
+/* 悬停文字框 */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+  opacity: 0;
+  display: flex;
+  justify-content: flex-end;  
+  align-items: flex-end;       
+  text-align: right;       
+  padding: 0.5rem 1rem 0.5rem 1rem;          
+  font-size: 1.2rem;       
+  font-weight: 500;
+  transition: opacity 1s ease;
+}
+.food-item:hover .overlay {
+  opacity: 1;
+}
+.food-timeline .overlay p {
+  margin: 0;
+  text-align: right;
+  line-height: 1.4;
+  font-size: 1.1rem;
+}
+
+/* 响应式：手机单列显示 */
+@media (max-width: 768px) {
+  .food-timeline {
+    flex-direction: column;
+  }
+  .timeline {
+    border-right: none;
+    border-bottom: 2px solid #ccc;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .waterfall {
+    column-count: 1;
+  }
 }

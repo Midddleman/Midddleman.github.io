@@ -23,6 +23,7 @@
   <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
   <!-- import head_begin begin -->
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700&family=DM+Sans:wght@500;700&display=swap" rel="stylesheet">
   <!-- import head_begin end -->
   <!-- Custom Files headBegin begin-->
   
@@ -30,7 +31,7 @@
     <link rel="shortcut icon" type='image/x-icon' href="/favicon.ico">
   <link rel="preload" href="/css/style.css" as="style">
   <link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/VarelaRound/VarelaRound-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-<link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="/fonts/NotoSerifSC-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
   <!-- feed -->
       <link rel="alternate" href="/atom.xml" title="Middleman的博客" type="application/atom+xml">
@@ -46,8 +47,8 @@
 <meta property="og:description" content="记录日常、旅行、桌游与我">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://middlemanz.com/favicon.ico">
-<meta property="article:published_time" content="2025-10-27T10:54:10.869Z">
-<meta property="article:modified_time" content="2025-10-27T10:54:10.869Z">
+<meta property="article:published_time" content="2025-11-05T03:59:02.708Z">
+<meta property="article:modified_time" content="2025-11-05T03:59:02.708Z">
 <meta property="article:author" content="Middleman">
 <meta property="article:tag" content="blog,research,personal,hobbies">
 <meta name="twitter:card" content="summary">
@@ -110,7 +111,7 @@ html {
   color: var(--color-text);
   width: 100%;
   height: 100%;
-  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "Noto Serif SC", "DM Sans", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif, Menlo, Monaco, monospace, sans-serif;
   font-size: 16px;
 }
 html >::-webkit-scrollbar {
@@ -969,9 +970,9 @@ button {
   filter: brightness(0.8);
 }
 @font-face {
-  font-family: 'UbuntuMono';
-  src: url("https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf");
-  font-weight: 'normal';
+  font-family: 'Noto Serif SC';
+  src: url("/fonts/NotoSerifSC-VariableFont_wght.ttf");
+  font-weight: 600;
   font-style: 'normal';
   font-display: swap;
 }
@@ -1140,12 +1141,12 @@ button {
   height: 64px;
 }
 .l_header .nav-sub {
-  max-width: 1080px;
+  max-width: 1500px;
   margin: auto;
 }
 .l_header .nav-sub .title {
   font-weight: bold;
-  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "Noto Serif SC", "DM Sans", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif, Menlo, Monaco, monospace, sans-serif;
   line-height: 1.2;
   max-height: 64px;
   white-space: normal;
@@ -1770,7 +1771,7 @@ ul.list-v >li>a:hover {
   right: calc(100% - 0.5 * 16px);
 }
 #wrapper {
-  max-width: 1080px;
+  max-width: 1500px;
   margin: auto;
 }
 @media screen and (min-width: 2048px) {
@@ -1820,11 +1821,11 @@ ul.list-v >li>a:hover {
 }
 @media screen and (max-width: 2048px) {
   .l_header {
-    max-width: 1112px;
-    left: calc((100% - 1112px) * 0.5);
+    max-width: 1532px;
+    left: calc((100% - 1532px) * 0.5);
   }
 }
-@media screen and (max-width: 1112px) {
+@media screen and (max-width: 1532px) {
   .l_header {
     left: 0;
     border-radius: 0;
@@ -2343,7 +2344,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1761906064827),
+    lastupdate: new Date(1762318453056),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2554,11 +2555,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/me/" title="关于我"
+                href="/about/" title="关于我"
                   
                   
                   
-                    active-action="action-me"
+                    active-action="action-about"
                   >
                   <i class='fa-solid fa-user-astronaut fa-fw'></i>关于我
                 </a>
@@ -2820,11 +2821,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/me/" title="关于我"
+                href="/about/" title="关于我"
                   
                   
                   
-                    active-action="action-me"
+                    active-action="action-about"
                   >
                   <i class='fa-solid fa-user-astronaut fa-fw'></i>关于我
                 </a>
@@ -2931,10 +2932,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
         
           
-            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2025-10-27T19:54:10+09:00">
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2025-11-05T12:59:02+09:00">
   <a class='notlink'>
     <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2025年10月27日</p>
+    <p>发布于：2025年11月5日</p>
   </a>
 </div>
 
@@ -2945,7 +2946,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：34 字</p>
+      <p>字数：45 字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -3002,7 +3003,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   </div>
 
   <div class="card">
-    <a href="/categories/daily/boardgame/">
+    <a href="/daily/boardgame/">
       <img src="/images/boardgame.png" class="lazyload" data-srcset="/images/boardgame.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="桌游">
       <div class="card-body">
         <h3>🎲 桌游</h3>
@@ -3021,6 +3022,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     </a>
   </div>
 
+  <div class="card">
+    <a href="/daily/foods/">
+      <img src="/images/food.jpg" class="lazyload" data-srcset="/images/food.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="美食">
+      <div class="card-body">
+        <h3>🥘 美食</h3>
+        <p>自己做的和外面吃的</p>
+      </div>
+    </a>
+  </div>
+
 </div>
 
   </div>
@@ -3034,10 +3045,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-10-27T19:54:10+09:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-11-05T12:59:02+09:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2025年10月27日</p>
+    <p>更新于：2025年11月5日</p>
   </a>
 </div>
 
@@ -3115,7 +3126,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">✈️ 旅行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">🎲 桌游</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">🌿 每日记录</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">✈️ 旅行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">🎲 桌游</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">🌿 每日记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">🥘 美食</span></a></li></ol>
   </div>
 </section>
 
@@ -3783,7 +3794,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"生活记录","description":"记录日常、旅行、桌游与我","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/daily/index.html"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/daily/index.html","wordCount":0,"datePublished":"2025-10-27T10:54:10.869Z","dateModified":"2025-10-27T10:54:10.869Z","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"生活记录","description":"记录日常、旅行、桌游与我","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/daily/index.html"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/daily/index.html","wordCount":0,"datePublished":"2025-11-05T03:59:02.708Z","dateModified":"2025-11-05T03:59:02.708Z","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
 
 
 

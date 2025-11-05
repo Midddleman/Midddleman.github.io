@@ -23,6 +23,7 @@
   <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
   <!-- import head_begin begin -->
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700&family=DM+Sans:wght@500;700&display=swap" rel="stylesheet">
   <!-- import head_begin end -->
   <!-- Custom Files headBegin begin-->
   
@@ -30,7 +31,7 @@
     <link rel="shortcut icon" type='image/x-icon' href="/favicon.ico">
   <link rel="preload" href="/css/style.css" as="style">
   <link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/VarelaRound/VarelaRound-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-<link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="/fonts/NotoSerifSC-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
   <!-- feed -->
       <link rel="alternate" href="/atom.xml" title="Middleman的博客" type="application/atom+xml">
@@ -112,7 +113,7 @@ html {
   color: var(--color-text);
   width: 100%;
   height: 100%;
-  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "Noto Serif SC", "DM Sans", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif, Menlo, Monaco, monospace, sans-serif;
   font-size: 16px;
 }
 html >::-webkit-scrollbar {
@@ -971,9 +972,9 @@ button {
   filter: brightness(0.8);
 }
 @font-face {
-  font-family: 'UbuntuMono';
-  src: url("https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf");
-  font-weight: 'normal';
+  font-family: 'Noto Serif SC';
+  src: url("/fonts/NotoSerifSC-VariableFont_wght.ttf");
+  font-weight: 600;
   font-style: 'normal';
   font-display: swap;
 }
@@ -1142,12 +1143,12 @@ button {
   height: 64px;
 }
 .l_header .nav-sub {
-  max-width: 1080px;
+  max-width: 1500px;
   margin: auto;
 }
 .l_header .nav-sub .title {
   font-weight: bold;
-  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "Noto Serif SC", "DM Sans", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif, Menlo, Monaco, monospace, sans-serif;
   line-height: 1.2;
   max-height: 64px;
   white-space: normal;
@@ -1772,7 +1773,7 @@ ul.list-v >li>a:hover {
   right: calc(100% - 0.5 * 16px);
 }
 #wrapper {
-  max-width: 1080px;
+  max-width: 1500px;
   margin: auto;
 }
 @media screen and (min-width: 2048px) {
@@ -1822,11 +1823,11 @@ ul.list-v >li>a:hover {
 }
 @media screen and (max-width: 2048px) {
   .l_header {
-    max-width: 1112px;
-    left: calc((100% - 1112px) * 0.5);
+    max-width: 1532px;
+    left: calc((100% - 1532px) * 0.5);
   }
 }
-@media screen and (max-width: 1112px) {
+@media screen and (max-width: 1532px) {
   .l_header {
     left: 0;
     border-radius: 0;
@@ -2345,7 +2346,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1761906064827),
+    lastupdate: new Date(1762318453056),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2556,11 +2557,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/me/" title="关于我"
+                href="/about/" title="关于我"
                   
                   
                   
-                    active-action="action-me"
+                    active-action="action-about"
                   >
                   <i class='fa-solid fa-user-astronaut fa-fw'></i>关于我
                 </a>
@@ -2822,11 +2823,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/me/" title="关于我"
+                href="/about/" title="关于我"
                   
                   
                   
-                    active-action="action-me"
+                    active-action="action-about"
                   >
                   <i class='fa-solid fa-user-astronaut fa-fw'></i>关于我
                 </a>
@@ -3211,15 +3212,15 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/categories/daily/%E9%9A%8F%E7%AC%94/%E6%A9%84%E6%A6%84%E8%8F%9C/'>
+        <a class='prev' href='/categories/short/%E6%A9%84%E6%A6%84%E8%8F%9C/'>
           <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>橄榄菜</p>
-          <p class='content'>每一个东北人都应该吃过来自南方的神秘馈赠
+          <p class='content'>每一个东北人都应该吃过的，来自南方的神秘馈赠
 
 
 
 ::quote是我自己编的
 昨天做米饭的时候放水放少了，同样的米饭这次做完只有之前的二分之一大小。比较硬，吃不太下去。
-第二天中午不知道吃什么，看...</p>
+第二天中午不知道吃什么...</p>
         </a>
       
       
@@ -3228,8 +3229,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <p class='content'>这是我记录研究进展与思考轨迹的地方，若你对这一领域感兴趣，不妨读一读。
 
 
-2025/10/30 周四
-周一跑的两个模型都没有跑通，于是准备用之前的develop_basin_mode分支来跑A...</p>
+2025/11/01 周六
+今天终于有机会去大佬家里一睹大佬的收藏了。
+
+最开始是在小红书上刷到了大佬的帖子，当时就被...</p>
         </a>
       
     </div>
