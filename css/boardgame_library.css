@@ -1,9 +1,103 @@
+:root{
+  --color-list-hl:#45caf9
+}
+
+body{
+  background-image: url(/images/background.png);
+}
+
+#l_main.no_sidebar {
+  max-width: 91.4vw !important; /* 默认约 860px */
+  margin: 0 auto;
+  padding: 0 1rem;
+  z-index: 2;
+  background-color: #2d333c !important;
+  color:#2d333c
+}
+
+#l_main .post{
+  background-color: #2d333c !important;
+
+}
+
+@media screen and (min-width: 2048px) {
+    .body-wrapper {
+        max-width: 100vw;
+    }
+}
+
+/* 移除 Volantis 默认的标题前空白 */
+.boardgame-page h1::before,
+.boardgame-page h2::before,
+.boardgame-header h1::before,
+.boardgame-page h3::before {
+  display: none !important;
+  content: none !important;
+}
+
+.l_header {
+    max-width: 90vw;
+    left: calc((100% - 90vw) * 0.5);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    z-index: 3;
+    background: #171d25 !important;
+}
+
+.ul.list-v >li>a:hover{
+  color:#f7f3df !important;
+  background-color: #171d25 !important;
+}
+
+.l_header .menu >ul>li>a >i {
+  color:#eee !important;
+}
+
+.l_header ul.nav-list-h>li {
+    color: #f7f3df;
+    line-height: 64px;
+}
+
+
+
+/* 页面主标题样式 */
+.boardgame-header h1 {
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;            /* 白色标题 */
+  margin: 0 0 1.5rem 0.5rem;
+  letter-spacing: 1px;
+}
+
+/* 可选：在标题下加一条亮色线 */
+.boardgame-header h1::after {
+  content: "";
+  display: block;
+  width: 2200px;
+  height: 3px;
+  background: linear-gradient(90deg, #00b7ff, #007aff);
+  margin-top: 0.4rem;
+  border-radius: 2px;
+}
 .boardgame-page {
   padding: 2rem;
-  background: #1b1e23;
+  background: #2d333c;
   color: #fff;
   font-family: "Noto Sans JP", sans-serif;
 }
+
+.boardgame-page h2 {
+  text-align: left !important;
+  margin-left: 0.5rem;
+  color: #eee;
+  font-weight: 600;
+  font-size: 1.3rem;
+  border-left: 4px solid #00b7ff;
+  padding-left: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
 
 .boardgame-row {
   display: flex;
@@ -14,12 +108,13 @@
 
 .boardgame-card {
   position: relative;
-  width: 180px;
-  flex: 0 0 auto;
+  display: inline-flex;    /* 让卡片随内容宽度伸缩 */
+  flex: 0 0 auto;          /* 保持横向排列 */
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease;
+  margin-right: 1rem;      /* 卡片间留空隙 */
 }
 
 .boardgame-card:hover {
@@ -29,8 +124,12 @@
 .boardgame-card img {
   width: 100%;
   height: 260px;
+  width: auto;
+  max-width: 100%;
   object-fit: cover;
   border-radius: 12px;
+  object-fit: contain; 
+  margin: 0 auto;
 }
 
 .boardgame-hover {
@@ -43,7 +142,7 @@
   padding: 0.5rem;
   text-align: center;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.4s ease;
 }
 
 .boardgame-card:hover .boardgame-hover {
@@ -54,8 +153,7 @@
 .modal {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
@@ -65,13 +163,43 @@
 }
 
 .modal-content {
+  position: relative;
   background: #2b2f36;
-  padding: 1.5rem;
+  background-size: cover;
+  background-position: center;
+  padding: 2rem;
   border-radius: 12px;
-  width: 600px;
+  width: 700px;
+  height: 1200px;
   max-height: 80vh;
   overflow-y: auto;
+  color: #fff;
+  z-index: 1;
+}
+
+/* 半透明黑色蒙版层 */
+.modal-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  z-index: 0;
+}
+
+/* 让文字浮在蒙版上方 */
+.modal-content > * {
   position: relative;
+  z-index: 1;
+}
+
+/* 弹窗文字样式 */
+#modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00b7ff;
+  margin-bottom: 1rem;
 }
 
 .close {
@@ -91,4 +219,245 @@
   color: #00b7ff;
   font-size: 0.9rem;
   margin-left: 0.5rem;
+}
+
+article#comments p[ct] ,
+footer.footer,
+footer.footer a,
+.tk-meta-input{
+  color:#f7f3df;
+}
+
+/* ==============================
+   桌游卡片 hover 信息样式
+   ============================== */
+
+/* 通用游戏名 */
+.hover-name {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  color: #00b7ff;
+  text-shadow: 0 0 6px rgba(0, 183, 255, 0.7);
+  margin-bottom: 0.3rem;
+}
+
+/* 最近桌游 hover */
+.boardgame-card.recent .boardgame-hover,
+.boardgame-card.all .boardgame-hover {
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  padding: 0.6rem;
+  text-align: center;
+}
+
+.boardgame-card.recent .hover-line,
+.boardgame-card.all .hover-line{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.boardgame-card.recent .hover-date,
+.boardgame-card.all .hover-date {
+  font-weight: 600;
+}
+
+.boardgame-card.recent .hover-duration,
+.boardgame-card.all .hover-duration {
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.boardgame-card.recent .hover-players,
+.boardgame-card.all .hover-players {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* Steam 风格标题线 */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0 0.5rem;
+}
+
+.section-header h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.section-line {
+  flex-grow: 1;
+  height: 2px;
+  margin-left: 1rem;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 183, 255, 0.7) 0%,
+    rgba(0, 183, 255, 0.4) 40%,
+    rgba(0, 183, 255, 0) 100%
+  );
+  border-radius: 2px;
+  box-shadow: 0 0 6px rgba(0, 183, 255, 0.8);
+}
+
+
+/* Hover 动画 */
+.boardgame-card:hover .hover-name {
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%   { text-shadow: 0 0 6px rgba(0,183,255,0.5); }
+  50%  { text-shadow: 0 0 14px rgba(0,183,255,0.9); }
+  100% { text-shadow: 0 0 6px rgba(0,183,255,0.5); }
+}
+
+
+/* ==============================
+   Hover 光效升级版（Steam风格）
+   ============================== */
+
+/* 卡片 hover 时整体亮度上升 + 蓝色光晕 */
+.boardgame-card:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+  box-shadow: 0 0 10px rgba(0, 183, 255, 0.4);
+  transition: all 0.35s ease;
+}
+
+/* hover 背景出现柔光模糊层 */
+.boardgame-card .boardgame-hover {
+  backdrop-filter: blur(4px); /* 模糊背景 */
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.4s ease;
+}
+
+/* hover 时背景颜色稍微加亮 */
+.boardgame-card.recent:hover .boardgame-hover,
+.boardgame-card.all:hover .boardgame-hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+
+
+/* hover 时标题（游戏名）发光增强 */
+.boardgame-card:hover .hover-name {
+  text-shadow: 0 0 12px rgba(0, 183, 255, 0.6), 0 0 25px rgba(0, 183, 255, 0.3);
+  transition: text-shadow 0.3s ease;
+}
+/* ==============================
+   最近文章 - 横向卡片优化版
+   ============================== */
+#recent-posts {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+}
+
+/* 卡片外观 */
+.post-card-horizontal {
+  flex: 0 0 260px; /* 每个卡片固定宽度 */
+  height: 130px;
+  background: #383e48; /* 比整体略浅的灰色 */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* 微亮边框 */
+  border-radius: 12px;
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  padding: 0.4rem 0.8rem;
+}
+
+/* 悬停效果 */
+.post-card-horizontal:hover {
+  background: rgba(0, 183, 255, 0.15);
+  border-color: #00b7ff;
+  box-shadow: 0 0 10px rgba(0, 183, 255, 0.3);
+  transform: translateY(-3px);
+}
+
+/* 内部文字 */
+.post-inner {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1rem;
+  margin-bottom: 0rem;
+}
+
+.post-inner h3 {
+  font-size: 1.2rem;
+  color: #00b7ff;
+  margin-bottom: 0rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.post-inner p {
+  font-size: 1.1rem;
+  color: #ccc;
+  line-height: 1.45;
+  margin: 0.2rem 0 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;   /* ✅ 显示三行 */
+  word-break: break-word;  /* ✅ 避免长英文或数字溢出 */
+  white-space: normal;
+}
+
+/* ===========================
+   通用横向滚动条样式
+   =========================== */
+.scrollable-row.recent {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+}
+
+.boardgame-row.all {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 每行最多5个 */
+  gap: 1.5rem;
+  justify-items: center;
+  padding: 1.5rem 0;
+  overflow: visible; /* 不出现滚动条 */
+}
+
+/* 限制最大显示宽度（默认显示5个，最多10个） */
+.scrollable-row::-webkit-scrollbar {
+  height: 8px;
+}
+.scrollable-row::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+.scrollable-row::-webkit-scrollbar-thumb {
+  background: rgba(0, 183, 255, 0.35);
+  border-radius: 4px;
+}
+.scrollable-row::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 183, 255, 0.6);
 }

@@ -7615,7 +7615,7 @@ body {
 
 /* 初始状态：隐藏 tooltip */
 .bing-tip .tooltip {
-  font-family:  "思源黑体", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family:  "Noto Serif SC", sans-serif;
   position: absolute;
   bottom: 40%;
   right: 20%;
