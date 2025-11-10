@@ -2109,6 +2109,10 @@ img.lazyload:not(.placeholder).loaded {
 }
 .md h2{
   text-align: center;
+  font-size: 1.4em; /* 调整字号 */
+  font-weight: 700;
+}
+.md h3{
   font-size: 1.2em; /* 调整字号 */
   font-weight: 700;
 }
@@ -2146,7 +2150,7 @@ img.lazyload:not(.placeholder).loaded {
 }
 .md h1:before,
 .md h2:before {
-  margin-top: -32px;
+  margin-top: -36px;
 }
 .md .article-meta+h1,
 .md .article-meta+h2 {
@@ -7764,4 +7768,18 @@ html {
   .waterfall {
     column-count: 1;
   }
+}
+
+.article h2 {
+  position: relative;
+  background: linear-gradient(to bottom, transparent 50%, #a9d4ff80 30%);
+}
+.md h2::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  z-index: -1;
+  border-radius: 2px;
+  height: 96px;
 }
