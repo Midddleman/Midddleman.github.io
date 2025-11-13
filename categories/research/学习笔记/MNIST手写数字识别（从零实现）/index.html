@@ -38,17 +38,18 @@
   <!-- 页面元数据 -->
   <title>MNIST手写数字识别（从零实现） - Middleman的博客</title>
   <meta name="keywords" content="从零实现,机器学习,深度学习,blog,research,personal,hobbies">
-  <meta desc name="description" content="本文为我的技术相关的第一篇文章。本文详述了如何从0实现MNIST手写数字识别这个项目。不用深度学习框架，帮助新手更好理解深度学习的基本原理。 - Middleman - Middleman的博客">
+  <meta desc name="description" content="本文为我的技术相关的第一篇文章。
+本文详述了如何从0实现MNIST手写数字识别这个项目。不用深度学习框架，帮助新手更好理解深度学习的基本原理。 - Middleman - Middleman的博客">
   
 <meta property="og:type" content="article">
 <meta property="og:title" content="MNIST手写数字识别（从零实现）">
 <meta property="og:url" content="https://middlemanz.com/categories/research/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MNIST%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%EF%BC%88%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%EF%BC%89/index.html">
 <meta property="og:site_name" content="Middleman的博客">
-<meta property="og:description" content="本文为我的技术相关的第一篇文章。本文详述了如何从0实现MNIST手写数字识别这个项目。不用深度学习框架，帮助新手更好理解深度学习的基本原理。">
+<meta property="og:description" content="本文为我的技术相关的第一篇文章。 本文详述了如何从0实现MNIST手写数字识别这个项目。不用深度学习框架，帮助新手更好理解深度学习的基本原理。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://middlemanz.com/favicon.ico">
 <meta property="article:published_time" content="2025-11-07T06:50:07.000Z">
-<meta property="article:modified_time" content="2025-11-09T04:55:02.814Z">
+<meta property="article:modified_time" content="2025-11-12T15:17:48.051Z">
 <meta property="article:author" content="Middleman">
 <meta property="article:tag" content="从零实现">
 <meta property="article:tag" content="机器学习">
@@ -68,7 +69,7 @@
   --color-card: #f0f0f0;
   --color-text: #0a0908;
   --color-block: #ccc;
-  --color-inlinecode: #db3a34;
+  --color-inlinecode: #007acc;
   --color-codeblock: #eee;
   --color-h1: #3a3a3a;
   --color-h2: #3a3a3a;
@@ -821,11 +822,11 @@ button {
   :root:not([color-scheme]) {
     --color-site-body: #121212;
     --color-read-bkg: #0a0908;
-    --color-read-post: #2d2221;
+    --color-read-post: #19191e;
     --color-site-bg: #0a0908;
     --color-site-inner: #1c1c1c;
     --color-site-footer: #725752;
-    --color-card: #2d2221;
+    --color-card: #19191e;
     --color-text: #fff;
     --color-block: #433431;
     --color-codeblock: #1a1a1a;
@@ -851,7 +852,7 @@ button {
     background: rgba(10,9,8,0.9) !important;
   }
   :root:not([color-scheme]) .white-box.blur {
-    background: rgba(45,34,33,0.9) !important;
+    background: rgba(25,25,30,0.9) !important;
   }
   :root:not([color-scheme]) .nav-main .u-search-input {
     background: var(--color-card) !important;
@@ -894,11 +895,11 @@ button {
 [color-scheme='dark'] {
   --color-site-body: #121212;
   --color-read-bkg: #0a0908;
-  --color-read-post: #2d2221;
+  --color-read-post: #19191e;
   --color-site-bg: #0a0908;
   --color-site-inner: #1c1c1c;
   --color-site-footer: #725752;
-  --color-card: #2d2221;
+  --color-card: #19191e;
   --color-text: #fff;
   --color-block: #433431;
   --color-codeblock: #1a1a1a;
@@ -924,7 +925,7 @@ button {
   background: rgba(10,9,8,0.9) !important;
 }
 [color-scheme='dark'] .white-box.blur {
-  background: rgba(45,34,33,0.9) !important;
+  background: rgba(25,25,30,0.9) !important;
 }
 [color-scheme='dark'] .nav-main .u-search-input {
   background: var(--color-card) !important;
@@ -2346,7 +2347,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1762877749222),
+    lastupdate: new Date(1763010013569),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2399,7 +2400,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <script defer src="https://cloud.umami.is/script.js" data-website-id="d6fba575-7bf3-4930-a807-124d1f6bfa1d"></script>
 
 </head>
-  <body itemscope itemtype="https://schema.org.cn/WebPage">
+  <body itemscope itemtype="https://schema.org.cn/WebPage"class="post">
     <!-- import body_begin begin-->
     <!-- import body_begin end-->
     <!-- Custom Files bodyBegin begin-->
@@ -2968,13 +2969,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：442 字</p>
+      <p>字数：627 字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fa-solid fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1 分钟</p>
+      <p>时长：2 分钟</p>
     </a>
   </div>
 
@@ -3012,8 +3013,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <p>本文为我的技术相关的第一篇文章。<br>本文详述了如何从0实现MNIST手写数字识别这个项目。不用深度学习框架，帮助新手更好理解深度学习的基本原理。</p>
+    <p>本文为我的技术相关的第一篇文章。</p>
+<p>本文详述了如何从0实现MNIST手写数字识别这个项目。不用深度学习框架，帮助新手更好理解深度学习的基本原理。</p>
 <span id="more"></span>
+
+<div class="note warning"><p>本文所有代码都置于个人github仓库 <a target="_blank" rel="noopener" href="https://github.com/Midddleman/Middleman-ML-Lab/tree/main/MNIST">点击跳转</a></p></div>
+
 <h2 id="0-序言"><a href="#0-序言" class="headerlink" title="0.序言"></a>0.序言</h2><p>对于深度学习初学者来说，MNIST手写数字识别（以下用MINST简称）一定是一个绕不开的项目。作为最基础的项目，MNIST能教会初学者基础的：</p>
 <div class='checkbox blue checked'><input type="checkbox" checked="checked"/>
             <p>完整的机器学习流程</p>
@@ -3028,12 +3033,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <p>模型评估和调参</p>
             </div>
 <p>所以笔者认为掌握这个项目是至关重要的。</p>
-<p>在本文中，笔者力求用最基础、简洁的语言，以及不省略任何细节的形式来完整讲述项目的全部流程。<psw>如果觉得啰嗦的话请快进哈哈</psw></p>
-<p>因为是第一篇文章，所以格式、形式上多少会有一些不精确之处，以后也会逐步修正格式，还望海涵。</p>
-<h2 id="1-项目概览"><a href="#1-项目概览" class="headerlink" title="1.项目概览"></a>1.项目概览</h2><h3 id="1-1-MNIST是什么"><a href="#1-1-MNIST是什么" class="headerlink" title="1.1 MNIST是什么"></a>1.1 MNIST是什么</h3><p>MNIST 是一个手写数字图片数据集，主要用于识别 0–9 这十个数字。它最早由美国国家标准与技术研究院（NIST）制作，后由 Yann LeCun 等人清洗整理成 “Modified” 版本（MNIST）<del>加入了M</del>。</p>
-<p>数据集分为训练集+测试集。训练集中一共有60000张，而测试集中一共有10000张图片。每张图片的大小为28*28像素。每一个像素值的范围是0-255（从黑0到白255，灰度值）</p>
-<p>原始的 MNIST 数据通常是四个 .idx 文件：</p>
-<p><code>train-images-idx3-ubyte</code>：训练图像<br><code>train-labels-idx1-ubyte</code>：训练标签<br><code>t10k-images-idx3-ubyte</code>：测试图像<br><code>t10k-labels-idx1-ubyte</code>：测试标签</p>
+<p>在本文中，笔者力求用最基础、简洁的语言，以及不省略任何细节的形式来完整讲述项目的全部流程。<psw>如果觉得啰嗦的话请快进哈哈</psw><br>因为是第一篇文章，所以格式、形式上多少会有一些不精确之处，以后也会逐步修正格式，还望海涵。</p>
+<h2 id="1-项目概览"><a href="#1-项目概览" class="headerlink" title="1.项目概览"></a>1.项目概览</h2><h3 id="1-1-MNIST是什么"><a href="#1-1-MNIST是什么" class="headerlink" title="1.1 MNIST是什么"></a>1.1 MNIST是什么</h3><p>MNIST 是一个手写数字图片数据集，主要用于识别 0–9 这十个数字。它最早由美国国家标准与技术研究院（NIST）制作，后由 Yann LeCun 等人清洗整理成 “<code>Modified</code>” 版本（MNIST）<del>加入了M</del>。</p>
+<p>原始的 MNIST 数据通常是四个 .idx 文件，分别为：</p>
+<ul>
+<li><code>train-images-idx3-ubyte</code>：训练图像</li>
+<li><code>train-labels-idx1-ubyte</code>：训练标签</li>
+<li><code>t10k-images-idx3-ubyte</code>：测试图像</li>
+<li><code>t10k-labels-idx1-ubyte</code>：测试标签</li>
+</ul>
+<p>数据集分为训练集+测试集，每一个集合里又有图像和对应的标签。训练集中一共有60000张，而测试集中一共有10000张图片。在数据集中图片是被打乱放置的，也就是说数据集中随机排列着0-9这十种数字。每张图片的大小为28*28像素，而每一个像素值的范围是0-255（从黑0到白255，灰度值）。</p>
+<p>举个例子：数字7的数据是： <code> [0,0,0,...,235,255,...,0,0,...,45,168,159,...,0,0]</code><br>他的标签(one-hot)编码是：<code>[0,0,0,0,0,0,1,0,0]</code></p>
+<h3 id="1-2-目的"><a href="#1-2-目的" class="headerlink" title="1.2 目的"></a>1.2 目的</h3><p>本项目旨在不利用任何深度学习框架，只用numpy来实现对MNIST数据集的手写数字分类。</p>
+<del>用大白话来讲，就是让模型学会：给他一张图，他就能判断上面写的数字是几这个能力。</del>
+
 
   </div>
   
@@ -3058,10 +3071,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-11-09T13:55:02+09:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-11-13T00:17:48+09:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2025年11月9日</p>
+    <p>更新于：2025年11月13日</p>
   </a>
 </div>
 
@@ -3162,7 +3175,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E5%BA%8F%E8%A8%80"><span class="toc-text">0.序言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%A7%88"><span class="toc-text">1.项目概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-MNIST%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">1.1 MNIST是什么</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E5%BA%8F%E8%A8%80"><span class="toc-text">0.序言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%A7%88"><span class="toc-text">1.项目概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-MNIST%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">1.1 MNIST是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E7%9B%AE%E7%9A%84"><span class="toc-text">1.2 目的</span></a></li></ol></li></ol>
   </div>
 </section>
 
@@ -3830,7 +3843,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/","name":"research"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/notes/","name":"学习笔记"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/research/学习笔记/MNIST手写数字识别（从零实现）/","name":"MNIST手写数字识别（从零实现）"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"MNIST手写数字识别（从零实现）","description":"本文为我的技术相关的第一篇文章。本文详述了如何从0实现MNIST手写数字识别这个项目。不用深度学习框架，帮助新手更好理解深度学习的基本原理。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/research/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MNIST%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%EF%BC%88%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%EF%BC%89/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/research/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MNIST%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%EF%BC%88%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%EF%BC%89/","wordCount":70,"datePublished":"2025-11-07T06:50:07.000Z","dateModified":"2025-11-09T04:55:02.814Z","articleSection":"research","keywords":"从零实现,机器学习,深度学习","image":{"@type":"ImageObject","url":"/images/research/notes/mnist/head.png","width":1024,"height":768}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/","name":"research"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/notes/","name":"学习笔记"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/research/学习笔记/MNIST手写数字识别（从零实现）/","name":"MNIST手写数字识别（从零实现）"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"MNIST手写数字识别（从零实现）","description":"本文为我的技术相关的第一篇文章。\n本文详述了如何从0实现MNIST手写数字识别这个项目。不用深度学习框架，帮助新手更好理解深度学习的基本原理。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/research/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MNIST%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%EF%BC%88%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%EF%BC%89/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/research/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MNIST%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%EF%BC%88%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%EF%BC%89/","wordCount":71,"datePublished":"2025-11-07T06:50:07.000Z","dateModified":"2025-11-12T15:17:48.051Z","articleSection":"research","keywords":"从零实现,机器学习,深度学习","image":{"@type":"ImageObject","url":"/images/research/notes/mnist/head.png","width":1024,"height":768}}]</script>
 
 
 
