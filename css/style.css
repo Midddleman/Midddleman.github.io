@@ -5631,6 +5631,12 @@ div.note.quote {
   background: #e8f4fd26;
   border-color: #2196f3;
 }
+@media (prefers-color-scheme: dark) {
+  div.note.quote {
+  background: #e8f4fd26;
+  border-color: #2196f3;
+}
+}
 div.note.quote::before {
   color: #2196f3;
   content: '\f10d';
@@ -5642,6 +5648,12 @@ div.note.info {
 [color-scheme='dark'] div.note.info {
   background: #ebfbf726;
   border-color: #3dd9b6;
+}
+@media (prefers-color-scheme: dark) {
+  div.note.info {
+    background: #ebfbf726;
+    border-color: #3dd9b6;
+  }
 }
 div.note.info::before {
   color: #3dd9b6;
@@ -5665,9 +5677,11 @@ div.note.warning {
   background: #fff8e926;
   border-color: #ffbd2b;
 }
-div.note.warning::before {
-  color: #ffbd2b;
-  content: '\f12a';
+@media (prefers-color-scheme: dark) {
+div.note.warning {
+  background: #fff8e926;
+  border-color: #ffbd2b;
+}
 }
 div.note.danger,
 div.note.error {
