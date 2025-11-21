@@ -48,7 +48,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://middlemanz.com/favicon.ico">
 <meta property="article:published_time" content="2025-10-16T07:19:07.000Z">
-<meta property="article:modified_time" content="2025-11-17T08:56:00.745Z">
+<meta property="article:modified_time" content="2025-11-21T02:09:05.126Z">
 <meta property="article:author" content="Middleman">
 <meta property="article:tag" content="日常">
 <meta property="article:tag" content="研究">
@@ -2345,7 +2345,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1763690301202),
+    lastupdate: new Date(1763690974008),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2965,13 +2965,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：2.3k 字</p>
+      <p>字数：2.5k 字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fa-solid fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：8 分钟</p>
+      <p>时长：9 分钟</p>
     </a>
   </div>
 
@@ -3012,6 +3012,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class="note info"><p>这是我记录研究进展与思考轨迹的地方，若你对这一领域感兴趣，不妨读一读。</p></div>
 
 <span id="more"></span>
+<h4 id="20251121" style="text-align:center; font-weight:bold;">2025/11/21 周五</h4>
+<hr style="border: 1px solid #bbb; width: 100%; margin-top: 3px; margin-bottom: 10px;">
+
+<p>今天是sustainability的组会，趁着孔隙写一下总结。</p>
+<p>周一成功的跑出了结果，在<code>master branch</code>下<code>region mode</code> 和<code>basin mode</code>输出了看起来正确的数值。</p>
+<p>周二：为了验证数值的准确性，把400流域下的数值进行了聚类——合并成了17地域的类型。和<code>region mode</code>进行了比较后发现<u>几乎在所有项目两者都有近10%的误差</u>于是开始请教学长、查代码、问老师等等等。</p>
+<p>周三大组会，开完之后问了老师如何判断，小老板说了一大堆，我挑重点的回去试了试，但是也没太整明白。只查到了在<code>data prep</code>下有一些格子看起来有一些奇怪。等待今天组会问老师。</p>
+<p>周五小组组会，目前还没到我，我问完老师后更新。</p>
 <h4 id="20251117" style="text-align:center; font-weight:bold;">2025/11/17 周一</h4>
 <hr style="border: 1px solid #bbb; width: 100%; margin-top: 3px; margin-bottom: 10px;">
 
@@ -3028,7 +3036,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>重点是每一个变量的名字比我的例子里的复杂多了，比如</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Y_pre(&quot;OL&quot;,G)$(landshare(G))=Y_pre(&quot;OL&quot;,G)*landshare(G)+(1-landshare(G));</span><br><span class="line">Y_pre(&quot;SL&quot;,G)$(Y_pre(&quot;SL&quot;,G) and landshare(G))=Y_pre(&quot;SL&quot;,G)*landshare(G);</span><br><span class="line"></span><br><span class="line">$else.baseyear</span><br><span class="line">$ifthen.fileex exist &#x27;../output/gdx/%SceName%/%Sr%/%pre_year%.gdx&#x27;</span><br><span class="line">$	gdxin &#x27;../output/gdx/%SceName%/%Sr%/%pre_year%.gdx&#x27;</span><br><span class="line">$	load VY_load=VYL VZ_load=VZL</span><br><span class="line">$	load PLDM_load=PLDM PCDM_load=PCDM</span><br><span class="line"></span><br><span class="line">$gdxin &#x27;../output/gdx/base/%Sr%/basedata.gdx&#x27;</span><br><span class="line">$load GATwoOL</span><br><span class="line"></span><br><span class="line">$else.fileex</span><br><span class="line">  VY_load(L,G)=0;</span><br><span class="line">$endif.fileex</span><br><span class="line"></span><br><span class="line">*Y_pre(L,G)$(VY_load(L,G))=VY_load(L,G);</span><br><span class="line">Y_pre(L,G)$(VY_load(L,G) and not sameas(L,&quot;SL&quot;))=VY_load(L,G);</span><br><span class="line"></span><br><span class="line">*---load SL data for every year excl. base yr</span><br><span class="line">Y_pre(&quot;SL&quot;,G)$(sum(R17,SSP_frac(&quot;SL&quot;,&quot;%Sy%&quot;,R17,G))*landshare(G)) = sum(R17,SSP_frac(&quot;SL&quot;,&quot;%Sy%&quot;,R17,G))*landshare(G);</span><br></pre></td></tr></table></figure>
 
-<p>寻找了一大通之后发现进入了纯nlp环节，代码不是我能看得懂的，遂打算求助于老师。这时候发现，<emp>模型的输入数据是错误的，作物面积都相等，学长之前虽然改正了但是没有给我发正确的。</emp></p>
+<p>寻找了一大通之后发现进入了纯nlp环节，代码不是我能看得懂的，遂打算求助于老师。这时候发现，<emp>模型的输入数据是错误的，所有作物面积都相等，学长之前虽然改正了但是没有给我发正确的。</emp></p>
 <p>现在在重新跑模型尝试。</p>
 <h4 id="20251110" style="text-align:center; font-weight:bold;">2025/11/10 周一</h4>
 <hr style="border: 1px solid #bbb; width: 100%; margin-top: 3px; margin-bottom: 10px;">
@@ -3139,10 +3147,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-11-17T17:56:00+09:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-11-21T11:09:05+09:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2025年11月17日</p>
+    <p>更新于：2025年11月21日</p>
   </a>
 </div>
 
@@ -3259,7 +3267,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251117"><span class="toc-text">2025&#x2F;11&#x2F;17 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251110"><span class="toc-text">2025&#x2F;11&#x2F;10 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251105"><span class="toc-text">2025&#x2F;11&#x2F;05 周三</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">2025年10月</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251030"><span class="toc-text">2025&#x2F;10&#x2F;30 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251027"><span class="toc-text">2025&#x2F;10&#x2F;27 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251020"><span class="toc-text">2025&#x2F;10&#x2F;20 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251017"><span class="toc-text">2025&#x2F;10&#x2F;17 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251016"><span class="toc-text">2025&#x2F;10&#x2F;16 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251015"><span class="toc-text">2025&#x2F;10&#x2F;15 周三</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251121"><span class="toc-text">2025&#x2F;11&#x2F;21 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251117"><span class="toc-text">2025&#x2F;11&#x2F;17 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251110"><span class="toc-text">2025&#x2F;11&#x2F;10 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251105"><span class="toc-text">2025&#x2F;11&#x2F;05 周三</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">2025年10月</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251030"><span class="toc-text">2025&#x2F;10&#x2F;30 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251027"><span class="toc-text">2025&#x2F;10&#x2F;27 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251020"><span class="toc-text">2025&#x2F;10&#x2F;20 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251017"><span class="toc-text">2025&#x2F;10&#x2F;17 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251016"><span class="toc-text">2025&#x2F;10&#x2F;16 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251015"><span class="toc-text">2025&#x2F;10&#x2F;15 周三</span></a></li></ol>
   </div>
 </section>
 
@@ -3927,7 +3935,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/","name":"research"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/researchrecord/","name":"研究记录"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/research/日常/研究日常/","name":"研究记录"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"研究记录","description":"这是我记录研究进展与思考轨迹的地方，若你对这一领域感兴趣，不妨读一读。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/","wordCount":35,"datePublished":"2025-10-16T07:19:07.000Z","dateModified":"2025-11-17T08:56:00.745Z","articleSection":"research","keywords":"日常,研究","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/","name":"research"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/researchrecord/","name":"研究记录"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/research/日常/研究日常/","name":"研究记录"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"研究记录","description":"这是我记录研究进展与思考轨迹的地方，若你对这一领域感兴趣，不妨读一读。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/","wordCount":35,"datePublished":"2025-10-16T07:19:07.000Z","dateModified":"2025-11-21T02:09:05.126Z","articleSection":"research","keywords":"日常,研究","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
 
 
 
