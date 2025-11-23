@@ -6,7 +6,7 @@
   <link href="https://middlemanz.com/atom.xml" rel="self"/>
   
   <link href="https://middlemanz.com/"/>
-  <updated>2025-11-13T09:11:50.755Z</updated>
+  <updated>2025-11-23T12:12:00.206Z</updated>
   <id>https://middlemanz.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>炸弹克星短评</title>
+    <link href="https://middlemanz.com/categories/daily/%E6%A1%8C%E6%B8%B8/%E7%82%B8%E5%BC%B9%E5%85%8B%E6%98%9F%E7%9F%AD%E8%AF%84/"/>
+    <id>https://middlemanz.com/categories/daily/%E6%A1%8C%E6%B8%B8/%E7%82%B8%E5%BC%B9%E5%85%8B%E6%98%9F%E7%9F%AD%E8%AF%84/</id>
+    <published>2025-11-23T09:31:00.000Z</published>
+    <updated>2025-11-23T12:12:00.206Z</updated>
+    
+    <content type="html"><![CDATA[<div class="note info"><p>今年第一，全体前五</p></div><span id="more"></span><div align="center">  <img src="/images/daily/boardgame/short/zdkx.jpg" class="lazyload" data-srcset="/images/daily/boardgame/short/zdkx.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="炸弹克星" width="70%">  <p style="text-align:center;">炸弹克星</p ></div><p>经过五个小时的战斗，四个人一致认为炸弹克星是非常非常有趣。（以至于本来准备玩的第二个桌游都没玩🤣）</p><p>他有一种返璞归真的乐趣。游戏本质是抽对子（就是扑克的那种），但是加入了一定的规则使得抽对子变得有一些逻辑性和复杂度。游戏并不依靠复杂的机制或者精致的模型来吸引玩家，仅仅靠着简单的规则就产生了如此巨大的吸引力。</p><p>同时，为了避免规则简单而导致的同质化，游戏还把关卡给分成了若干部分，比如1-8.9-19等等。每一个部分都会给游戏加上独特的规则和机制，让玩家在游玩过程中始终能有新鲜感。例如<psw>有的关卡会加上时间限制，有的关卡会让你按顺序进行拆弹等等</psw>。</p><p>游戏存在一个小小的缺点：依靠玩家的表现。在一场游戏中，如果玩家都是非常认真的只冲着结果去的话，游戏就会显得略微无趣。但如果玩家擅长主动给游戏增加乐趣——也就是所谓的“有活儿”，那么游戏将会出现许多令人捧腹大笑的名场面。</p><p>另一个可能算缺点的就是，游戏里自带的板块放置栏有一点轻，导致如果有人手残的话某个动作会把所有的卡片都亮出来导致游戏必须重开（要不然就没有乐趣了）。</p>]]></content>
+    
+    
+    <summary type="html">&lt;div class=&quot;note info&quot;&gt;&lt;p&gt;今年第一，全体前五&lt;/p&gt;&lt;/div&gt;</summary>
+    
+    
+    
+    <category term="daily" scheme="https://middlemanz.com/categories/daily/"/>
+    
+    <category term="桌游" scheme="https://middlemanz.com/categories/daily/boardgame/"/>
+    
+    
+    <category term="桌游短评" scheme="https://middlemanz.com/tags/%E6%A1%8C%E6%B8%B8%E7%9F%AD%E8%AF%84/"/>
+    
+  </entry>
   
   <entry>
     <title>MNIST手写数字识别（从零实现FFN）</title>
