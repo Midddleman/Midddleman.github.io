@@ -5,13 +5,11 @@ async function loadRecentPosts() {
 
     // ✅ 过滤分类为“桌游”的文章（兼容字符串或数组两种形式）
     const boardgamePosts = data.filter(post => {
-      const inCategory =
-        post.categories &&
-        post.categories.some(cat => cat.name === '桌游' || cat.slug.includes('boardgame'));
-      const inTag =
-        post.tags &&
-        post.tags.some(tag => tag.name === '桌游');
-      return inCategory || inTag;
+      return post.categories &&
+        post.categories.some(cat =>
+          (cat.name && cat.name.includes('桌游')) ||
+          (cat.slug && cat.slug.includes('桌游'))
+        );
     });
 
     // ✅ 按时间排序并取前 5 篇

@@ -7716,27 +7716,49 @@ html {
   margin: 2rem 0;
   font-size: 1rem;
 }
-/* 右列瀑布流 */
+/* 容器 */
 .waterfall {
-  flex: 1;
-  column-count: 4;
-  column-gap: 1rem;
+  /* 1. 只有 Flex 才能让图片按行排列 */
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 1rem; /* 统一控制行和列的间距，替代 margin-bottom */
+  
+  /* 删除 column-count 相关属性 */
 }
+
+/* 图片盒子 */
 .food-item {
+  /* 2. 设定一个基准高度，比如 200px 或 25vh */
+  height: 250px; 
+  
+  /* 3. 关键：让盒子根据剩余空间自动拉伸宽度 */
+  flex-grow: 1; 
+  
+  /* 保留你原有的样式 */
   position: relative;
-  break-inside: avoid;
-  margin-bottom: 1rem;
   overflow: hidden;
   border-radius: 12px;
+  
+  /* 选填：限制最大宽度，防止最后一行只有一张图时拉得太长 */
+  /* max-width: 500px; */ 
 }
+
+/* 图片本体 */
 .food-item img {
+  /* 4. 宽高都设为100%，跟随父容器 */
   width: 100%;
-  border-radius: 12px;
+  height: 100%;
+  
+  /* 5. 核心：必须加这个，否则图片拉伸时会变形 */
+  object-fit: cover; 
+  
+  /* 保留你的动画效果 */
   display: block;
-  transform: scale(1); 
+  transform:scale(1); 
   transition: transform 1.5s ease-in-out; 
 }
-/* 悬停放大效果 */
+
+/* 悬停放大效果 (保持不变) */
 .food-item:hover img {
   transform: scale(1.3);
 }
