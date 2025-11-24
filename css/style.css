@@ -235,15 +235,19 @@ table:not([class]) {
   max-width: 100%;
   vertical-align: text-top;
 }
-table:not([class]) th {
-  background-color: #f1f1f1;
+[color-scheme='dark'] table:not([class]) {
+  color: #19191d;
 }
+
 table:not([class]) td,
 table:not([class]) th {
   padding: 8px 16px;
   border: 2px solid #f1f1f1;
   line-height: 1.5;
   font-size: 90%;
+}
+table:not([class]) th {
+  background-color: #b8b8b8;
 }
 table:not([class]) tr {
   word-break: keep-all;
@@ -2228,6 +2232,19 @@ img.lazyload:not(.placeholder).loaded {
 }
 .md ul>li {
   list-style: initial;
+}
+/* 二级 UL 列表符号 */
+.md ul ul > li {
+  list-style: none;          /* 取消默认符号 */
+  position: relative;
+}
+
+.md ul ul > li::before {
+  content: "▸";            /* 换成你想要的符号 */
+  position: absolute;
+  left: -1em;               /* 控制缩进 */
+  color: var(--primary);    /* 可选：使用主题颜色 */
+  font-weight: bold;
 }
 .md ol>li {
   list-style: decimal;
@@ -7111,7 +7128,7 @@ div.timenode:hover .meta:after {
 }
 .highlight pre .line,
 .highlight pre .params {
-  color: #409eff;
+  color: #0091ad;
 }
 .highlight pre .line .addition {
   color: #3fa33f;
