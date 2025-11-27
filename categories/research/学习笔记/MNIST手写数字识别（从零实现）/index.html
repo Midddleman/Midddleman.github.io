@@ -36,19 +36,19 @@
   <!-- feed -->
       <link rel="alternate" href="/atom.xml" title="Middleman的博客" type="application/atom+xml">
   <!-- 页面元数据 -->
-  <title>MNIST手写数字识别（从零实现） - Middleman的博客</title>
+  <title>MNIST手写数字识别（从零实现FFN） - Middleman的博客</title>
   <meta name="keywords" content="从零实现,机器学习,深度学习,blog,research,personal,hobbies">
-  <meta desc name="description" content="本文为我的技术相关的第一篇文章。本文详述了如何从0实现MNIST手写数字识别这个项目。不用深度学习框架，帮助新手更好理解深度学习的基本原理。 - Middleman - Middleman的博客">
+  <meta desc name="description" content="本文是我的技术类第一篇文章，介绍如何在不依赖深度学习框架的情况下，仅使用 NumPy 从零实现一个用于 MNIST 手写数字分类的前馈神经网络（FFN）。本教程保留全部细节，以尽可能清晰的方式呈现深度学习模型的完整训练流程。 - Middleman - Middleman的博客">
   
 <meta property="og:type" content="article">
-<meta property="og:title" content="MNIST手写数字识别（从零实现）">
+<meta property="og:title" content="MNIST手写数字识别（从零实现FFN）">
 <meta property="og:url" content="https://middlemanz.com/categories/research/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MNIST%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%EF%BC%88%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%EF%BC%89/index.html">
 <meta property="og:site_name" content="Middleman的博客">
-<meta property="og:description" content="本文为我的技术相关的第一篇文章。本文详述了如何从0实现MNIST手写数字识别这个项目。不用深度学习框架，帮助新手更好理解深度学习的基本原理。">
+<meta property="og:description" content="本文是我的技术类第一篇文章，介绍如何在不依赖深度学习框架的情况下，仅使用 NumPy 从零实现一个用于 MNIST 手写数字分类的前馈神经网络（FFN）。本教程保留全部细节，以尽可能清晰的方式呈现深度学习模型的完整训练流程。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://middlemanz.com/favicon.ico">
 <meta property="article:published_time" content="2025-11-07T06:50:07.000Z">
-<meta property="article:modified_time" content="2025-11-10T14:38:52.777Z">
+<meta property="article:modified_time" content="2025-11-27T05:05:54.985Z">
 <meta property="article:author" content="Middleman">
 <meta property="article:tag" content="从零实现">
 <meta property="article:tag" content="机器学习">
@@ -67,8 +67,8 @@
   --color-site-footer: #725752;
   --color-card: #f0f0f0;
   --color-text: #0a0908;
-  --color-block: #ccc;
-  --color-inlinecode: #db3a34;
+  --color-block: #dbdbdb;
+  --color-inlinecode: #007acc;
   --color-codeblock: #eee;
   --color-h1: #3a3a3a;
   --color-h2: #3a3a3a;
@@ -821,14 +821,14 @@ button {
   :root:not([color-scheme]) {
     --color-site-body: #121212;
     --color-read-bkg: #0a0908;
-    --color-read-post: #2d2221;
+    --color-read-post: #19191e;
     --color-site-bg: #0a0908;
     --color-site-inner: #1c1c1c;
     --color-site-footer: #725752;
-    --color-card: #2d2221;
+    --color-card: #19191e;
     --color-text: #fff;
-    --color-block: #433431;
-    --color-codeblock: #1a1a1a;
+    --color-block: #000;
+    --color-codeblock: rgba(247,197,159,0.388);
     --color-inlinecode: #06bee1;
     --color-h1: rgba(255,255,255,0.871);
     --color-h2: rgba(255,255,255,0.871);
@@ -851,7 +851,7 @@ button {
     background: rgba(10,9,8,0.9) !important;
   }
   :root:not([color-scheme]) .white-box.blur {
-    background: rgba(45,34,33,0.9) !important;
+    background: rgba(25,25,30,0.9) !important;
   }
   :root:not([color-scheme]) .nav-main .u-search-input {
     background: var(--color-card) !important;
@@ -894,14 +894,14 @@ button {
 [color-scheme='dark'] {
   --color-site-body: #121212;
   --color-read-bkg: #0a0908;
-  --color-read-post: #2d2221;
+  --color-read-post: #19191e;
   --color-site-bg: #0a0908;
   --color-site-inner: #1c1c1c;
   --color-site-footer: #725752;
-  --color-card: #2d2221;
+  --color-card: #19191e;
   --color-text: #fff;
-  --color-block: #433431;
-  --color-codeblock: #1a1a1a;
+  --color-block: #000;
+  --color-codeblock: rgba(247,197,159,0.388);
   --color-inlinecode: #06bee1;
   --color-h1: rgba(255,255,255,0.871);
   --color-h2: rgba(255,255,255,0.871);
@@ -924,7 +924,7 @@ button {
   background: rgba(10,9,8,0.9) !important;
 }
 [color-scheme='dark'] .white-box.blur {
-  background: rgba(45,34,33,0.9) !important;
+  background: rgba(25,25,30,0.9) !important;
 }
 [color-scheme='dark'] .nav-main .u-search-input {
   background: var(--color-card) !important;
@@ -2346,7 +2346,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1762795916062),
+    lastupdate: new Date(1764221030895),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2399,7 +2399,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <script defer src="https://cloud.umami.is/script.js" data-website-id="d6fba575-7bf3-4930-a807-124d1f6bfa1d"></script>
 
 </head>
-  <body itemscope itemtype="https://schema.org.cn/WebPage">
+  <body itemscope itemtype="https://schema.org.cn/WebPage"class="post">
     <!-- import body_begin begin-->
     <!-- import body_begin end-->
     <!-- Custom Files bodyBegin begin-->
@@ -2914,7 +2914,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title" itemprop="name headline">
-        MNIST手写数字识别（从零实现）
+        MNIST手写数字识别（从零实现FFN）
       </h1>
       <div class='new-meta-box'>
         
@@ -2968,13 +2968,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：442 字</p>
+      <p>字数：3k 字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fa-solid fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1 分钟</p>
+      <p>时长：12 分钟</p>
     </a>
   </div>
 
@@ -3012,8 +3012,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <p>本文为我的技术相关的第一篇文章。<br>本文详述了如何从0实现MNIST手写数字识别这个项目。不用深度学习框架，帮助新手更好理解深度学习的基本原理。</p>
+    <p>本文是我的技术类第一篇文章，介绍如何在不依赖深度学习框架的情况下，仅使用 NumPy 从零实现一个用于 MNIST 手写数字分类的前馈神经网络（FFN）。本教程保留全部细节，以尽可能清晰的方式呈现深度学习模型的完整训练流程。</p>
 <span id="more"></span>
+
+<div class="note warning"><p>本文所有代码都置于个人github仓库 <a target="_blank" rel="noopener" href="https://github.com/Midddleman/Middleman-ML-Lab/tree/main/MNIST">点击跳转</a></p></div>
+
 <h2 id="0-序言"><a href="#0-序言" class="headerlink" title="0.序言"></a>0.序言</h2><p>对于深度学习初学者来说，MNIST手写数字识别（以下用MINST简称）一定是一个绕不开的项目。作为最基础的项目，MNIST能教会初学者基础的：</p>
 <div class='checkbox blue checked'><input type="checkbox" checked="checked"/>
             <p>完整的机器学习流程</p>
@@ -3029,11 +3032,116 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             </div>
 <p>所以笔者认为掌握这个项目是至关重要的。</p>
 <p>在本文中，笔者力求用最基础、简洁的语言，以及不省略任何细节的形式来完整讲述项目的全部流程。<psw>如果觉得啰嗦的话请快进哈哈</psw></p>
-<p>因为是第一篇文章，所以格式、形式上多少会有一些不精确之处，以后也会逐步修正格式，还望海涵。</p>
-<h2 id="1-项目概览"><a href="#1-项目概览" class="headerlink" title="1.项目概览"></a>1.项目概览</h2><h3 id="1-1-MNIST是什么"><a href="#1-1-MNIST是什么" class="headerlink" title="1.1 MNIST是什么"></a>1.1 MNIST是什么</h3><p>MNIST 是一个手写数字图片数据集，主要用于识别 0–9 这十个数字。它最早由美国国家标准与技术研究院（NIST）制作，后由 Yann LeCun 等人清洗整理成 “Modified” 版本（MNIST）<del>加入了M</del>。</p>
-<p>数据集分为训练集+测试集。训练集中一共有60000张，而测试集中一共有10000张图片。每张图片的大小为28*28像素。每一个像素值的范围是0-255（从黑0到白255，灰度值）</p>
-<p>原始的 MNIST 数据通常是四个 .idx 文件：</p>
-<p><code>train-images-idx3-ubyte</code>：训练图像<br><code>train-labels-idx1-ubyte</code>：训练标签<br><code>t10k-images-idx3-ubyte</code>：测试图像<br><code>t10k-labels-idx1-ubyte</code>：测试标签</p>
+<h2 id="1-项目概览"><a href="#1-项目概览" class="headerlink" title="1.项目概览"></a>1.项目概览</h2><h3 id="1-1-MNIST是什么"><a href="#1-1-MNIST是什么" class="headerlink" title="1.1 MNIST是什么"></a>1.1 MNIST是什么</h3><p>MNIST 是一个手写数字图片数据集，主要用于识别 0–9 这十个数字。它最早由美国国家标准与技术研究院（NIST）制作，后由 Yann LeCun 等人清洗整理成 “<code>Modified</code>” 版本（MNIST）<del>加入了M</del>。</p>
+<p>原始的 MNIST 数据通常是四个 .idx 文件，分别为：</p>
+<ul>
+<li><code>train-images-idx3-ubyte</code>：训练图像</li>
+<li><code>train-labels-idx1-ubyte</code>：训练标签</li>
+<li><code>t10k-images-idx3-ubyte</code>：测试图像</li>
+<li><code>t10k-labels-idx1-ubyte</code>：测试标签</li>
+</ul>
+<p>数据集分为训练集+测试集，每一个集合里又有图像和对应的标签。训练集中一共有60000张，而测试集中一共有10000张图片。在数据集中图片是被打乱放置的，也就是说数据集中随机排列着0-9这十种数字。每张图片的大小为28*28像素，而每一个像素值的范围是0-255（从黑0到白255，灰度值）。</p>
+<p>举个例子：数字7的数据是： <code> [0,0,0,...,235,255,...,0,0,...,45,168,159,...,0,0]</code><br>他的标签就是：[<strong>7</strong>, 0, 4, 1, 9, 2, 1, 3, …]</p>
+<h3 id="1-2-目的"><a href="#1-2-目的" class="headerlink" title="1.2 目的"></a>1.2 目的</h3><p>本项目旨在不利用任何深度学习框架，只用numpy来构建FFN（Feed-Forward Network）前馈神经网络来实现对MNIST数据集的手写数字分类。</p>
+<psw>用大白话来讲，就是让模型学会：给他一张图，他就能判断上面写的数字是几这个能力。</psw>
+
+<h3 id="1-3-开发环境"><a href="#1-3-开发环境" class="headerlink" title="1.3 开发环境"></a>1.3 开发环境</h3><p>本项目利用了如下四个库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numpy</span><br><span class="line">gzip</span><br><span class="line">struct</span><br><span class="line">matplotlib</span><br></pre></td></tr></table></figure>
+<p>其中 <code>gzip</code>,<code>struct</code>是Python标准库所以不用下载，剩余的<code>numpy</code>和<code>matplotlib</code>的下载方式为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy matplotlib</span><br></pre></td></tr></table></figure>
+<h3 id="1-4-数据集下载"><a href="#1-4-数据集下载" class="headerlink" title="1.4 数据集下载"></a>1.4 数据集下载</h3><p>数据集下载有三种方式：</p>
+<ol>
+<li>到我的github仓库里下载 <a target="_blank" rel="noopener" href="https://github.com/Midddleman/Middleman-ML-Lab/tree/main/MNIST">点击跳转</a> 。最省事🤣</li>
+<li>利用Python自带的库来下载</li>
+</ol>
+<figure class="highlight python"><figcaption><span>下载数据集</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line">urls = &#123;</span><br><span class="line">    <span class="string">&quot;train-images&quot;</span>: <span class="string">&quot;https://storage.googleapis.com/cvdf-datasets/mnist/train-images-idx3-ubyte.gz&quot;</span>,</span><br><span class="line">    <span class="string">&quot;train-labels&quot;</span>: <span class="string">&quot;https://storage.googleapis.com/cvdf-datasets/mnist/train-labels-idx1-ubyte.gz&quot;</span>,</span><br><span class="line">    <span class="string">&quot;test-images&quot;</span>:  <span class="string">&quot;https://storage.googleapis.com/cvdf-datasets/mnist/t10k-images-idx3-ubyte.gz&quot;</span>,</span><br><span class="line">    <span class="string">&quot;test-labels&quot;</span>:  <span class="string">&quot;https://storage.googleapis.com/cvdf-datasets/mnist/t10k-labels-idx1-ubyte.gz&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> name, url <span class="keyword">in</span> urls.items():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Downloading:&quot;</span>, name)</span><br><span class="line">    urllib.request.urlretrieve(url, <span class="string">f&quot;<span class="subst">&#123;name&#125;</span>.gz&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Done!&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>复制到vscode中可以直接使用<br>3. 使用pytorch下载（唯一用到pytorch的地方）</p>
+<figure class="highlight python"><figcaption><span>使用pytorch下载</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets, transforms</span><br><span class="line"></span><br><span class="line">mnist_train = datasets.MNIST(</span><br><span class="line">    root=<span class="string">&#x27;./data&#x27;</span>,</span><br><span class="line">    train=<span class="literal">True</span>,</span><br><span class="line">    download=<span class="literal">True</span>,</span><br><span class="line">    transform=transforms.ToTensor()</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">mnist_test = datasets.MNIST(</span><br><span class="line">    root=<span class="string">&#x27;./data&#x27;</span>,</span><br><span class="line">    train=<span class="literal">False</span>,</span><br><span class="line">    download=<span class="literal">True</span>,</span><br><span class="line">    transform=transforms.ToTensor()</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>注意:无论利用哪一种方法下载请务必注意文件路径!如使用本文的代码,请把数据集文件放置在<code>./data/MNIST/raw</code>下面.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MNIST/</span><br><span class="line">│</span><br><span class="line">├── data/MNIST/raw     </span><br><span class="line">│ ├── train-images-idx3-ubyte(.gz)</span><br><span class="line">│ ├── train-labels-idx1-ubyte(.gz)</span><br><span class="line">│ ├── t10k-images-idx3-ubyte(.gz)</span><br><span class="line">│ └── t10k-labels-idx1-ubyte(.gz)</span><br><span class="line">└── main.ipynb(主程序文件)</span><br></pre></td></tr></table></figure>
+<h2 id="2-模型代码"><a href="#2-模型代码" class="headerlink" title="2.模型代码"></a>2.模型代码</h2><h3 id="2-1-引入库"><a href="#2-1-引入库" class="headerlink" title="2.1 引入库"></a>2.1 引入库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> gzip</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<p>这里简单讲一下四个库的用途：</p>
+<ul>
+<li>numpy：把数据转换为矩阵；做矩阵相关的计算；初始化权重等。</li>
+<li>gzip：打开 .gz 压缩文件；解压得到原始二进制数据；读取里面的 idx 格式内容</li>
+<li>struct：解析二进制数据，把字节转换成整数&#x2F;浮点数。</li>
+<li>matplotlib：Python 的画图工具，负责可视化。</li>
+</ul>
+<h3 id="2-2-读取数据"><a href="#2-2-读取数据" class="headerlink" title="2.2 读取数据"></a>2.2 读取数据</h3><p>首先定义读取数据和读取标签的函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">load_images</span>(<span class="params">filename</span>):</span><br><span class="line">    <span class="keyword">with</span> gzip.<span class="built_in">open</span>(filename,<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        magic, num, rows, cols = struct.unpack(<span class="string">&#x27;&gt;IIII&#x27;</span>,f.read(<span class="number">16</span>)) </span><br><span class="line">        data = np.frombuffer(f.read(),dtype=np.uint8)</span><br><span class="line">        images = data.reshape(num,rows, cols)</span><br><span class="line">    <span class="keyword">return</span> images</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_labels</span>(<span class="params">filename</span>):</span><br><span class="line">    <span class="keyword">with</span> gzip.<span class="built_in">open</span>(filename,<span class="string">&#x27;rb&#x27;</span>)<span class="keyword">as</span> f:</span><br><span class="line">        magic, num = struct.unpack(<span class="string">&quot;&gt;II&quot;</span>,f.read(<span class="number">8</span>))</span><br><span class="line">        labels = np.frombuffer(f.read(),dtype=np.uint8)</span><br><span class="line">        <span class="keyword">return</span> labels</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>首先使用gzip来打开<code>.gz</code>压缩文件。使用<code>f.read(16)</code>来读取16个字节。<br>为什么是是16个字节呢？因为在标准MNIST图像文件中前十六个字节格式是：</li>
+</ol>
+<ul>
+<li>0–3	magic number（文件类型，例如图像文件为2051，标签文件为2049）</li>
+<li>4–7	num（图片数量）</li>
+<li>8–11	rows（每张图的高度）</li>
+<li>12–15	cols（宽度）</li>
+</ul>
+<ol start="2">
+<li>‘&gt;IIII’ 是解析格式，一个<code>I</code>表示4字节无符号整数。所以四个<code>I</code>表示四个int(magic, num, rows, cols)。<code>struct.unpack()</code> 把二进制转换成 4 个整数。读取后存放至对应变量。在这一步，我们知道了一共有多少张图片（60000）、每张图片的行像素数（28）、列像素数（28）。</li>
+<li>接下来用<code>f.read()</code>和<code>np.frombuffer</code>来读取所有图像像素，并把他们转换成Numpy数组。</li>
+<li>最后用<code>.reshape()</code>来把一大长排的像素重塑成我们想要的形状，也就是(num, rows, cols)。转换之后，数据就变成了(60000, 28, 28)的MNIST标准格式（60000张图片，每个图片为28*28）。</li>
+</ol>
+<p>接下来使用刚才定义的函数来读取数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_images = load_images(<span class="string">&#x27;./data/MNIST/raw/train-images-idx3-ubyte.gz&#x27;</span>)</span><br><span class="line">train_labels = load_labels(<span class="string">&#x27;./data/MNIST/raw/train-labels-idx1-ubyte.gz&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-数据预处理"><a href="#2-3-数据预处理" class="headerlink" title="2.3 数据预处理"></a>2.3 数据预处理</h3><p>为了使神经网络能够更快、更准确的学习到数据的规律，同时为了避免梯度爆炸和梯度消失，我们把所有像素数据除以255来实现归一化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_images = train_images.astype(np.float32)/<span class="number">255.0</span></span><br></pre></td></tr></table></figure>
+<p>因为神经网络输入层为784个神经元，所以需要把所有向量展平成(60000,784)的格式</p>
+<figure class="highlight python"><figcaption><span>title</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_images = train_images.reshape(train_images.shape[<span class="number">0</span>],-<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>接下来给每一个图片制作one hot编码。</p>
+<div class="note info"><p><b><i>One hot</i></b><br/> One hot编码，也叫独热编码是深度学习中给数据做标签的标准方式。<br>One-Hot 编码就是把一个“类别数字”变成一个“只有一个 1，其它都是 0 的向量”。例如标签是3的话，编码后就变成了[0,0,0,1,0,0,0,0,0,0]（因为第一个是0所以在第4位上）</p></div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">one_hot</span>(<span class="params">labels, num_classes = <span class="number">10</span></span>):</span><br><span class="line">    result = np.zeros((labels.size, num_classes))</span><br><span class="line">    result[np.arange(labels.size),labels] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">train_labels_oh = one_hot(train_labels)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-设定模型"><a href="#2-4-设定模型" class="headerlink" title="2.4 设定模型"></a>2.4 设定模型</h3><h4 id="2-4-1-初始化数据"><a href="#2-4-1-初始化数据" class="headerlink" title="2.4.1 初始化数据"></a>2.4.1 初始化数据</h4><p>本次我们的模型为输入784，中间层128，输出为10的FFN模型。</p>
+<figure class="highlight python"><figcaption><span>初始化数据</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">input_size = <span class="number">784</span></span><br><span class="line">hidden_size = <span class="number">128</span></span><br><span class="line">output_size = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line">W1 = np.random.randn(input_size, hidden_size) * <span class="number">0.01</span></span><br><span class="line">b1 = np.zeros((<span class="number">1</span>, hidden_size))</span><br><span class="line">W2 = np.random.randn(hidden_size, output_size) * <span class="number">0.01</span></span><br><span class="line">b2 = np.zeros((<span class="number">1</span>, output_size))</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-2-激活函数"><a href="#2-4-2-激活函数" class="headerlink" title="2.4.2 激活函数"></a>2.4.2 激活函数</h4><p>本次我们利用relu 和 softmax来进行对函数的激活</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">relu</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> np.maximum(<span class="number">0</span>, x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">softmax</span>(<span class="params">x</span>):</span><br><span class="line">    exp_x = np.exp(x - np.<span class="built_in">max</span>(x, axis=<span class="number">1</span>, keepdims=<span class="literal">True</span>))</span><br><span class="line">    <span class="keyword">return</span> exp_x / np.<span class="built_in">sum</span>(exp_x, axis=<span class="number">1</span>, keepdims=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-3-前向传播"><a href="#2-4-3-前向传播" class="headerlink" title="2.4.3 前向传播"></a>2.4.3 前向传播</h4><p>接下来进行前向传播（Forward pass）。</p>
+<p>前向传播的作用是根据输入x，计算神经网络的输出（预测结果）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">x</span>):</span><br><span class="line">    z1 = np.dot(x, W1) + b1</span><br><span class="line">    a1 = relu(z1)</span><br><span class="line">    z2 = np.dot(a1, W2) + b2</span><br><span class="line">    a2 = softmax(z2)</span><br><span class="line">    <span class="keyword">return</span> z1, a1, z2, a2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入层 (784)</span><br><span class="line">   ↓</span><br><span class="line">全连接层 W1 + b1</span><br><span class="line">   ↓</span><br><span class="line">ReLU 激活</span><br><span class="line">   ↓</span><br><span class="line">全连接层 W2 + b2</span><br><span class="line">   ↓</span><br><span class="line">Softmax（输出 10 类概率）</span><br></pre></td></tr></table></figure>
+<p>所以 forward() 的任务就是一层一层计算这些。</p>
+<h4 id="2-4-4-损失函数"><a href="#2-4-4-损失函数" class="headerlink" title="2.4.4 损失函数"></a>2.4.4 损失函数</h4><p>接下来定义损失函数。本次利用交叉熵损失函数(cross-entropy loss)</p>
+<div class="note "><p><strong>交叉熵损失</strong></p><p>交叉熵损失用来衡量“预测概率分布”和“真实分布”之间的差距。<br/>也就是差距越小 → 模型越好。<br><br>$$<br>L &#x3D; -\frac{1}{N} \sum_{i&#x3D;1}^{N} \sum_{c&#x3D;1}^{10} y_{i,c} \log \left( p_{i,c} \right)<br>$$<br>其中：<br><br>$y_{i,c}$ &#x3D; One hot标签<br><br>$p_{i,c}$ &#x3D; softmax输出的真实概率<br></p></div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">cross_entropy_loss</span>(<span class="params">y_true, y_pred</span>):</span><br><span class="line">    eps = <span class="number">1e-12</span></span><br><span class="line">    y_pred = np.clip(y_pred, eps, <span class="number">1.</span> - eps)</span><br><span class="line">    N = y_true.shape[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> -np.<span class="built_in">sum</span>(y_true * np.log(y_pred)) / N</span><br></pre></td></tr></table></figure>
+<p>其中<code>eps = 1e-12</code>和<code>np.clip()</code>的作用是通过设定一个最小值来防止log(0)输出无限而崩溃。</p>
+<h4 id="2-4-5-反向传播"><a href="#2-4-5-反向传播" class="headerlink" title="2.4.5 反向传播"></a>2.4.5 反向传播</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">backward</span>(<span class="params">x, y_true, z1, a1, z2, a2, lr=<span class="number">0.01</span></span>):</span><br><span class="line">    <span class="keyword">global</span> W1, b1, W2, b2</span><br><span class="line">    m = x.shape[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    dz2 = (a2 - y_true) / m</span><br><span class="line">    dW2 = np.dot(a1.T, dz2)</span><br><span class="line">    db2 = np.<span class="built_in">sum</span>(dz2, axis=<span class="number">0</span>, keepdims=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    da1 = np.dot(dz2, W2.T)</span><br><span class="line">    dz1 = da1 * (z1 &gt; <span class="number">0</span>)</span><br><span class="line">    dW1 = np.dot(x.T, dz1)</span><br><span class="line">    db1 = np.<span class="built_in">sum</span>(dz1, axis=<span class="number">0</span>, keepdims=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    W2 -= lr * dW2</span><br><span class="line">    b2 -= lr * db2</span><br><span class="line">    W1 -= lr * dW1</span><br><span class="line">    b1 -= lr * db1</span><br></pre></td></tr></table></figure>
+<p>反向传播通过链式法则计算每个参数的梯度，包括：</p>
+<ul>
+<li>输出层梯度：a2 - y</li>
+<li>W2、b2 的梯度：来自 a1</li>
+<li>隐藏层激活梯度：z1 &gt; 0</li>
+<li>W1、b1 的梯度：来自输入 x</li>
+</ul>
+<p>这部分的原理详见另一篇文章（尚未更新）。</p>
+<h3 id="2-5-模型训练"><a href="#2-5-模型训练" class="headerlink" title="2.5 模型训练"></a>2.5 模型训练</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">epochs = <span class="number">60</span></span><br><span class="line">batch_size = <span class="number">256</span></span><br><span class="line">loss_history = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    permutation = np.random.permutation(train_images.shape[<span class="number">0</span>])</span><br><span class="line">    X_shuffled = train_images[permutation]</span><br><span class="line">    Y_shuffled = train_labels_oh[permutation]</span><br><span class="line"></span><br><span class="line">    epoch_loss = <span class="number">0</span></span><br><span class="line">    batches = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, X_shuffled.shape[<span class="number">0</span>], batch_size):</span><br><span class="line">        x_batch = X_shuffled[i:i + batch_size]</span><br><span class="line">        y_batch = Y_shuffled[i:i + batch_size]</span><br><span class="line"></span><br><span class="line">        z1, a1, z2, a2 = forward(x_batch)</span><br><span class="line">        loss = cross_entropy_loss(y_batch, a2)</span><br><span class="line">        backward(x_batch, y_batch, z1, a1, z2, a2)</span><br><span class="line"></span><br><span class="line">        epoch_loss += loss</span><br><span class="line">        batches += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    avg_loss = epoch_loss / batches</span><br><span class="line">    loss_history.append(avg_loss)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Epoch <span class="subst">&#123;epoch + <span class="number">1</span>:02d&#125;</span> | Loss: <span class="subst">&#123;avg_loss:<span class="number">.4</span>f&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
+<ol>
+<li>epochs: 训练轮数（<code>epoch = 60</code>意味着把整个数据重复训练60回，遍历60000张图片60回）</li>
+<li>batch_size: 每一批次放进模型的样本数(<code>batch_size = 60</code>意味着一股放进256个样本来进行前向传播和反向传播，60000&#x2F;256 ≈ 234个batch)</li>
+<li><code>np.random.permutation</code>的作用是在每一个epoch中把训练数据随机排列。</li>
+<li>接下来进行 前向传播 -&gt; 计算误差 -&gt; 反向传播 然后在每一次epoch结束后打印这个epoch的loss。</li>
+</ol>
+<h3 id="2-6-模型评估"><a href="#2-6-模型评估" class="headerlink" title="2.6 模型评估"></a>2.6 模型评估</h3><p>在训练集上进行评估：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">accuracy</span>(<span class="params">x, y_true</span>):</span><br><span class="line">    _, _, _, a2 = forward(x)</span><br><span class="line">    y_pred = np.argmax(a2, axis=<span class="number">1</span>)</span><br><span class="line">    y_true_labels = np.argmax(y_true, axis=<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> np.mean(y_pred == y_true_labels)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Training Accuracy:&quot;</span>, accuracy(train_images[:<span class="number">10000</span>], train_labels_oh[:<span class="number">10000</span>]))</span><br></pre></td></tr></table></figure>
+<p>这部分很简单，就是代入最后的参数，通过前向传播去得到输出概率。然后通过<code>np.argmax</code>来获得最大概率的数字下标。<br><code>y_pred == y_true_labels</code>输出的是一组布尔值<code>[True,False,True,...]</code>而<code>np.mean</code>则会算出这个数组中True&#x2F;all的值，也就是正确率。</p>
+<h3 id="2-7-损失曲线可视化"><a href="#2-7-损失曲线可视化" class="headerlink" title="2.7 损失曲线可视化"></a>2.7 损失曲线可视化</h3><p>这一步我们要看到我们的损失曲线是如何下降的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(<span class="built_in">range</span>(<span class="number">1</span>, epochs + <span class="number">1</span>), loss_history, marker=<span class="string">&#x27;o&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Loss Curve (Training)&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;Epoch&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Average Loss&#x27;</span>)</span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<div align="center">
+  <img src="/images/research/notes/mnist/Loss.png" class="lazyload" data-srcset="/images/research/notes/mnist/Loss.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="损失曲线" width="70%">
+  <p style="text-align:center;">损失曲线</p >
+</div>
+
+<h3 id="2-8-测试模型"><a href="#2-8-测试模型" class="headerlink" title="2.8 测试模型"></a>2.8 测试模型</h3><p>最后我们要用之前准备的测试集去测试我们的模型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">test_images = load_images(<span class="string">&#x27;./data/MNIST/raw/t10k-images-idx3-ubyte.gz&#x27;</span>)</span><br><span class="line">test_labels = load_labels(<span class="string">&#x27;./data/MNIST/raw/t10k-labels-idx1-ubyte.gz&#x27;</span>)</span><br><span class="line"></span><br><span class="line">test_images = test_images.astype(np.float32) / <span class="number">255.0</span></span><br><span class="line">test_images = test_images.reshape(test_images.shape[<span class="number">0</span>], -<span class="number">1</span>)</span><br><span class="line">test_labels_oh = one_hot(test_labels)</span><br><span class="line"></span><br><span class="line">test_acc = accuracy(test_images, test_labels_oh)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Test Accuracy: <span class="subst">&#123;test_acc * <span class="number">100</span>:<span class="number">.2</span>f&#125;</span>%&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>和之前一样去加载测试集，给测试集的数据做归一化和矩阵形状调整。使用之前计算好的最终参数代入<code>accuracy()</code>这个函数去计算正确率。</p>
+<h2 id="3-后记"><a href="#3-后记" class="headerlink" title="3.后记"></a>3.后记</h2><p>至此MNIST手写数字识别这个项目的讲解就全部结束了。本项目的训练集和测试集正确率皆约为93%左右，如果在多加一个中间层，以及增多epoch的话也许可以提高到97%以上。</p>
+<p>以上即为从零实现一个 MNIST FFN 模型的完整流程。如果你对反向传播原理或如何扩展网络结构感兴趣，我会在后续文章中继续展开。</p>
 
   </div>
   
@@ -3058,10 +3166,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-11-10T23:38:52+09:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-11-27T14:05:54+09:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2025年11月10日</p>
+    <p>更新于：2025年11月27日</p>
   </a>
 </div>
 
@@ -3091,6 +3199,21 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
     <div class="prev-next">
+      
+        <a class='prev' href='/categories/daily/%E6%A1%8C%E6%B8%B8/%E7%82%B8%E5%BC%B9%E5%85%8B%E6%98%9F%E7%9F%AD%E8%AF%84/'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>炸弹克星短评</p>
+          <p class='content'>今年第一，全体前五
+
+
+
+
+  
+  炸弹克星
+
+
+经过五个小时的战斗，四个人一致认为炸弹克星是非常非常有趣。（以至于本来准备玩的第二个桌游都没玩🤣）
+他有一种返璞归真的乐趣。游戏本质是抽对子...</p>
+        </a>
       
       
         <a class='next' href='/categories/short/%E6%A9%84%E6%A6%84%E8%8F%9C/'>
@@ -3162,7 +3285,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E5%BA%8F%E8%A8%80"><span class="toc-text">0.序言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%A7%88"><span class="toc-text">1.项目概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-MNIST%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">1.1 MNIST是什么</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E5%BA%8F%E8%A8%80"><span class="toc-text">0.序言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%A7%88"><span class="toc-text">1.项目概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-MNIST%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">1.1 MNIST是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E7%9B%AE%E7%9A%84"><span class="toc-text">1.2 目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-text">1.3 开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%8B%E8%BD%BD"><span class="toc-text">1.4 数据集下载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81"><span class="toc-text">2.模型代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%BC%95%E5%85%A5%E5%BA%93"><span class="toc-text">2.1 引入库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-text">2.2 读取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">2.3 数据预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E8%AE%BE%E5%AE%9A%E6%A8%A1%E5%9E%8B"><span class="toc-text">2.4 设定模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-1-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE"><span class="toc-text">2.4.1 初始化数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-text">2.4.2 激活函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="toc-text">2.4.3 前向传播</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-4-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-text">2.4.4 损失函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-5-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="toc-text">2.4.5 反向传播</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="toc-text">2.5 模型训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0"><span class="toc-text">2.6 模型评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-%E6%8D%9F%E5%A4%B1%E6%9B%B2%E7%BA%BF%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">2.7 损失曲线可视化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9E%8B"><span class="toc-text">2.8 测试模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%90%8E%E8%AE%B0"><span class="toc-text">3.后记</span></a></li></ol>
   </div>
 </section>
 
@@ -3696,6 +3819,60 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
 
+        <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = "https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js";
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typesetPromise();
+  }
+</script>
+
+
+
 
 <script>
   function listenSidebarTOC() {
@@ -3830,7 +4007,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/","name":"research"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/notes/","name":"学习笔记"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/research/学习笔记/MNIST手写数字识别（从零实现）/","name":"MNIST手写数字识别（从零实现）"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"MNIST手写数字识别（从零实现）","description":"本文为我的技术相关的第一篇文章。本文详述了如何从0实现MNIST手写数字识别这个项目。不用深度学习框架，帮助新手更好理解深度学习的基本原理。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/research/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MNIST%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%EF%BC%88%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%EF%BC%89/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/research/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MNIST%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%EF%BC%88%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%EF%BC%89/","wordCount":70,"datePublished":"2025-11-07T06:50:07.000Z","dateModified":"2025-11-10T14:38:52.777Z","articleSection":"research","keywords":"从零实现,机器学习,深度学习","image":{"@type":"ImageObject","url":"/images/research/notes/mnist/head.png","width":1024,"height":768}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/","name":"research"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/notes/","name":"学习笔记"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/research/学习笔记/MNIST手写数字识别（从零实现）/","name":"MNIST手写数字识别（从零实现FFN）"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"MNIST手写数字识别（从零实现FFN）","description":"本文是我的技术类第一篇文章，介绍如何在不依赖深度学习框架的情况下，仅使用 NumPy 从零实现一个用于 MNIST 手写数字分类的前馈神经网络（FFN）。本教程保留全部细节，以尽可能清晰的方式呈现深度学习模型的完整训练流程。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/research/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MNIST%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%EF%BC%88%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%EF%BC%89/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/research/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MNIST%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%EF%BC%88%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%EF%BC%89/","wordCount":112,"datePublished":"2025-11-07T06:50:07.000Z","dateModified":"2025-11-27T05:05:54.985Z","articleSection":"research","keywords":"从零实现,机器学习,深度学习","image":{"@type":"ImageObject","url":"/images/research/notes/mnist/head.png","width":1024,"height":768}}]</script>
 
 
 

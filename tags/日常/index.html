@@ -63,8 +63,8 @@
   --color-site-footer: #725752;
   --color-card: #f0f0f0;
   --color-text: #0a0908;
-  --color-block: #ccc;
-  --color-inlinecode: #db3a34;
+  --color-block: #dbdbdb;
+  --color-inlinecode: #007acc;
   --color-codeblock: #eee;
   --color-h1: #3a3a3a;
   --color-h2: #3a3a3a;
@@ -817,14 +817,14 @@ button {
   :root:not([color-scheme]) {
     --color-site-body: #121212;
     --color-read-bkg: #0a0908;
-    --color-read-post: #2d2221;
+    --color-read-post: #19191e;
     --color-site-bg: #0a0908;
     --color-site-inner: #1c1c1c;
     --color-site-footer: #725752;
-    --color-card: #2d2221;
+    --color-card: #19191e;
     --color-text: #fff;
-    --color-block: #433431;
-    --color-codeblock: #1a1a1a;
+    --color-block: #000;
+    --color-codeblock: rgba(247,197,159,0.388);
     --color-inlinecode: #06bee1;
     --color-h1: rgba(255,255,255,0.871);
     --color-h2: rgba(255,255,255,0.871);
@@ -847,7 +847,7 @@ button {
     background: rgba(10,9,8,0.9) !important;
   }
   :root:not([color-scheme]) .white-box.blur {
-    background: rgba(45,34,33,0.9) !important;
+    background: rgba(25,25,30,0.9) !important;
   }
   :root:not([color-scheme]) .nav-main .u-search-input {
     background: var(--color-card) !important;
@@ -890,14 +890,14 @@ button {
 [color-scheme='dark'] {
   --color-site-body: #121212;
   --color-read-bkg: #0a0908;
-  --color-read-post: #2d2221;
+  --color-read-post: #19191e;
   --color-site-bg: #0a0908;
   --color-site-inner: #1c1c1c;
   --color-site-footer: #725752;
-  --color-card: #2d2221;
+  --color-card: #19191e;
   --color-text: #fff;
-  --color-block: #433431;
-  --color-codeblock: #1a1a1a;
+  --color-block: #000;
+  --color-codeblock: rgba(247,197,159,0.388);
   --color-inlinecode: #06bee1;
   --color-h1: rgba(255,255,255,0.871);
   --color-h2: rgba(255,255,255,0.871);
@@ -920,7 +920,7 @@ button {
   background: rgba(10,9,8,0.9) !important;
 }
 [color-scheme='dark'] .white-box.blur {
-  background: rgba(45,34,33,0.9) !important;
+  background: rgba(25,25,30,0.9) !important;
 }
 [color-scheme='dark'] .nav-main .u-search-input {
   background: var(--color-card) !important;
@@ -2342,7 +2342,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1762795916062),
+    lastupdate: new Date(1764221030895),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2395,7 +2395,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <script defer src="https://cloud.umami.is/script.js" data-website-id="d6fba575-7bf3-4930-a807-124d1f6bfa1d"></script>
 
 </head>
-  <body itemscope itemtype="https://schema.org.cn/WebPage">
+  <body itemscope itemtype="https://schema.org.cn/WebPage"class="home">
     <!-- import body_begin begin-->
     <!-- import body_begin end-->
     <!-- Custom Files bodyBegin begin-->
@@ -2972,71 +2972,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
-  <link itemprop="mainEntityOfPage" href="https://middlemanz.com/categories/daily/桌游/桌游记录/">
-  <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
-    <meta itemprop="name" content="Middleman的博客">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="https://schema.org.cn/Post">
-    <meta itemprop="name" content="Middleman的博客">
-    <meta itemprop="description" content="这是我的个人博客，用来记录研究，知识，兴趣和生活。">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="/favicon.ico">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/categories/daily/%E6%A1%8C%E6%B8%B8/%E6%A1%8C%E6%B8%B8%E8%AE%B0%E5%BD%95/"  itemprop="url">
-        桌游记录
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      <div class="note info"><p>记录每一次桌游🎲</p></div>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2025-10-15T17:45:30+09:00">2025-10-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/daily/">daily</a><span class="sep"></span><a class="category-link" href="/categories/daily/boardgame/">桌游</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
-              <a href="/categories/daily/" itemprop="url"><span itemprop="name">daily</span></a>
-            </span>
-          
-            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
-              <a href="/categories/daily/boardgame/" itemprop="url"><span itemprop="name">桌游</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/categories/daily/%E6%A1%8C%E6%B8%B8/%E6%A1%8C%E6%B8%B8%E8%AE%B0%E5%BD%95/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
   <link itemprop="mainEntityOfPage" href="https://middlemanz.com/categories/daily/每日/每日记录/">
   <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
     <meta itemprop="name" content="Middleman的博客">
@@ -3099,6 +3034,71 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           </div>
         
       
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
+  <link itemprop="mainEntityOfPage" href="https://middlemanz.com/categories/daily/桌游/桌游记录/">
+  <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
+    <meta itemprop="name" content="Middleman的博客">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="https://schema.org.cn/Post">
+    <meta itemprop="name" content="Middleman的博客">
+    <meta itemprop="description" content="这是我的个人博客，用来记录研究，知识，兴趣和生活。">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="/favicon.ico">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/categories/daily/%E6%A1%8C%E6%B8%B8/%E6%A1%8C%E6%B8%B8%E8%AE%B0%E5%BD%95/"  itemprop="url">
+        桌游记录
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      <div class="note info"><p>记录每一次桌游🎲</p></div>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2025-10-15T17:45:30+09:00">2025-10-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/daily/">daily</a><span class="sep"></span><a class="category-link" href="/categories/daily/boardgame/">桌游</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
+              <a href="/categories/daily/" itemprop="url"><span itemprop="name">daily</span></a>
+            </span>
+          
+            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
+              <a href="/categories/daily/boardgame/" itemprop="url"><span itemprop="name">桌游</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/categories/daily/%E6%A1%8C%E6%B8%B8/%E6%A1%8C%E6%B8%B8%E8%AE%B0%E5%BD%95/' itemprop="url">
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
     
   </section>
   
@@ -3131,7 +3131,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <h2>中间人</h2>
         
         
-          <p>常年在日本；专业是土木+环境，不过偏计算机方面。<br/>喜欢折腾、鼓捣编程。<br/>国际象棋、桌游、独立游戏爱好者。<br/><br/>关于技术性比较强的文章，如果有错误请不惜赐教，博主也正在学习。共勉。</p>
+          <p>常年在日本<br/>专业是土木+环境，不过偏计算机方面。<br/>喜欢折腾、鼓捣编程。<br/>国际象棋、桌游、独立游戏爱好者。<br/><br/>关于技术性比较强的文章，如果有错误请留言，谢谢。</p>
 
         
         
@@ -3204,12 +3204,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <li><a class="flat-box"
             title="/categories/daily/" href="/categories/daily/"
             active-action="action-categoriesdaily"
-            ><div class='name'>daily</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>daily</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/daily/boardgame/" href="/categories/daily/boardgame/"
             active-action="action-categoriesdailyboardgame"
-            ><div class='name'>桌游</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>桌游</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/daily/dailyrecord/" href="/categories/daily/dailyrecord/"
@@ -3264,7 +3264,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-      <a href="/tags/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0/" style="font-size: 14px; color: #999">从零实现</a> <a href="/tags/%E5%A5%96%E5%AD%A6%E9%87%91/" style="font-size: 14px; color: #999">奖学金</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 14px; color: #999">旅行</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 24px; color: #555">日常</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">机器学习</a> <a href="/tags/%E6%A1%8C%E6%B8%B8/" style="font-size: 19px; color: #777">桌游</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">深度学习</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 14px; color: #999">生活</a> <a href="/tags/%E7%A0%94%E7%A9%B6/" style="font-size: 14px; color: #999">研究</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14px; color: #999">随笔</a>
+      <a href="/tags/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0/" style="font-size: 14px; color: #999">从零实现</a> <a href="/tags/%E5%A5%96%E5%AD%A6%E9%87%91/" style="font-size: 14px; color: #999">奖学金</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 14px; color: #999">旅行</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 24px; color: #555">日常</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">机器学习</a> <a href="/tags/%E6%A1%8C%E6%B8%B8/" style="font-size: 19px; color: #777">桌游</a> <a href="/tags/%E6%A1%8C%E6%B8%B8%E7%9F%AD%E8%AF%84/" style="font-size: 14px; color: #999">桌游短评</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">深度学习</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 14px; color: #999">生活</a> <a href="/tags/%E7%A0%94%E7%A9%B6/" style="font-size: 14px; color: #999">研究</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14px; color: #999">随笔</a>
     </div>
   </section>
 

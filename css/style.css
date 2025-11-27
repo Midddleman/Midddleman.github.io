@@ -160,8 +160,8 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace, monospace;
-  font-size: 1em;
+  font-family: "Fira Code", monospace;
+  font-size: 0.85em;
 }
 optgroup,
 select,
@@ -235,15 +235,19 @@ table:not([class]) {
   max-width: 100%;
   vertical-align: text-top;
 }
-table:not([class]) th {
-  background-color: #f1f1f1;
+[color-scheme='dark'] table:not([class]) {
+  color: #19191d;
 }
+
 table:not([class]) td,
 table:not([class]) th {
   padding: 8px 16px;
   border: 2px solid #f1f1f1;
   line-height: 1.5;
   font-size: 90%;
+}
+table:not([class]) th {
+  background-color: #b8b8b8;
 }
 table:not([class]) tr {
   word-break: keep-all;
@@ -621,15 +625,23 @@ article#tag .all-tags ul li span:before {
   background: transparent;
   color: rgba(68,68,68,0.9);
 }
-.article code {
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
-}
+
 .article code:not([class]) {
-  word-break: break-all;
+  word-break: normal;
   color: var(--color-inlinecode);
   border-radius: 2px;
   -webkit-border-radius: 2px;
+  background: #f2f2f6d0;        /* 很浅的灰紫背景 */
+  border-radius: 4px;
+  padding: 2px 6px;
+  border: 1px solid #2c2c2c3b;        /* 边框（可换更浅） */
 }
+[color-scheme='dark'] .article code:not([class]) {
+  background: #2a2a2f; /* 深色背景 */
+  border: 1px solid #555;
+  color: var(--color-inlinecode);
+}
+
 @media screen and (max-width: 500px) {
   .article ul,
   .article ol {
@@ -2221,6 +2233,19 @@ img.lazyload:not(.placeholder).loaded {
 .md ul>li {
   list-style: initial;
 }
+/* 二级 UL 列表符号 */
+.md ul ul > li {
+  list-style: none;          /* 取消默认符号 */
+  position: relative;
+}
+
+.md ul ul > li::before {
+  content: "▸";            /* 换成你想要的符号 */
+  position: absolute;
+  left: -1em;               /* 控制缩进 */
+  color: var(--primary);    /* 可选：使用主题颜色 */
+  font-weight: bold;
+}
 .md ol>li {
   list-style: decimal;
 }
@@ -2465,7 +2490,7 @@ img.lazyload:not(.placeholder).loaded {
   display: block;
   margin-left: -24px;
   margin-top: -24px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: calc(100% + 3 * 16px);
 }
 .headimg-div .headimg-a {
@@ -5619,6 +5644,16 @@ div.note.quote {
   background: #e8f4fd;
   border-color: #2196f3;
 }
+[color-scheme='dark'] div.note.quote {
+  background: #e8f4fd26;
+  border-color: #2196f3;
+}
+@media (prefers-color-scheme: dark) {
+  div.note.quote {
+  background: #e8f4fd26;
+  border-color: #2196f3;
+}
+}
 div.note.quote::before {
   color: #2196f3;
   content: '\f10d';
@@ -5626,6 +5661,16 @@ div.note.quote::before {
 div.note.info {
   background: #ebfbf7;
   border-color: #3dd9b6;
+}
+[color-scheme='dark'] div.note.info {
+  background: #ebfbf726;
+  border-color: #3dd9b6;
+}
+@media (prefers-color-scheme: dark) {
+  div.note.info {
+    background: #ebfbf726;
+    border-color: #3dd9b6;
+  }
 }
 div.note.info::before {
   color: #3dd9b6;
@@ -5645,9 +5690,15 @@ div.note.warning {
   background: #fff8e9;
   border-color: #ffbd2b;
 }
-div.note.warning::before {
-  color: #ffbd2b;
-  content: '\f12a';
+[color-scheme='dark'] div.note.warning {
+  background: #fff8e926;
+  border-color: #ffbd2b;
+}
+@media (prefers-color-scheme: dark) {
+div.note.warning {
+  background: #fff8e926;
+  border-color: #ffbd2b;
+}
 }
 div.note.danger,
 div.note.error {
@@ -7077,7 +7128,7 @@ div.timenode:hover .meta:after {
 }
 .highlight pre .line,
 .highlight pre .params {
-  color: rgba(68,68,68,0.9);
+  color: #0091ad;
 }
 .highlight pre .line .addition {
   color: #3fa33f;
@@ -7279,7 +7330,7 @@ pre {
   -o-transition: all 0.28s ease;
   -ms-transition: all 0.28s ease;
 }
-.highlight:hover {
+/* .highlight:hover {
   background: var(--color-codeblock);
 }
 .highlight:hover figcaption {
@@ -7293,15 +7344,16 @@ pre {
 }
 .highlight:hover .gutter {
   background: #ffedd0;
-}
+} */
 .highlight figcaption {
   font-size: 13px;
   position: sticky;
   left: 0;
   padding: 4px 8px 4px 8px;
-  background: #eaeaea;
+  background: #eaeaeac9;
   border-top-left-radius: calc(4px - 1px);
   border-top-right-radius: calc(4px - 1px);
+  color:var(--text-p1)
 }
 .highlight >table {
   overflow: auto;
@@ -7358,7 +7410,7 @@ pre {
   position: sticky;
   left: 0;
   z-index: 1;
-  background: #e9e9e9;
+  background: #e9e9e942;
 }
 .highlight >table .gutter pre {
   color: var(--color-meta);
@@ -7479,9 +7531,6 @@ pre {
   display: block !important;
 }
 
-:root {
-  --color-list: #000000; /*顶部菜单文字颜色 */
-}
 
 /* 改cover的文字布局 */
  .cover-wrapper .cover-body .title {
@@ -7526,17 +7575,13 @@ pre {
    .cover-wrapper .cover-body .top {
     padding: 30px 40px;  /* 两边留一点点就好 */
     font-size: 0.5rem;   /* 字体缩小，避免挤出屏幕 */
-    mask-image: radial-gradient(circle at center, 
-                              rgba(0,0,0,1) 46%, 
-                              rgba(0,0,0,0) 76%);
-    -webkit-mask-image: radial-gradient(ellipse 22rem 8rem at center, 
-                                     rgba(0,0,0,1) 50%, 
-                                     rgba(0,0,0,0) 80%);
+    mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 46%, rgba(0,0,0,0) 76%);
+    -webkit-mask-image: radial-gradient(ellipse 22rem 8rem at center, rgba(0,0,0,1) 50%,  rgba(0,0,0,0) 80%);
   }
 }
 
 /* header添加弹跳下落效果 */
-header {
+.home header {
   transform: translateY(-200%);
   opacity: 0;
   animation: dropBounce 2s cubic-bezier(.28,.84,.42,1) 1s forwards;
@@ -7606,16 +7651,6 @@ header {
   content: none !important;
 }
 
-/* 设置默认背景颜色或备用图 */
-body {
-  background-color: #f5f5f5; /* 默认浅灰色，防止白屏 */
-  background-image: url('/images/background1.jpg'); /* 可选：本地备用图 */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  transition: background 0.5s ease; /* 平滑过渡 */
-}
-/* 当第三方背景加载成功后，会覆盖这里的默认背景 */
 
 /* 初始状态：隐藏 tooltip */
 .bing-tip .tooltip {
@@ -7670,16 +7705,17 @@ body {
   to { opacity: 0; }
 }
 
+
 html {
   font-size: 18px !important;   /* 全局字号 */
 }
+
 
 .food-timeline {
   display: flex;
   gap: 2rem;
   align-items: flex-start;
 }
-
 /* 左列时间轴 */
 .timeline {
   position: sticky;
@@ -7693,40 +7729,56 @@ html {
   color: #666;
   padding-bottom: 50rem;
 }
-
 .time-item {
   margin: 2rem 0;
   font-size: 1rem;
 }
-
-/* 右列瀑布流 */
+/* 容器 */
 .waterfall {
-  flex: 1;
-  column-count: 4;
-  column-gap: 1rem;
+  /* 1. 只有 Flex 才能让图片按行排列 */
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 1rem; /* 统一控制行和列的间距，替代 margin-bottom */
+  
+  /* 删除 column-count 相关属性 */
 }
 
+/* 图片盒子 */
 .food-item {
+  /* 2. 设定一个基准高度，比如 200px 或 25vh */
+  height: 250px; 
+  
+  /* 3. 关键：让盒子根据剩余空间自动拉伸宽度 */
+  flex-grow: 1; 
+  
+  /* 保留你原有的样式 */
   position: relative;
-  break-inside: avoid;
-  margin-bottom: 1rem;
   overflow: hidden;
   border-radius: 12px;
+  
+  /* 选填：限制最大宽度，防止最后一行只有一张图时拉得太长 */
+  /* max-width: 500px; */ 
 }
 
+/* 图片本体 */
 .food-item img {
+  /* 4. 宽高都设为100%，跟随父容器 */
   width: 100%;
-  border-radius: 12px;
+  height: 100%;
+  
+  /* 5. 核心：必须加这个，否则图片拉伸时会变形 */
+  object-fit: cover; 
+  
+  /* 保留你的动画效果 */
   display: block;
-  transform: scale(1); 
+  transform:scale(1); 
   transition: transform 1.5s ease-in-out; 
 }
 
-/* 悬停放大效果 */
+/* 悬停放大效果 (保持不变) */
 .food-item:hover img {
   transform: scale(1.3);
 }
-
 /* 悬停文字框 */
 .overlay {
   position: absolute;
@@ -7752,7 +7804,6 @@ html {
   line-height: 1.4;
   font-size: 1.1rem;
 }
-
 /* 响应式：手机单列显示 */
 @media (max-width: 768px) {
   .food-timeline {
@@ -7770,6 +7821,7 @@ html {
   }
 }
 
+
 .article h2 {
   position: relative;
   background: linear-gradient(to bottom, transparent 50%, #a9d4ff80 30%);
@@ -7783,3 +7835,4 @@ html {
   border-radius: 2px;
   height: 96px;
 }
+

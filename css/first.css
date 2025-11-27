@@ -8,8 +8,8 @@
   --color-site-footer: #725752;
   --color-card: #f0f0f0;
   --color-text: #0a0908;
-  --color-block: #ccc;
-  --color-inlinecode: #db3a34;
+  --color-block: #dbdbdb;
+  --color-inlinecode: #007acc;
   --color-codeblock: #eee;
   --color-h1: #3a3a3a;
   --color-h2: #3a3a3a;
@@ -762,14 +762,14 @@ button {
   :root:not([color-scheme]) {
     --color-site-body: #121212;
     --color-read-bkg: #0a0908;
-    --color-read-post: #2d2221;
+    --color-read-post: #19191e;
     --color-site-bg: #0a0908;
     --color-site-inner: #1c1c1c;
     --color-site-footer: #725752;
-    --color-card: #2d2221;
+    --color-card: #19191e;
     --color-text: #fff;
-    --color-block: #433431;
-    --color-codeblock: #1a1a1a;
+    --color-block: #000;
+    --color-codeblock: rgba(247,197,159,0.388);
     --color-inlinecode: #06bee1;
     --color-h1: rgba(255,255,255,0.871);
     --color-h2: rgba(255,255,255,0.871);
@@ -792,7 +792,7 @@ button {
     background: rgba(10,9,8,0.9) !important;
   }
   :root:not([color-scheme]) .white-box.blur {
-    background: rgba(45,34,33,0.9) !important;
+    background: rgba(25,25,30,0.9) !important;
   }
   :root:not([color-scheme]) .nav-main .u-search-input {
     background: var(--color-card) !important;
@@ -835,14 +835,14 @@ button {
 [color-scheme='dark'] {
   --color-site-body: #121212;
   --color-read-bkg: #0a0908;
-  --color-read-post: #2d2221;
+  --color-read-post: #19191e;
   --color-site-bg: #0a0908;
   --color-site-inner: #1c1c1c;
   --color-site-footer: #725752;
-  --color-card: #2d2221;
+  --color-card: #19191e;
   --color-text: #fff;
-  --color-block: #433431;
-  --color-codeblock: #1a1a1a;
+  --color-block: #000;
+  --color-codeblock: rgba(247,197,159,0.388);
   --color-inlinecode: #06bee1;
   --color-h1: rgba(255,255,255,0.871);
   --color-h2: rgba(255,255,255,0.871);
@@ -865,7 +865,7 @@ button {
   background: rgba(10,9,8,0.9) !important;
 }
 [color-scheme='dark'] .white-box.blur {
-  background: rgba(45,34,33,0.9) !important;
+  background: rgba(25,25,30,0.9) !important;
 }
 [color-scheme='dark'] .nav-main .u-search-input {
   background: var(--color-card) !important;
