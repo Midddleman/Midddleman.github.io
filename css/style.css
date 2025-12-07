@@ -2178,7 +2178,7 @@ img.lazyload:not(.placeholder).loaded {
   margin-top: -56px;
 }
 .md h4:before {
-  margin-top: -64px;
+  margin-top: -80px;
 }
 .md h5 {
   font-weight: bold;
