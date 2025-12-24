@@ -20,6 +20,9 @@ async function loadBoardgames() {
   // ✅ 3. 最近桌游 —— 仅有游玩记录的，从 playData 排序
   const recentGames = Object.entries(playData)
     .map(([name, info]) => {
+      if (info.records) {
+        info.records.sort((a, b) => new Date(a.date) - new Date(b.date));
+      }
       const lastRecord = info.records?.[info.records.length - 1];
       const lastDate = lastRecord ? new Date(lastRecord.date) : new Date(0);
       return { name, ...info, lastDate };
@@ -30,6 +33,9 @@ async function loadBoardgames() {
   // ✅ 4. 全部桌游 —— 从 libraryData 获取，附加 playData 中的统计
   const allGames = Object.entries(libraryData).map(([name, libInfo]) => {
     const play = playData[name];
+    if (play?.records) {
+    play.records.sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
     const lastRecord = play?.records?.[play.records.length - 1];
     const lastDate = lastRecord ? new Date(lastRecord.date) : new Date(0);
     return {
@@ -114,7 +120,9 @@ function showModal(name, info) {
   // ✅ 设置标题与内容
   title.textContent = `《${name}》 （共 ${info.count} 次）`;
 
-  body.innerHTML = info.records.map(r => {
+  body.innerHTML = [...info.records]        // 复制，不修改原数组
+  .sort((a, b) => new Date(b.date) - new Date(a.date)) // 从新到旧排序
+  .map(r => {
     const date = new Date(r.date).toLocaleDateString('ja-JP');
     const players = (r.players || []).map(p =>
       `${p.name}${p.score !== undefined ? ` ${p.score}` : ''}${p.result ? `(${p.result})` : ''}`
