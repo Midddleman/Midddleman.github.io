@@ -37,7 +37,7 @@
       <link rel="alternate" href="/atom.xml" title="Middleman的博客" type="application/atom+xml">
   <!-- 页面元数据 -->
   <title>研究记录 - Middleman的博客</title>
-  <meta name="keywords" content="研究,日常,blog,research,personal,hobbies">
+  <meta name="keywords" content="日常,研究,blog,research,personal,hobbies">
   <meta desc name="description" content="这是我记录研究进展与思考轨迹的地方，若你对这一领域感兴趣，不妨读一读。 - Middleman - Middleman的博客">
   
 <meta property="og:type" content="article">
@@ -48,10 +48,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://middlemanz.com/favicon.ico">
 <meta property="article:published_time" content="2025-10-16T07:19:07.000Z">
-<meta property="article:modified_time" content="2026-01-07T04:25:12.045Z">
+<meta property="article:modified_time" content="2026-01-23T17:31:39.925Z">
 <meta property="article:author" content="Middleman">
-<meta property="article:tag" content="研究">
 <meta property="article:tag" content="日常">
+<meta property="article:tag" content="研究">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://middlemanz.com/favicon.ico">
   <style>
@@ -2345,7 +2345,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1768829655379),
+    lastupdate: new Date(1769189594441),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2965,13 +2965,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：4.8k 字</p>
+      <p>字数：5.4k 字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fa-solid fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：17 分钟</p>
+      <p>时长：19 分钟</p>
     </a>
   </div>
 
@@ -3012,6 +3012,47 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class="note info"><p>这是我记录研究进展与思考轨迹的地方，若你对这一领域感兴趣，不妨读一读。</p></div>
 
 <span id="more"></span>
+
+<h4 id="20260124" style="text-align:center; font-weight:bold;">2026/01/24 周六</h4>
+<hr style="border: 1px solid #bbb; width: 100%; margin-top: 3px; margin-bottom: 10px;">
+这两周里主要干的事情有：
+<div class='checkbox blue checked'><input type="checkbox" checked="checked"/>
+            <p>写完了GTAP的论文并修改上交</p>
+            </div>
+<div class='checkbox blue checked'><input type="checkbox" checked="checked"/>
+            <p>准备了全体组会的发表资料，并相应做了一部分数据的修改和计算</p>
+            </div>
+<div class='checkbox blue checked'><input type="checkbox" checked="checked"/>
+            <p>进行了组会的发表，这次发表是毕业答辩的排练</p>
+            </div>
+<div class='checkbox blue checked'><input type="checkbox" checked="checked"/>
+            <p>和教授汇报了关于AIM-PLUM的问题，并和两位学长+教授一起进行了长达两个小时的探讨</p>
+            </div>
+<div class='checkbox blue checked'><input type="checkbox" checked="checked"/>
+            <p>编写了毕业论文的摘要并修改</p>
+            </div>
+<div class='checkbox blue checked'><input type="checkbox" checked="checked"/>
+            <p>简单修改了毕业论文的前三章节：背景、既往研究 手法</p>
+            </div>
+
+<p>未来一周要干的事情：</p>
+<div class='checkbox red'><input type="checkbox" />
+            <p>补全毕业论文的结果和考察部分</p>
+            </div>
+<div class='checkbox red'><input type="checkbox" />
+            <p>细致修改毕业论文的全部内容</p>
+            </div>
+
+<p>到现在为止研究的目的就比较明确了，第一点是【输入分辨率高会使土地利用下推结果更准确】，第二点是【输入分辨率高可以让下游的下推模型更好的传达上游模型的信息至格点数据】。</p>
+<p>不过在发表后教授提出了两点问题：</p>
+<ul>
+<li>利用基准年2005年的数据来比较是否逻辑上可行，因为模型本身就是基于2005年的数据来进行推算的。如果可行的话，把单一的和2005年的数据比较换成和2050-2005的差值比较——也就是比较变化趋势可能逻辑上会更通顺一些。</li>
+<li>在basin mode中，正常状态下经过AIM-PLUM下推后各流域数据应该和下推前保持完全一致。但是我的结果显示虽然整体上是线性一致的，但是并不是完全相同。所以教授觉得可能是模型出了一些问题。</li>
+</ul>
+<psw>目前我还不知道怎么解决问题，有点不打算解决了哈哈哈</psw>
+
+<p>发表后和教授探讨了一下AIM-PLUM的格点计算问题。洋洋洒洒讨论了前三十分钟后，发现教授印象中的和实际的数据完全不一样，给我的信息也是错的。</p>
+<p>后面进入探讨接下来怎么做的环节。改了一下我的分析方法。我已经做完了分析得到了数据，但是这个的优先度要放在毕业论文后面了。（和教授说明了一下情况，教授允许我不大改目前的论文，这部分分析就是做着但是不用加入论文。万幸了）</p>
 <h4 id="20250107" style="text-align:center; font-weight:bold;">2025/01/07 周三</h4>
 <hr style="border: 1px solid #bbb; width: 100%; margin-top: 3px; margin-bottom: 10px;">
 
@@ -3241,10 +3282,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-01-07T13:25:12+09:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-01-24T02:31:39+09:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2026年1月7日</p>
+    <p>更新于：2026年1月24日</p>
   </a>
 </div>
 
@@ -3255,8 +3296,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%A0%94%E7%A9%B6/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>研究</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%97%A5%E5%B8%B8/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>日常</p></a></div>
-  <span hidden itemprop="keywords">研究 日常</span>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%97%A5%E5%B8%B8/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>日常</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%A0%94%E7%A9%B6/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>研究</p></a></div>
+  <span hidden itemprop="keywords">日常 研究</span>
   
 
 
@@ -3284,16 +3325,21 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         </a>
       
       
-        <a class='next' href='/categories/daily/%E6%AF%8F%E6%97%A5/%E6%AF%8F%E6%97%A5%E8%AE%B0%E5%BD%95/'>
-          <p class='title'>每日记录<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>这里记录我的每一天🎭，如果每天都能想起来的话。 记录的内容为流水账📰与心流📖的不可观测态————如果你想观察的话，那他就是流水账，反之亦然。
+        <a class='next' href='/categories/daily/%E6%A1%8C%E6%B8%B8/%E6%A1%8C%E6%B8%B8%E8%AE%B0%E5%BD%95/'>
+          <p class='title'>桌游记录<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>记录每一次桌游🎲
 
+、
+2026/01/18 周日
 
+今日桌游:
 
-2025/01/07 周三
+            SETI
+            
 
-
-2025...</p>
+ 点击查看详细内容 
+              
+     ...</p>
         </a>
       
     </div>
@@ -3354,7 +3400,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#20250107"><span class="toc-text">2025&#x2F;01&#x2F;07 周三</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251226"><span class="toc-text">2025&#x2F;12&#x2F;26 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251127"><span class="toc-text">2025&#x2F;11&#x2F;27 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251123"><span class="toc-text">2025&#x2F;11&#x2F;23 周日</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251121"><span class="toc-text">2025&#x2F;11&#x2F;21 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251117"><span class="toc-text">2025&#x2F;11&#x2F;17 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251110"><span class="toc-text">2025&#x2F;11&#x2F;10 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251105"><span class="toc-text">2025&#x2F;11&#x2F;05 周三</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">2025年10月</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251030"><span class="toc-text">2025&#x2F;10&#x2F;30 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251027"><span class="toc-text">2025&#x2F;10&#x2F;27 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251020"><span class="toc-text">2025&#x2F;10&#x2F;20 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251017"><span class="toc-text">2025&#x2F;10&#x2F;17 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251016"><span class="toc-text">2025&#x2F;10&#x2F;16 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251015"><span class="toc-text">2025&#x2F;10&#x2F;15 周三</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#20260124"><span class="toc-text">2026&#x2F;01&#x2F;24 周六</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20250107"><span class="toc-text">2025&#x2F;01&#x2F;07 周三</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251226"><span class="toc-text">2025&#x2F;12&#x2F;26 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251127"><span class="toc-text">2025&#x2F;11&#x2F;27 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251123"><span class="toc-text">2025&#x2F;11&#x2F;23 周日</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251121"><span class="toc-text">2025&#x2F;11&#x2F;21 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251117"><span class="toc-text">2025&#x2F;11&#x2F;17 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251110"><span class="toc-text">2025&#x2F;11&#x2F;10 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251105"><span class="toc-text">2025&#x2F;11&#x2F;05 周三</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">2025年10月</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#20251030"><span class="toc-text">2025&#x2F;10&#x2F;30 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251027"><span class="toc-text">2025&#x2F;10&#x2F;27 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251020"><span class="toc-text">2025&#x2F;10&#x2F;20 周一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251017"><span class="toc-text">2025&#x2F;10&#x2F;17 周五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251016"><span class="toc-text">2025&#x2F;10&#x2F;16 周四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20251015"><span class="toc-text">2025&#x2F;10&#x2F;15 周三</span></a></li></ol>
   </div>
 </section>
 
@@ -4022,7 +4068,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/","name":"research"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/researchrecord/","name":"研究记录"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/research/日常/研究日常/","name":"研究记录"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"研究记录","description":"这是我记录研究进展与思考轨迹的地方，若你对这一领域感兴趣，不妨读一读。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/","wordCount":35,"datePublished":"2025-10-16T07:19:07.000Z","dateModified":"2026-01-07T04:25:12.045Z","articleSection":"research","keywords":"研究,日常","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/","name":"research"}},{"@type":"ListItem","position":2,"item":{"@id":"https://middlemanz.com/categories/research/researchrecord/","name":"研究记录"}},{"@type":"ListItem","position":3,"item":{"@id":"https://middlemanz.com/categories/research/日常/研究日常/","name":"研究记录"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"研究记录","description":"这是我记录研究进展与思考轨迹的地方，若你对这一领域感兴趣，不妨读一读。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/categories/research/%E6%97%A5%E5%B8%B8/%E7%A0%94%E7%A9%B6%E6%97%A5%E5%B8%B8/","wordCount":35,"datePublished":"2025-10-16T07:19:07.000Z","dateModified":"2026-01-23T17:31:39.925Z","articleSection":"research","keywords":"日常,研究","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
 
 
 
