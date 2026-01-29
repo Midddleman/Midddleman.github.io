@@ -2,6 +2,10 @@
   --color-list-hl:#45caf9
 }
 
+.body-wrapper {
+  max-width: 85vw
+}
+
 body{
   background-image: url(/images/background.png);
   background-size: cover;
@@ -22,14 +26,9 @@ body{
 
 #l_main .post{
   background-color: #2d333c !important;
-
+  padding: 5px
 }
 
-@media screen and (min-width: 2048px) {
-    .body-wrapper {
-        max-width: 100vw;
-    }
-}
 
 /* 移除 Volantis 默认的标题前空白 */
 .boardgame-page h1::before,
@@ -86,7 +85,7 @@ body{
   border-radius: 2px;
 }
 .boardgame-page {
-  padding: 2rem;
+  padding: 0.2rem;
   background: #2d333c;
   color: #fff;
   font-family: "Noto Sans JP", sans-serif;
@@ -153,7 +152,26 @@ body{
 .boardgame-card:hover .boardgame-hover {
   opacity: 1;
 }
+.ribbon.not-owned {
+  position: absolute;
+  top: 10px;
+  left: -40px;
 
+  width: 140px;
+  padding: 6px 0;
+
+  background: rgb(65, 65, 65);
+  color: #fff;
+
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+
+  transform: rotate(-45deg);
+  z-index: 3;
+
+  pointer-events: none; /* 不影响点击卡片 */
+}
 /* Modal */
 .modal {
   display: none;
