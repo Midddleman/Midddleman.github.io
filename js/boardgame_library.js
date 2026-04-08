@@ -42,6 +42,7 @@ async function loadBoardgames() {
       name,
       cover: libInfo.cover,
       records: play?.records || [],
+      owned: libInfo.owned || 'owned', 
       count: play?.count || 0,
       totalDuration: play?.totalDuration || 0,
       lastDate
@@ -92,12 +93,21 @@ function renderGames(games, container, type) {
 
     const card = document.createElement('div');
     card.className = `boardgame-card ${type}`;
+
+    // ✅ 1. 是否需要显示 ribbon
+    const notOwnedRibbon =
+      type === 'all' && info.owned === 'not owned'
+        ? `<div class="ribbon not-owned">不在库中</div>`
+        : '';
+
     card.innerHTML = `
+      ${notOwnedRibbon}
       <img src="${info.cover || `/images/daily/boardgame/library/${name}.webp`}" 
-           onerror="this.onerror=null;this.src='/images/daily/boardgame/library/default.png';" 
-           alt="${name}">
+          onerror="this.onerror=null;this.src='/images/daily/boardgame/library/default.png';" 
+          alt="${name}">
       <div class="boardgame-hover">${hoverText}</div>
     `;
+
 
     card.onclick = () => showModal(name, info);
     container.appendChild(card);
