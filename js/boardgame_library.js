@@ -5,6 +5,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+const boardgameSorters = {
+  lastPlayedDesc: (a, b) => compareDates(b.lastDate, a.lastDate) || compareNames(a, b),
+  priceDesc: (a, b) => compareNumbers(a.priceNumber, b.priceNumber, 'desc') || compareNames(a, b),
+  priceAsc: (a, b) => compareNumbers(a.priceNumber, b.priceNumber, 'asc') || compareNames(a, b),
+  acquiredDesc: (a, b) => compareDates(b.acquiredDate, a.acquiredDate) || compareNames(a, b),
+  playCountDesc: (a, b) => compareNumbers(a.count, b.count, 'desc') || compareNames(a, b),
+  durationDesc: (a, b) => compareNumbers(a.totalDuration, b.totalDuration, 'desc') || compareNames(a, b),
+  starsDesc: (a, b) => compareNumbers(a.starsNumber, b.starsNumber, 'desc') || compareNames(a, b),
+  nameAsc: compareNames
+};
+
 async function loadBoardgames() {
   // ✅ 1. 读取所有拥有的游戏（静态库）
   const libraryRes = await fetch('/boardgame_list.json');
@@ -43,17 +54,37 @@ async function loadBoardgames() {
       cover: libInfo.cover,
       records: play?.records || [],
       owned: libInfo.owned || 'owned', 
+      acquired: libInfo.acquired || '',
+      acquiredDate: parseDate(libInfo.acquired),
+      category: libInfo.category || '',
+      extension: libInfo.extension || '0',
+      extensionname: libInfo.extensionname || '',
+      price: libInfo.price || '',
+      priceNumber: parseNumber(libInfo.price),
+      stars: libInfo.stars || '',
+      starsNumber: parseNumber(libInfo.stars),
       count: play?.count || 0,
       totalDuration: play?.totalDuration || 0,
       lastDate
     };
-  }).sort((a, b) => b.lastDate - a.lastDate);
+  }).sort(boardgameSorters.lastPlayedDesc);
 
   // ✅ 渲染
   renderGames(recentGames, containerRecent, 'recent');
   renderGames(allGames, containerAll, 'all');
+  setupSortControls(allGames, containerAll);
 
   setupModal();
+}
+
+function setupSortControls(allGames, containerAll) {
+  const sortSelect = document.getElementById('boardgame-sort');
+  if (!sortSelect) return;
+
+  sortSelect.onchange = () => {
+    const sorter = boardgameSorters[sortSelect.value] || boardgameSorters.lastPlayedDesc;
+    renderGames([...allGames].sort(sorter), containerAll, 'all');
+  };
 }
 
 function renderGames(games, container, type) {
@@ -84,10 +115,15 @@ function renderGames(games, container, type) {
       `;
     } else {
       // ✅ 全部桌游的 hover 样式
+      const price = Number.isFinite(info.priceNumber) ? `￥${info.priceNumber}` : '价格未知';
+      const stars = Number.isFinite(info.starsNumber) ? `${info.starsNumber}分` : '未评分';
       hoverText = `
         <div class="hover-name">《${name}》</div>
-        <div class="hover-line">共 ${info.count} 次游玩</div>
-        <div class="hover-players">总时长：${info.totalDuration || 0}h</div>
+        <div class="hover-line">
+          <span>${price}</span>
+          <span>${stars}</span>
+        </div>
+        <div class="hover-players">共 ${info.count} 次游玩｜${info.totalDuration || 0}h</div>
       `;
     }
 
@@ -130,16 +166,29 @@ function showModal(name, info) {
   // ✅ 设置标题与内容
   title.textContent = `《${name}》 （共 ${info.count} 次）`;
 
-  body.innerHTML = [...info.records]        // 复制，不修改原数组
-  .sort((a, b) => new Date(b.date) - new Date(a.date)) // 从新到旧排序
-  .map(r => {
-    const date = new Date(r.date).toLocaleDateString('ja-JP');
-    const players = (r.players || []).map(p =>
-      `${p.name}${p.score !== undefined ? ` ${p.score}` : ''}${p.result ? `(${p.result})` : ''}`
-    ).join(' vs ');
-    const duration = r.duration ? `<span class="duration">⏱${r.duration}</span>` : '';
-    return `<div class="record-item">${date}｜${players} ${duration}</div>`;
-  }).join('');
+  const price = Number.isFinite(info.priceNumber) ? `￥${info.priceNumber}` : '价格未知';
+  const stars = Number.isFinite(info.starsNumber) ? `${info.starsNumber}分` : '未评分';
+  const metadata = `
+    <div class="boardgame-meta">
+      <span>${price}</span>
+      <span>${stars}</span>
+      <span>${info.acquired || '入库时间未知'}</span>
+      <span>${info.category || '未分类'}</span>
+    </div>
+  `;
+
+  const records = [...info.records]        // 复制，不修改原数组
+    .sort((a, b) => new Date(b.date) - new Date(a.date)) // 从新到旧排序
+    .map(r => {
+      const date = new Date(r.date).toLocaleDateString('ja-JP');
+      const players = (r.players || []).map(p =>
+        `${p.name}${p.score !== undefined ? ` ${p.score}` : ''}${p.result ? `(${p.result})` : ''}`
+      ).join(' vs ');
+      const duration = r.duration ? `<span class="duration">⏱${r.duration}</span>` : '';
+      return `<div class="record-item">${date}｜${players} ${duration}</div>`;
+    }).join('');
+
+  body.innerHTML = metadata + (records || '<div class="record-item">还没有游玩记录</div>');
 
   // ✅ 设置背景图片 + 蒙版
   content.style.background = `
@@ -156,6 +205,36 @@ function showModal(name, info) {
   modal.style.alignItems = 'center';
 
 
+}
+
+function parseNumber(value) {
+  const number = Number.parseFloat(value);
+  return Number.isFinite(number) ? number : null;
+}
+
+function parseDate(value) {
+  const normalized = value ? String(value).trim().replace(/\//g, '-') : '';
+  const date = normalized ? new Date(normalized) : null;
+  return date && !Number.isNaN(date.getTime()) ? date : null;
+}
+
+function compareNumbers(a, b, direction) {
+  const aKnown = Number.isFinite(a);
+  const bKnown = Number.isFinite(b);
+  if (aKnown && !bKnown) return -1;
+  if (!aKnown && bKnown) return 1;
+  if (!aKnown && !bKnown) return 0;
+  return direction === 'asc' ? a - b : b - a;
+}
+
+function compareDates(a, b) {
+  const aTime = a instanceof Date ? a.getTime() : 0;
+  const bTime = b instanceof Date ? b.getTime() : 0;
+  return aTime - bTime;
+}
+
+function compareNames(a, b) {
+  return a.name.localeCompare(b.name, 'zh-Hans');
 }
 
 loadBoardgames();
