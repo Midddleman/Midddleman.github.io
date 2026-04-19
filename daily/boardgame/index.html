@@ -44,11 +44,11 @@
 <meta property="og:title" content="Middleman的博客">
 <meta property="og:url" content="https://middlemanz.com/daily/boardgame/index.html">
 <meta property="og:site_name" content="Middleman的博客">
-<meta property="og:description" content="桌游库             📰 最近文章                    🎲 最近桌游                    📚 全部桌游                        最近游玩       价格：高到低       价格：低到高       入库时间：新到旧       游玩次数       总时长       评分       名称">
+<meta property="og:description" content="桌游库             📰 最近文章                    🎲 最近桌游                    📚 全部桌游                        游玩时间       入库时间       次数       时长       价格       单次价格       评分                 近       远">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://middlemanz.com/favicon.ico">
-<meta property="article:published_time" content="2026-04-15T04:58:03.307Z">
-<meta property="article:modified_time" content="2026-04-15T04:58:03.307Z">
+<meta property="article:published_time" content="2026-04-19T12:18:29.433Z">
+<meta property="article:modified_time" content="2026-04-19T12:18:29.433Z">
 <meta property="article:author" content="Middleman">
 <meta property="article:tag" content="blog,research,personal,hobbies">
 <meta name="twitter:card" content="summary">
@@ -2344,7 +2344,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1776234946325),
+    lastupdate: new Date(1776601383335),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2944,15 +2944,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   </div>
 
   <div class="boardgame-toolbar">
-    <select id="boardgame-sort" class="boardgame-sort">
-      <option value="lastPlayedDesc">最近游玩</option>
-      <option value="priceDesc">价格：高到低</option>
-      <option value="priceAsc">价格：低到高</option>
-      <option value="acquiredDesc">入库时间：新到旧</option>
-      <option value="playCountDesc">游玩次数</option>
-      <option value="durationDesc">总时长</option>
-      <option value="starsDesc">评分</option>
-      <option value="nameAsc">名称</option>
+    <select id="boardgame-sort-field" class="boardgame-sort">
+      <option value="lastPlayed">游玩时间</option>
+      <option value="acquired">入库时间</option>
+      <option value="playCount">次数</option>
+      <option value="duration">时长</option>
+      <option value="price">价格</option>
+      <option value="pricePerPlay">单次价格</option>
+      <option value="stars">评分</option>
+    </select>
+    <select id="boardgame-sort-direction" class="boardgame-sort">
+      <option value="desc">近</option>
+      <option value="asc">远</option>
     </select>
   </div>
 
@@ -3675,7 +3678,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/daily/boardgame/index.html"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/daily/boardgame/index.html","wordCount":0,"datePublished":"2026-04-15T04:58:03.307Z","dateModified":"2026-04-15T04:58:03.307Z","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","sameAs":["https://github.com/volantis-x"],"description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://middlemanz.com/","name":"Middleman的博客"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"Middleman的博客","url":"https://middlemanz.com/","keywords":"blog,research,personal,hobbies","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。"},"publisher":{"@type":"Organization","name":"Middleman的博客","url":"https://middlemanz.com/","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://middlemanz.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","description":"这是我的个人博客，用来记录研究，知识，兴趣和生活。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://middlemanz.com/daily/boardgame/index.html"},"author":{"@type":"Person","name":"Middleman","image":{"@type":"ImageObject","url":"/favicon.ico"},"url":"https://middlemanz.com/"},"publisher":{"@type":"Organization","name":"Middleman的博客","logo":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}},"url":"https://middlemanz.com/daily/boardgame/index.html","wordCount":0,"datePublished":"2026-04-19T12:18:29.433Z","dateModified":"2026-04-19T12:18:29.433Z","image":{"@type":"ImageObject","url":"/favicon.ico","width":192,"height":192}}]</script>
 
 
 

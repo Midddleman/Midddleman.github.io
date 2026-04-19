@@ -5,15 +5,63 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-const boardgameSorters = {
-  lastPlayedDesc: (a, b) => compareDates(b.lastDate, a.lastDate) || compareNames(a, b),
-  priceDesc: (a, b) => compareNumbers(a.priceNumber, b.priceNumber, 'desc') || compareNames(a, b),
-  priceAsc: (a, b) => compareNumbers(a.priceNumber, b.priceNumber, 'asc') || compareNames(a, b),
-  acquiredDesc: (a, b) => compareDates(b.acquiredDate, a.acquiredDate) || compareNames(a, b),
-  playCountDesc: (a, b) => compareNumbers(a.count, b.count, 'desc') || compareNames(a, b),
-  durationDesc: (a, b) => compareNumbers(a.totalDuration, b.totalDuration, 'desc') || compareNames(a, b),
-  starsDesc: (a, b) => compareNumbers(a.starsNumber, b.starsNumber, 'desc') || compareNames(a, b),
-  nameAsc: compareNames
+const boardgameSortFields = {
+  lastPlayed: {
+    type: 'date',
+    getValue: game => game.lastDate,
+    directions: [
+      { value: 'desc', label: '近' },
+      { value: 'asc', label: '远' }
+    ]
+  },
+  acquired: {
+    type: 'date',
+    getValue: game => game.acquiredDate,
+    directions: [
+      { value: 'desc', label: '近' },
+      { value: 'asc', label: '远' }
+    ]
+  },
+  playCount: {
+    type: 'number',
+    getValue: game => game.count,
+    directions: [
+      { value: 'desc', label: '多' },
+      { value: 'asc', label: '少' }
+    ]
+  },
+  duration: {
+    type: 'number',
+    getValue: game => game.totalDuration,
+    directions: [
+      { value: 'desc', label: '长' },
+      { value: 'asc', label: '短' }
+    ]
+  },
+  price: {
+    type: 'number',
+    getValue: game => game.priceNumber,
+    directions: [
+      { value: 'desc', label: '高' },
+      { value: 'asc', label: '低' }
+    ]
+  },
+  pricePerPlay: {
+    type: 'number',
+    getValue: game => game.pricePerPlayNumber,
+    directions: [
+      { value: 'desc', label: '高' },
+      { value: 'asc', label: '低' }
+    ]
+  },
+  stars: {
+    type: 'number',
+    getValue: game => game.starsNumber,
+    directions: [
+      { value: 'desc', label: '高' },
+      { value: 'asc', label: '低' }
+    ]
+  }
 };
 
 async function loadBoardgames() {
@@ -49,6 +97,9 @@ async function loadBoardgames() {
     }
     const lastRecord = play?.records?.[play.records.length - 1];
     const lastDate = lastRecord ? new Date(lastRecord.date) : new Date(0);
+    const priceNumber = parseNumber(libInfo.price);
+    const count = play?.count || 0;
+    const totalDuration = play?.totalDuration || 0;
     return {
       name,
       cover: libInfo.cover,
@@ -60,14 +111,15 @@ async function loadBoardgames() {
       extension: libInfo.extension || '0',
       extensionname: libInfo.extensionname || '',
       price: libInfo.price || '',
-      priceNumber: parseNumber(libInfo.price),
+      priceNumber,
+      pricePerPlayNumber: Number.isFinite(priceNumber) && count > 0 ? priceNumber / count : null,
       stars: libInfo.stars || '',
       starsNumber: parseNumber(libInfo.stars),
-      count: play?.count || 0,
-      totalDuration: play?.totalDuration || 0,
+      count,
+      totalDuration,
       lastDate
     };
-  }).sort(boardgameSorters.lastPlayedDesc);
+  }).sort(createBoardgameSorter('lastPlayed', 'desc'));
 
   // ✅ 渲染
   renderGames(recentGames, containerRecent, 'recent');
@@ -78,13 +130,34 @@ async function loadBoardgames() {
 }
 
 function setupSortControls(allGames, containerAll) {
-  const sortSelect = document.getElementById('boardgame-sort');
-  if (!sortSelect) return;
+  const fieldSelect = document.getElementById('boardgame-sort-field');
+  const directionSelect = document.getElementById('boardgame-sort-direction');
+  if (!fieldSelect || !directionSelect) return;
 
-  sortSelect.onchange = () => {
-    const sorter = boardgameSorters[sortSelect.value] || boardgameSorters.lastPlayedDesc;
+  const renderSortedGames = () => {
+    const sorter = createBoardgameSorter(fieldSelect.value, directionSelect.value);
     renderGames([...allGames].sort(sorter), containerAll, 'all');
   };
+
+  const syncDirectionOptions = () => {
+    const field = boardgameSortFields[fieldSelect.value] || boardgameSortFields.lastPlayed;
+    const previousDirection = directionSelect.value;
+
+    directionSelect.innerHTML = field.directions
+      .map(direction => `<option value="${direction.value}">${direction.label}</option>`)
+      .join('');
+
+    if (field.directions.some(direction => direction.value === previousDirection)) {
+      directionSelect.value = previousDirection;
+    }
+  };
+
+  fieldSelect.onchange = () => {
+    syncDirectionOptions();
+    renderSortedGames();
+  };
+  directionSelect.onchange = renderSortedGames;
+  syncDirectionOptions();
 }
 
 function renderGames(games, container, type) {
@@ -115,12 +188,12 @@ function renderGames(games, container, type) {
       `;
     } else {
       // ✅ 全部桌游的 hover 样式
-      const price = Number.isFinite(info.priceNumber) ? `￥${info.priceNumber}` : '价格未知';
+      const category = info.category || '未分类';
       const stars = Number.isFinite(info.starsNumber) ? `${info.starsNumber}分` : '未评分';
       hoverText = `
         <div class="hover-name">《${name}》</div>
         <div class="hover-line">
-          <span>${price}</span>
+          <span>${category}</span>
           <span>${stars}</span>
         </div>
         <div class="hover-players">共 ${info.count} 次游玩｜${info.totalDuration || 0}h</div>
@@ -167,10 +240,14 @@ function showModal(name, info) {
   title.textContent = `《${name}》 （共 ${info.count} 次）`;
 
   const price = Number.isFinite(info.priceNumber) ? `￥${info.priceNumber}` : '价格未知';
+  const pricePerPlay = Number.isFinite(info.priceNumber) && info.count > 0
+    ? `单次金额 ￥${formatAmount(info.priceNumber / info.count)}`
+    : '单次金额未知';
   const stars = Number.isFinite(info.starsNumber) ? `${info.starsNumber}分` : '未评分';
   const metadata = `
     <div class="boardgame-meta">
       <span>${price}</span>
+      <span>${pricePerPlay}</span>
       <span>${stars}</span>
       <span>${info.acquired || '入库时间未知'}</span>
       <span>${info.category || '未分类'}</span>
@@ -181,11 +258,28 @@ function showModal(name, info) {
     .sort((a, b) => new Date(b.date) - new Date(a.date)) // 从新到旧排序
     .map(r => {
       const date = new Date(r.date).toLocaleDateString('ja-JP');
-      const players = (r.players || []).map(p =>
-        `${p.name}${p.score !== undefined ? ` ${p.score}` : ''}${p.result ? `(${p.result})` : ''}`
-      ).join(' vs ');
+      const players = (r.players || []).map(p => {
+        const score = p.score !== undefined && p.score !== null && p.score !== ''
+          ? `<span class="record-player-score">${p.score}</span>`
+          : '';
+        const result = p.result ? `<span class="record-player-result">${p.result}</span>` : '';
+        return `
+          <div class="record-player">
+            <span class="record-player-name">${p.name}</span>
+            <span class="record-player-stats">${score}${result}</span>
+          </div>
+        `;
+      }).join('');
       const duration = r.duration ? `<span class="duration">⏱${r.duration}</span>` : '';
-      return `<div class="record-item">${date}｜${players} ${duration}</div>`;
+      return `
+        <div class="record-item">
+          <div class="record-head">
+            <span>${date}</span>
+            ${duration}
+          </div>
+          <div class="record-players">${players}</div>
+        </div>
+      `;
     }).join('');
 
   body.innerHTML = metadata + (records || '<div class="record-item">还没有游玩记录</div>');
@@ -212,6 +306,22 @@ function parseNumber(value) {
   return Number.isFinite(number) ? number : null;
 }
 
+function formatAmount(value) {
+  return Number.isInteger(value) ? String(value) : value.toFixed(2);
+}
+
+function createBoardgameSorter(fieldName, direction) {
+  const field = boardgameSortFields[fieldName] || boardgameSortFields.lastPlayed;
+  return (a, b) => {
+    const aValue = field.getValue(a);
+    const bValue = field.getValue(b);
+    const result = field.type === 'date'
+      ? compareDates(aValue, bValue, direction)
+      : compareNumbers(aValue, bValue, direction);
+    return result || compareNames(a, b);
+  };
+}
+
 function parseDate(value) {
   const normalized = value ? String(value).trim().replace(/\//g, '-') : '';
   const date = normalized ? new Date(normalized) : null;
@@ -227,10 +337,15 @@ function compareNumbers(a, b, direction) {
   return direction === 'asc' ? a - b : b - a;
 }
 
-function compareDates(a, b) {
-  const aTime = a instanceof Date ? a.getTime() : 0;
-  const bTime = b instanceof Date ? b.getTime() : 0;
-  return aTime - bTime;
+function compareDates(a, b, direction) {
+  const aTime = a instanceof Date && !Number.isNaN(a.getTime()) ? a.getTime() : null;
+  const bTime = b instanceof Date && !Number.isNaN(b.getTime()) ? b.getTime() : null;
+  const aKnown = aTime !== null && aTime > 0;
+  const bKnown = bTime !== null && bTime > 0;
+  if (aKnown && !bKnown) return -1;
+  if (!aKnown && bKnown) return 1;
+  if (!aKnown && !bKnown) return 0;
+  return direction === 'asc' ? aTime - bTime : bTime - aTime;
 }
 
 function compareNames(a, b) {
