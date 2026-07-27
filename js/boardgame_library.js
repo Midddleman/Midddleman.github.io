@@ -54,6 +54,22 @@ const boardgameSortFields = {
       { value: 'asc', label: '低' }
     ]
   },
+  pricePerHour: {
+    type: 'number',
+    getValue: game => game.pricePerHourNumber,
+    directions: [
+      { value: 'desc', label: '高' },
+      { value: 'asc', label: '低' }
+    ]
+  },
+  pricePerPersonHour: {
+    type: 'number',
+    getValue: game => game.pricePerPersonHourNumber,
+    directions: [
+      { value: 'desc', label: '高' },
+      { value: 'asc', label: '低' }
+    ]
+  },
   stars: {
     type: 'number',
     getValue: game => game.starsNumber,
@@ -100,6 +116,7 @@ async function loadBoardgames() {
     const priceNumber = parseNumber(libInfo.price);
     const count = play?.count || 0;
     const totalDuration = play?.totalDuration || 0;
+    const totalPersonDuration = getTotalPersonDuration(play?.records || []);
     return {
       name,
       cover: libInfo.cover,
@@ -113,10 +130,13 @@ async function loadBoardgames() {
       price: libInfo.price || '',
       priceNumber,
       pricePerPlayNumber: Number.isFinite(priceNumber) && count > 0 ? priceNumber / count : null,
+      pricePerHourNumber: Number.isFinite(priceNumber) && totalDuration > 0 ? priceNumber / totalDuration : null,
+      pricePerPersonHourNumber: Number.isFinite(priceNumber) && totalPersonDuration > 0 ? priceNumber / totalPersonDuration : null,
       stars: libInfo.stars || '',
       starsNumber: parseNumber(libInfo.stars),
       count,
       totalDuration,
+      totalPersonDuration,
       lastDate
     };
   }).sort(createBoardgameSorter('lastPlayed', 'desc'));
@@ -243,11 +263,19 @@ function showModal(name, info) {
   const pricePerPlay = Number.isFinite(info.priceNumber) && info.count > 0
     ? `单次金额 ￥${formatAmount(info.priceNumber / info.count)}`
     : '单次金额未知';
+  const pricePerHour = Number.isFinite(info.pricePerHourNumber)
+    ? `单位小时 ￥${formatAmount(info.pricePerHourNumber)}/h`
+    : '单位小时未知';
+  const pricePerPersonHour = Number.isFinite(info.pricePerPersonHourNumber)
+    ? `人时单价 ￥${formatAmount(info.pricePerPersonHourNumber)}/人*h`
+    : '人时单价未知';
   const stars = Number.isFinite(info.starsNumber) ? `${info.starsNumber}分` : '未评分';
   const metadata = `
     <div class="boardgame-meta">
       <span>${price}</span>
       <span>${pricePerPlay}</span>
+      <span>${pricePerHour}</span>
+      <span>${pricePerPersonHour}</span>
       <span>${stars}</span>
       <span>${info.acquired || '入库时间未知'}</span>
       <span>${info.category || '未分类'}</span>
@@ -304,6 +332,19 @@ function showModal(name, info) {
 function parseNumber(value) {
   const number = Number.parseFloat(value);
   return Number.isFinite(number) ? number : null;
+}
+
+function parseDurationHours(value) {
+  const number = parseNumber(value);
+  return Number.isFinite(number) ? number : 0;
+}
+
+function getTotalPersonDuration(records) {
+  return records.reduce((sum, record) => {
+    const duration = parseDurationHours(record.duration);
+    const playerCount = Array.isArray(record.players) ? record.players.length : 0;
+    return sum + duration * playerCount;
+  }, 0);
 }
 
 function formatAmount(value) {
