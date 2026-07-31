@@ -92,26 +92,13 @@ async function loadBoardgames() {
   const containerRecent = document.getElementById('recent-boardgames');
   const containerAll = document.getElementById('all-boardgames');
 
-  // ✅ 3. 最近桌游 —— 仅有游玩记录的，从 playData 排序
-  const recentGames = Object.entries(playData)
-    .map(([name, info]) => {
-      if (info.records) {
-        info.records.sort((a, b) => new Date(a.date) - new Date(b.date));
-      }
-      const lastRecord = info.records?.[info.records.length - 1];
-      const lastDate = lastRecord ? new Date(lastRecord.date) : new Date(0);
-      return { name, ...info, lastDate };
-    })
-    .sort((a, b) => b.lastDate - a.lastDate)
-    .slice(0, 6);
-
-  // ✅ 4. 全部桌游 —— 从 libraryData 获取，附加 playData 中的统计
-  const allGames = Object.entries(libraryData).map(([name, libInfo]) => {
-    const play = playData[name];
+  const buildGameInfo = (name, libInfo = {}, play = null) => {
     if (play?.records) {
-    play.records.sort((a, b) => new Date(a.date) - new Date(b.date));
+      play.records.sort((a, b) => new Date(a.date) - new Date(b.date));
     }
+    const firstRecord = play?.records?.[0];
     const lastRecord = play?.records?.[play.records.length - 1];
+    const firstDate = firstRecord ? new Date(firstRecord.date) : new Date(0);
     const lastDate = lastRecord ? new Date(lastRecord.date) : new Date(0);
     const priceNumber = parseNumber(libInfo.price);
     const count = play?.count || 0;
@@ -121,7 +108,7 @@ async function loadBoardgames() {
       name,
       cover: libInfo.cover,
       records: play?.records || [],
-      owned: libInfo.owned || 'owned', 
+      owned: libInfo.owned || 'owned',
       acquired: libInfo.acquired || '',
       acquiredDate: parseDate(libInfo.acquired),
       category: libInfo.category || '',
@@ -137,9 +124,21 @@ async function loadBoardgames() {
       count,
       totalDuration,
       totalPersonDuration,
+      firstDate,
       lastDate
     };
-  }).sort(createBoardgameSorter('lastPlayed', 'desc'));
+  };
+
+  // ✅ 3. 最近桌游 —— 仅有游玩记录的，从 playData 排序
+  const recentGames = Object.entries(playData)
+    .map(([name, play]) => buildGameInfo(name, libraryData[name] || {}, play))
+    .sort((a, b) => b.lastDate - a.lastDate)
+    .slice(0, 6);
+
+  // ✅ 4. 全部桌游 —— 从 libraryData 获取，附加 playData 中的统计
+  const allGames = Object.entries(libraryData)
+    .map(([name, libInfo]) => buildGameInfo(name, libInfo, playData[name]))
+    .sort(createBoardgameSorter('lastPlayed', 'desc'));
 
   // ✅ 渲染
   renderGames(recentGames, containerRecent, 'recent');
@@ -186,6 +185,8 @@ function renderGames(games, container, type) {
   for (const game of games) {
     const name = game.name;
     const info = game;
+    const firstDateText = formatDate(info.firstDate);
+    const lastDateText = formatDate(info.lastDate);
     const lastRecord = info.records?.[info.records.length - 1];
     const date = lastRecord ? new Date(lastRecord.date).toLocaleDateString('ja-JP') : '';
     const duration = lastRecord?.duration || '';
@@ -199,6 +200,10 @@ function renderGames(games, container, type) {
         <div class="hover-line">
           <span class="hover-date">${date}</span>
           <span class="hover-duration">${duration}</span>
+        </div>
+        <div class="hover-line hover-play-range">
+          <span>First ${firstDateText || '未知'}</span>
+          <span>Last ${lastDateText || '未知'}</span>
         </div>
         <div class="hover-players">
           ${(lastRecord?.players || [])
@@ -215,6 +220,10 @@ function renderGames(games, container, type) {
         <div class="hover-line">
           <span>${category}</span>
           <span>${stars}</span>
+        </div>
+        <div class="hover-line hover-play-range">
+          <span>First ${firstDateText || '未知'}</span>
+          <span>Last ${lastDateText || '未知'}</span>
         </div>
         <div class="hover-players">共 ${info.count} 次游玩｜${info.totalDuration || 0}h</div>
       `;
@@ -270,6 +279,11 @@ function showModal(name, info) {
     ? `人时单价 ￥${formatAmount(info.pricePerPersonHourNumber)}/人*h`
     : '人时单价未知';
   const stars = Number.isFinite(info.starsNumber) ? `${info.starsNumber}分` : '未评分';
+  const firstDate = formatDate(info.firstDate) || '首次游玩未知';
+  const lastDate = formatDate(info.lastDate) || '最近游玩未知';
+  const averageTime = info.count > 0 && Number.isFinite(info.totalDuration)
+    ? `${formatAmount(info.totalDuration / info.count)}h`
+    : '未知';
   const metadata = `
     <div class="boardgame-meta">
       <span>${price}</span>
@@ -278,17 +292,25 @@ function showModal(name, info) {
       <span>${pricePerPersonHour}</span>
       <span>${stars}</span>
       <span>${info.acquired || '入库时间未知'}</span>
+      <span>First Play ${firstDate}</span>
+      <span>Last Play ${lastDate}</span>
       <span>${info.category || '未分类'}</span>
     </div>
   `;
+  const scoreStats = renderScoreStats(info.records || [], averageTime);
+  const personalBests = getPersonalBestScores(info.records || []);
 
   const records = [...info.records]        // 复制，不修改原数组
     .sort((a, b) => new Date(b.date) - new Date(a.date)) // 从新到旧排序
     .map(r => {
       const date = new Date(r.date).toLocaleDateString('ja-JP');
       const players = (r.players || []).map(p => {
+        const scoreNumber = parseNumber(p.score);
+        const isPersonalBest = Number.isFinite(scoreNumber)
+          && Number.isFinite(personalBests[p.name])
+          && scoreNumber === personalBests[p.name];
         const score = p.score !== undefined && p.score !== null && p.score !== ''
-          ? `<span class="record-player-score">${p.score}</span>`
+          ? `<span class="record-player-score">${p.score}${isPersonalBest ? '<span class="personal-best">PB</span>' : ''}</span>`
           : '';
         const result = p.result ? `<span class="record-player-result">${p.result}</span>` : '';
         return `
@@ -310,7 +332,7 @@ function showModal(name, info) {
       `;
     }).join('');
 
-  body.innerHTML = metadata + (records || '<div class="record-item">还没有游玩记录</div>');
+  body.innerHTML = metadata + scoreStats + (records || '<div class="record-item">还没有游玩记录</div>');
 
   // ✅ 设置背景图片 + 蒙版
   content.style.background = `
@@ -349,6 +371,102 @@ function getTotalPersonDuration(records) {
 
 function formatAmount(value) {
   return Number.isInteger(value) ? String(value) : value.toFixed(2);
+}
+
+function formatDate(value) {
+  if (!(value instanceof Date) || Number.isNaN(value.getTime()) || value.getTime() <= 0) {
+    return '';
+  }
+  return value.toLocaleDateString('ja-JP');
+}
+
+function getScoreEntries(records) {
+  return records.flatMap(record => (record.players || [])
+    .map(player => ({
+      score: parseNumber(player.score),
+      result: player.result || ''
+    }))
+    .filter(entry => Number.isFinite(entry.score)));
+}
+
+function getPersonalBestScores(records) {
+  return records.reduce((bests, record) => {
+    for (const player of record.players || []) {
+      const score = parseNumber(player.score);
+      if (!player.name || !Number.isFinite(score)) continue;
+      if (!Number.isFinite(bests[player.name]) || score > bests[player.name]) {
+        bests[player.name] = score;
+      }
+    }
+    return bests;
+  }, {});
+}
+
+function average(values) {
+  if (!values.length) return null;
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function calculateScoreStats(records) {
+  const entries = getScoreEntries(records);
+  if (!entries.length) return [];
+
+  const scores = entries.map(entry => entry.score);
+  const winningScores = entries
+    .filter(entry => entry.result === '胜')
+    .map(entry => entry.score);
+  const losingScores = entries
+    .filter(entry => entry.result === '负')
+    .map(entry => entry.score);
+
+  return [
+    { label: 'Top Score', value: Math.max(...scores) },
+    { label: 'Highest Losing', value: losingScores.length ? Math.max(...losingScores) : null },
+    { label: 'Average Winning', value: average(winningScores) },
+    { label: 'Average Score', value: average(scores) },
+    { label: 'Lowest Winning', value: winningScores.length ? Math.min(...winningScores) : null },
+    { label: 'Lowest Score', value: Math.min(...scores) }
+  ];
+}
+
+function renderScoreStats(records, averageTime) {
+  const stats = calculateScoreStats(records);
+  if (!stats.length) {
+    return `
+      <div class="score-panel">
+        <h4>Game Score</h4>
+        <div class="score-empty">还没有可统计的分数</div>
+        <div class="average-time">Average Time <strong>${averageTime}</strong></div>
+      </div>
+    `;
+  }
+
+  const values = stats
+    .map(stat => stat.value)
+    .filter(value => Number.isFinite(value));
+  const maxValue = Math.max(...values, 1);
+  const rows = stats.map(stat => {
+    const hasValue = Number.isFinite(stat.value);
+    const width = hasValue ? Math.max((stat.value / maxValue) * 100, 3) : 0;
+    const valueText = hasValue ? formatAmount(stat.value) : 'N/A';
+    return `
+      <div class="score-row">
+        <div class="score-label">${stat.label}</div>
+        <div class="score-track">
+          <div class="score-bar" style="width:${width}%"></div>
+        </div>
+        <div class="score-value">${valueText}</div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <div class="score-panel">
+      <h4>Game Score</h4>
+      ${rows}
+      <div class="average-time">Average Time <strong>${averageTime}</strong></div>
+    </div>
+  `;
 }
 
 function createBoardgameSorter(fieldName, direction) {

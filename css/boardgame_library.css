@@ -284,6 +284,15 @@ body{
   font-weight: 600;
 }
 
+.personal-best {
+  margin-left: 0.28rem;
+  color: #8fe6ff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  vertical-align: super;
+}
+
 .boardgame-meta {
   display: flex;
   flex-wrap: wrap;
@@ -297,6 +306,69 @@ body{
   background: rgba(0, 0, 0, 0.25);
   color: #f7f3df;
   padding: 0.3rem 0.55rem;
+}
+
+.score-panel {
+  margin: 0.85rem 0 1rem;
+  padding: 0.85rem;
+  border: 1px solid rgba(0, 183, 255, 0.25);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.score-panel h4 {
+  margin: 0 0 0.65rem;
+  color: #00b7ff;
+  font-size: 1rem;
+}
+
+.score-row {
+  display: grid;
+  grid-template-columns: 145px minmax(90px, 1fr) 58px;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0.45rem 0;
+}
+
+.score-label {
+  color: #f7f3df;
+  font-size: 0.9rem;
+}
+
+.score-track {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.score-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #00b7ff, #8fe6ff);
+  box-shadow: 0 0 8px rgba(0, 183, 255, 0.35);
+}
+
+.score-value {
+  color: #f7f3df;
+  font-weight: 700;
+  text-align: right;
+}
+
+.score-empty {
+  color: #d0d7df;
+}
+
+.average-time {
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  color: #d0d7df;
+}
+
+.average-time strong {
+  color: #f7f3df;
+  margin-left: 0.35rem;
 }
 
 article#comments p[ct] ,
@@ -354,6 +426,12 @@ footer.footer a,
 .boardgame-card.recent .hover-players,
 .boardgame-card.all .hover-players {
   font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.boardgame-card .hover-play-range {
+  flex-wrap: wrap;
+  font-size: 0.78rem;
   opacity: 0.85;
 }
 
