@@ -76,13 +76,8 @@ body{
 
 /* 可选：在标题下加一条亮色线 */
 .boardgame-header h1::after {
-  content: "";
-  display: block;
-  width: 2200px;
-  height: 3px;
-  background: linear-gradient(90deg, #00b7ff, #007aff);
-  margin-top: 0.4rem;
-  border-radius: 2px;
+  display: none;
+  content: none;
 }
 .boardgame-page {
   padding: 0.2rem;
@@ -136,34 +131,212 @@ body{
 }
 
 .boardgame-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: auto auto auto minmax(0, 1fr);
+  align-items: center;
+  justify-content: start;
+  gap: 0 0.9rem;
 }
 
 .boardgame-header h1 {
-  flex: 1;
+  grid-column: 1;
+  margin-bottom: 0.45rem;
+  min-width: 0;
 }
 
-.head-to-head-open {
-  flex: 0 0 auto;
-  margin: 0.15rem 0.5rem 0 0;
-  padding: 0.62rem 1rem;
-  border: 1px solid rgba(32, 201, 199, 0.65);
+.boardgame-header::after {
+  content: "";
+  grid-column: 1 / -1;
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #00b7ff, #007aff);
+  border-radius: 2px;
+}
+
+.head-to-head-open,
+.game-recommend-open {
+  grid-column: 2;
+  position: relative;
+  z-index: 1;
+  margin: 0 0 0.45rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid rgba(0, 183, 255, 0.45);
   border-radius: 8px;
-  background: linear-gradient(135deg, rgba(32, 201, 199, 0.22), rgba(0, 183, 255, 0.2));
+  background: #171d25;
   color: #f7f3df;
   font-size: 0.95rem;
-  font-weight: 700;
+  font-family: "Noto Serif SC", "DM Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
   cursor: pointer;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
-.head-to-head-open:hover {
-  border-color: #20c9c7;
-  box-shadow: 0 0 14px rgba(32, 201, 199, 0.3);
-  transform: translateY(-1px);
+.game-recommend-open {
+  grid-column: 3;
+}
+
+.head-to-head-open:hover,
+.game-recommend-open:hover {
+  border-color: #00b7ff;
+  background: rgba(0, 183, 255, 0.12);
+}
+
+/* 今天玩什么 */
+.game-recommend-modal {
+  z-index: 1100;
+}
+
+.modal-content.game-recommend-content {
+  width: min(680px, calc(100vw - 2rem));
+  height: auto;
+  max-height: 88vh;
+  padding: 1.6rem 2rem;
+  background: #2b2f36;
+}
+
+.modal-content.game-recommend-content::before {
+  background: rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(6px);
+}
+
+.game-recommend-content h3 {
+  margin: 0 2rem 0.35rem 0;
+  color: #00b7ff;
+  font-size: 1.35rem;
+}
+
+.game-recommend-content .game-recommend-close {
+  position: absolute;
+  z-index: 2;
+  top: 0.6rem;
+  right: 0.85rem;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.game-recommend-note {
+  margin: 0 0 0.9rem;
+  color: #b7c0ca;
+  font-size: 0.8rem;
+}
+
+.game-recommend-controls {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.65fr) minmax(160px, 1fr) auto;
+  align-items: end;
+  gap: 0.7rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(0, 183, 255, 0.2);
+  border-radius: 8px;
+  background: #171d25;
+}
+
+.game-recommend-controls label {
+  display: grid;
+  gap: 0.35rem;
+  color: #cbd3dc;
+  font-size: 0.78rem;
+}
+
+.game-recommend-controls input,
+.game-recommend-controls select {
+  width: 100%;
+  min-width: 0;
+  padding: 0.58rem 0.65rem;
+  border: 1px solid rgba(0, 183, 255, 0.45);
+  border-radius: 6px;
+  background: #2d333c;
+  color: #f7f3df;
+}
+
+#game-recommend-pick {
+  padding: 0.58rem 0.85rem;
+  border: 1px solid rgba(0, 183, 255, 0.55);
+  border-radius: 6px;
+  background: rgba(0, 183, 255, 0.1);
+  color: #f7f3df;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#game-recommend-pick:hover {
+  background: rgba(0, 183, 255, 0.2);
+}
+
+.game-recommend-status {
+  min-height: 1.4rem;
+  padding: 0.65rem 0 0.4rem;
+  color: #8fe6ff;
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+.game-recommend-result {
+  min-height: 210px;
+}
+
+.game-recommend-placeholder {
+  display: grid;
+  min-height: 210px;
+  place-items: center;
+  border: 1px dashed #4a535e;
+  border-radius: 8px;
+  color: #9aa5b1;
+}
+
+.game-recommend-card {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.7fr) minmax(0, 1.3fr);
+  gap: 1rem;
+  width: 100%;
+  padding: 0.9rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.18);
+  color: #f7f3df;
+  text-align: left;
+  cursor: pointer;
+}
+
+.game-recommend-card:hover {
+  border-color: rgba(0, 183, 255, 0.65);
+  background: rgba(0, 183, 255, 0.06);
+}
+
+.game-recommend-card > img {
+  width: 100%;
+  height: 220px;
+  border-radius: 6px;
+  object-fit: contain;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.game-recommend-info {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.game-recommend-info > strong {
+  color: #00b7ff;
+  font-size: 1.15rem;
+  overflow-wrap: anywhere;
+}
+
+.game-recommend-info > span,
+.game-recommend-info > small {
+  color: #b7c0ca;
+}
+
+.game-recommend-info .player-count-panel {
+  width: 100%;
+  margin-top: 0.35rem;
 }
 
 .boardgame-hover {
@@ -496,22 +669,22 @@ body{
 }
 
 .head-to-head-content {
-  width: min(920px, calc(100vw - 2rem));
+  width: min(780px, calc(100vw - 2rem));
   height: auto;
-  max-height: 88vh;
-  padding: 1.5rem;
-  background: #20262f;
+  max-height: 84vh;
+  padding: 1.6rem 2rem;
+  background: #2b2f36;
 }
 
 .head-to-head-content::before {
-  background: rgba(20, 25, 32, 0.94);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(6px);
 }
 
 .head-to-head-content h3 {
-  margin: 0 2rem 0.45rem 0;
-  color: #20c9c7;
-  font-size: 1.45rem;
+  margin: 0 2rem 0.35rem 0;
+  color: #00b7ff;
+  font-size: 1.35rem;
 }
 
 .head-to-head-close {
@@ -528,9 +701,9 @@ body{
 }
 
 .head-to-head-note {
-  margin: 0 0 1rem;
-  color: #aeb8c5;
-  font-size: 0.85rem;
+  margin: 0 0 0.9rem;
+  color: #b7c0ca;
+  font-size: 0.8rem;
 }
 
 .head-to-head-controls {
@@ -538,11 +711,11 @@ body{
   grid-template-columns: minmax(140px, 1fr) auto minmax(140px, 1fr) minmax(180px, 1.25fr);
   align-items: end;
   gap: 0.75rem;
-  margin-bottom: 1.15rem;
-  padding: 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.22);
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(0, 183, 255, 0.2);
+  border-radius: 8px;
+  background: #171d25;
 }
 
 .head-to-head-controls label {
@@ -556,16 +729,22 @@ body{
   width: 100%;
   min-width: 0;
   padding: 0.58rem 0.65rem;
-  border: 1px solid rgba(32, 201, 199, 0.4);
-  border-radius: 7px;
-  background: #171d25;
+  border: 1px solid rgba(0, 183, 255, 0.45);
+  border-radius: 6px;
+  background: #2d333c;
   color: #f7f3df;
+}
+
+.head-to-head-controls select:focus {
+  outline: 2px solid rgba(0, 183, 255, 0.45);
+  outline-offset: 1px;
 }
 
 .head-to-head-versus {
   padding-bottom: 0.58rem;
-  color: #ffb340;
-  font-weight: 800;
+  color: #00b7ff;
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
 .head-to-head-scope {
@@ -578,22 +757,26 @@ body{
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: stretch;
-  gap: 0.8rem;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .head-to-head-player-card {
   display: grid;
   justify-items: center;
   gap: 0.15rem;
-  padding: 1rem;
-  border: 1px solid rgba(32, 201, 199, 0.28);
-  border-radius: 10px;
-  background: linear-gradient(145deg, rgba(32, 201, 199, 0.14), rgba(0, 0, 0, 0.25));
+  padding: 0.85rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .head-to-head-player-card.b {
-  border-color: rgba(255, 179, 64, 0.32);
-  background: linear-gradient(215deg, rgba(255, 179, 64, 0.14), rgba(0, 0, 0, 0.25));
+  border: 0;
+  background: transparent;
 }
 
 .head-to-head-player-name {
@@ -604,13 +787,13 @@ body{
 }
 
 .head-to-head-rate {
-  color: #20c9c7;
-  font-size: 2rem;
+  color: #00b7ff;
+  font-size: 1.7rem;
   line-height: 1.15;
 }
 
 .head-to-head-player-card.b .head-to-head-rate {
-  color: #ffb340;
+  color: #00b7ff;
 }
 
 .head-to-head-player-card > span,
@@ -621,13 +804,17 @@ body{
 .head-to-head-middle {
   display: grid;
   place-content: center;
-  min-width: 76px;
+  min-width: 82px;
+  padding: 0 0.75rem;
+  border-right: 1px solid #444;
+  border-left: 1px solid #444;
+  background: rgba(0, 183, 255, 0.06);
   text-align: center;
 }
 
 .head-to-head-middle strong {
-  color: #f7f3df;
-  font-size: 1.35rem;
+  color: #00b7ff;
+  font-size: 1.2rem;
 }
 
 .head-to-head-middle span {
@@ -644,16 +831,19 @@ body{
 
 .head-to-head-strength-card,
 .head-to-head-history {
-  padding: 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.22);
+  padding: 0.75rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.18);
 }
 
 .head-to-head-strength-card h4,
 .head-to-head-history h4 {
-  margin: 0 0 0.65rem;
-  color: #f7f3df;
+  margin: 0 0 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 3px solid #00b7ff;
+  color: #eee;
+  font-size: 0.95rem;
 }
 
 .head-to-head-strength-row {
@@ -669,7 +859,7 @@ body{
 }
 
 .head-to-head-strength-row strong {
-  color: #20c9c7;
+  color: #00b7ff;
 }
 
 .head-to-head-strength-row small {
@@ -713,9 +903,10 @@ body{
 
 .head-to-head-match-score b {
   padding: 0.22rem 0.45rem;
-  border-radius: 999px;
-  background: rgba(255, 179, 64, 0.16);
-  color: #ffca73;
+  border: 1px solid rgba(0, 183, 255, 0.3);
+  border-radius: 5px;
+  background: rgba(0, 183, 255, 0.08);
+  color: #8fe6ff;
   font-size: 0.75rem;
   white-space: nowrap;
 }
@@ -735,9 +926,28 @@ body{
     align-items: center;
   }
 
-  .head-to-head-open {
+  .head-to-head-open,
+  .game-recommend-open {
     padding: 0.52rem 0.7rem;
     font-size: 0.82rem;
+  }
+
+  .modal-content.game-recommend-content {
+    width: calc(100vw - 1rem);
+    max-height: 92vh;
+    padding: 1rem;
+  }
+
+  .game-recommend-controls {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #game-recommend-pick {
+    grid-column: 1 / -1;
+  }
+
+  .game-recommend-card {
+    grid-template-columns: minmax(110px, 0.6fr) minmax(0, 1.4fr);
   }
 
   .head-to-head-content {
@@ -764,6 +974,28 @@ body{
 }
 
 @media (max-width: 480px) {
+  .boardgame-header {
+    grid-template-columns: auto auto;
+  }
+
+  .game-recommend-open {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .boardgame-header::after {
+    grid-row: 3;
+  }
+
+  .game-recommend-controls,
+  .game-recommend-card {
+    grid-template-columns: 1fr;
+  }
+
+  .game-recommend-card > img {
+    height: 180px;
+  }
+
   .head-to-head-scoreboard {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
@@ -771,6 +1003,10 @@ body{
   .head-to-head-middle {
     grid-column: 1 / -1;
     grid-row: 2;
+    padding: 0.45rem;
+    border: 0;
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #444;
   }
 
   .head-to-head-match-score {
@@ -882,6 +1118,26 @@ footer.footer a,
   color: #dce6ef;
 }
 
+.boardgame-toolbar-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.boardgame-filter-group {
+  margin-left: 0.2rem;
+  padding-left: 0.8rem;
+  border-left: 1px solid rgba(0, 183, 255, 0.28);
+}
+
+.boardgame-toolbar-label {
+  color: #8fe6ff;
+  font-size: 0.86rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 .boardgame-toolbar label {
   font-size: 0.95rem;
 }
@@ -902,9 +1158,43 @@ footer.footer a,
   min-width: 90px;
 }
 
+#boardgame-filter-players,
+#boardgame-filter-best-players,
+#boardgame-filter-category {
+  min-width: 150px;
+}
+
 .boardgame-sort:focus {
   outline: 2px solid rgba(0, 183, 255, 0.6);
   outline-offset: 2px;
+}
+
+.boardgame-filter-empty {
+  grid-column: 1 / -1;
+  width: 100%;
+  padding: 2.5rem 1rem;
+  border: 1px dashed rgba(0, 183, 255, 0.3);
+  border-radius: 8px;
+  color: #aeb7c2;
+  text-align: center;
+}
+
+@media (max-width: 820px) {
+  .boardgame-toolbar {
+    align-items: stretch;
+  }
+
+  .boardgame-toolbar-group {
+    width: 100%;
+  }
+
+  .boardgame-filter-group {
+    margin-left: 0;
+    padding-top: 0.6rem;
+    padding-left: 0;
+    border-top: 1px solid rgba(0, 183, 255, 0.2);
+    border-left: 0;
+  }
 }
 
 
