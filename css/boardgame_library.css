@@ -135,6 +135,37 @@ body{
   margin: 0 auto;
 }
 
+.boardgame-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.boardgame-header h1 {
+  flex: 1;
+}
+
+.head-to-head-open {
+  flex: 0 0 auto;
+  margin: 0.15rem 0.5rem 0 0;
+  padding: 0.62rem 1rem;
+  border: 1px solid rgba(32, 201, 199, 0.65);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(32, 201, 199, 0.22), rgba(0, 183, 255, 0.2));
+  color: #f7f3df;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.head-to-head-open:hover {
+  border-color: #20c9c7;
+  box-shadow: 0 0 14px rgba(32, 201, 199, 0.3);
+  transform: translateY(-1px);
+}
+
 .boardgame-hover {
   position: absolute;
   bottom: 0;
@@ -308,6 +339,94 @@ body{
   padding: 0.3rem 0.55rem;
 }
 
+/* 集石风格人数方块：灰色未支持、青色可玩、橙色最佳 */
+.player-count-panel {
+  margin: 0 0 1rem;
+  padding: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.player-count-title {
+  margin-bottom: 0.55rem;
+  color: #f7f3df;
+  font-weight: 700;
+}
+
+.player-count-grid {
+  display: grid;
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+  gap: 0.3rem;
+}
+
+.player-count-box {
+  display: inline-flex;
+  aspect-ratio: 1;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: rgba(170, 176, 183, 0.35);
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.player-count-box.supported {
+  background: #20c9c7;
+  color: #073b3b;
+  box-shadow: 0 0 8px rgba(32, 201, 199, 0.35);
+}
+
+.player-count-box.best {
+  background: #ffb340;
+  color: #472b00;
+  box-shadow: 0 0 8px rgba(255, 179, 64, 0.4);
+}
+
+.player-count-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1rem;
+  margin-top: 0.55rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.78rem;
+}
+
+.player-count-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.player-count-legend i {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 2px;
+}
+
+.player-count-legend i.supported { background: #20c9c7; }
+.player-count-legend i.best { background: #ffb340; }
+
+.player-count-panel.compact {
+  margin: 0.55rem 0 0;
+  padding: 0.35rem;
+  border-radius: 6px;
+}
+
+.player-count-panel.compact .player-count-grid { gap: 2px; }
+.player-count-panel.compact .player-count-box {
+  border-radius: 2px;
+  font-size: 0.48rem;
+}
+.player-count-panel.compact .player-count-legend {
+  justify-content: center;
+  gap: 0.25rem 0.6rem;
+  margin-top: 0.3rem;
+  font-size: 0.65rem;
+}
+
 .score-panel {
   margin: 0.85rem 0 1rem;
   padding: 0.85rem;
@@ -369,6 +488,294 @@ body{
 .average-time strong {
   color: #f7f3df;
   margin-left: 0.35rem;
+}
+
+/* 玩家对战查询 */
+.head-to-head-modal {
+  z-index: 1100;
+}
+
+.head-to-head-content {
+  width: min(920px, calc(100vw - 2rem));
+  height: auto;
+  max-height: 88vh;
+  padding: 1.5rem;
+  background: #20262f;
+}
+
+.head-to-head-content::before {
+  background: rgba(20, 25, 32, 0.94);
+  backdrop-filter: blur(10px);
+}
+
+.head-to-head-content h3 {
+  margin: 0 2rem 0.45rem 0;
+  color: #20c9c7;
+  font-size: 1.45rem;
+}
+
+.head-to-head-close {
+  position: absolute;
+  z-index: 2;
+  top: 0.6rem;
+  right: 0.85rem;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.head-to-head-note {
+  margin: 0 0 1rem;
+  color: #aeb8c5;
+  font-size: 0.85rem;
+}
+
+.head-to-head-controls {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) auto minmax(140px, 1fr) minmax(180px, 1.25fr);
+  align-items: end;
+  gap: 0.75rem;
+  margin-bottom: 1.15rem;
+  padding: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.head-to-head-controls label {
+  display: grid;
+  gap: 0.35rem;
+  color: #cbd3dc;
+  font-size: 0.78rem;
+}
+
+.head-to-head-controls select {
+  width: 100%;
+  min-width: 0;
+  padding: 0.58rem 0.65rem;
+  border: 1px solid rgba(32, 201, 199, 0.4);
+  border-radius: 7px;
+  background: #171d25;
+  color: #f7f3df;
+}
+
+.head-to-head-versus {
+  padding-bottom: 0.58rem;
+  color: #ffb340;
+  font-weight: 800;
+}
+
+.head-to-head-scope {
+  margin-bottom: 0.6rem;
+  color: #aeb8c5;
+  text-align: center;
+}
+
+.head-to-head-scoreboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0.8rem;
+}
+
+.head-to-head-player-card {
+  display: grid;
+  justify-items: center;
+  gap: 0.15rem;
+  padding: 1rem;
+  border: 1px solid rgba(32, 201, 199, 0.28);
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgba(32, 201, 199, 0.14), rgba(0, 0, 0, 0.25));
+}
+
+.head-to-head-player-card.b {
+  border-color: rgba(255, 179, 64, 0.32);
+  background: linear-gradient(215deg, rgba(255, 179, 64, 0.14), rgba(0, 0, 0, 0.25));
+}
+
+.head-to-head-player-name {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  color: #f7f3df;
+  font-weight: 700;
+}
+
+.head-to-head-rate {
+  color: #20c9c7;
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+.head-to-head-player-card.b .head-to-head-rate {
+  color: #ffb340;
+}
+
+.head-to-head-player-card > span,
+.head-to-head-player-card small {
+  color: #aeb8c5;
+}
+
+.head-to-head-middle {
+  display: grid;
+  place-content: center;
+  min-width: 76px;
+  text-align: center;
+}
+
+.head-to-head-middle strong {
+  color: #f7f3df;
+  font-size: 1.35rem;
+}
+
+.head-to-head-middle span {
+  color: #aeb8c5;
+  font-size: 0.75rem;
+}
+
+.head-to-head-strengths {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.head-to-head-strength-card,
+.head-to-head-history {
+  padding: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.head-to-head-strength-card h4,
+.head-to-head-history h4 {
+  margin: 0 0 0.65rem;
+  color: #f7f3df;
+}
+
+.head-to-head-strength-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.1rem 0.6rem;
+  padding: 0.45rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.head-to-head-strength-row > span {
+  overflow-wrap: anywhere;
+}
+
+.head-to-head-strength-row strong {
+  color: #20c9c7;
+}
+
+.head-to-head-strength-row small {
+  grid-column: 1 / -1;
+  color: #8f9aa7;
+}
+
+.head-to-head-history {
+  margin-top: 0.8rem;
+}
+
+.head-to-head-match {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.8fr) minmax(260px, 1.2fr);
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.head-to-head-match > div:first-child {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.head-to-head-match small {
+  color: #8f9aa7;
+}
+
+.head-to-head-match-score {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.55rem;
+  text-align: center;
+}
+
+.head-to-head-match-score span {
+  overflow-wrap: anywhere;
+}
+
+.head-to-head-match-score b {
+  padding: 0.22rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 179, 64, 0.16);
+  color: #ffca73;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.head-to-head-empty {
+  padding: 1.5rem;
+  color: #aeb8c5;
+  text-align: center;
+}
+
+.head-to-head-empty.compact {
+  padding: 0.75rem;
+}
+
+@media (max-width: 720px) {
+  .boardgame-header {
+    align-items: center;
+  }
+
+  .head-to-head-open {
+    padding: 0.52rem 0.7rem;
+    font-size: 0.82rem;
+  }
+
+  .head-to-head-content {
+    width: calc(100vw - 1rem);
+    max-height: 92vh;
+    padding: 1rem;
+  }
+
+  .head-to-head-controls {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+
+  .head-to-head-game-filter {
+    grid-column: 1 / -1;
+  }
+
+  .head-to-head-strengths {
+    grid-template-columns: 1fr;
+  }
+
+  .head-to-head-match {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .head-to-head-scoreboard {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .head-to-head-middle {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .head-to-head-match-score {
+    grid-template-columns: 1fr;
+  }
 }
 
 article#comments p[ct] ,

@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("modal");
-  if (modal && modal.parentElement !== document.body) {
-    document.body.appendChild(modal);
-  }
+  ['modal', 'head-to-head-modal'].forEach(id => {
+    const modal = document.getElementById(id);
+    if (modal && modal.parentElement !== document.body) {
+      document.body.appendChild(modal);
+    }
+  });
 });
 
 const boardgameSortFields = {
@@ -121,6 +123,8 @@ async function loadBoardgames() {
       pricePerPersonHourNumber: Number.isFinite(priceNumber) && totalPersonDuration > 0 ? priceNumber / totalPersonDuration : null,
       stars: libInfo.stars || '',
       starsNumber: parseNumber(libInfo.stars),
+      supportedPlayers: libInfo.players || '',
+      bestPlayers: libInfo.bestPlayers || '',
       count,
       totalDuration,
       totalPersonDuration,
@@ -146,6 +150,7 @@ async function loadBoardgames() {
   setupSortControls(allGames, containerAll);
 
   setupModal();
+  setupHeadToHead(playData);
 }
 
 function setupSortControls(allGames, containerAll) {
@@ -229,6 +234,8 @@ function renderGames(games, container, type) {
       `;
     }
 
+    hoverText += renderPlayerCountPanel(info, true);
+
     const card = document.createElement('div');
     card.className = `boardgame-card ${type}`;
 
@@ -297,6 +304,7 @@ function showModal(name, info) {
       <span>${info.category || '未分类'}</span>
     </div>
   `;
+  const playerCounts = renderPlayerCountPanel(info);
   const scoreStats = renderScoreStats(info.records || [], averageTime);
   const personalBests = getPersonalBestScores(info.records || []);
 
@@ -332,7 +340,7 @@ function showModal(name, info) {
       `;
     }).join('');
 
-  body.innerHTML = metadata + scoreStats + (records || '<div class="record-item">还没有游玩记录</div>');
+  body.innerHTML = metadata + playerCounts + scoreStats + (records || '<div class="record-item">还没有游玩记录</div>');
 
   // ✅ 设置背景图片 + 蒙版
   content.style.background = `
@@ -349,6 +357,326 @@ function showModal(name, info) {
   modal.style.alignItems = 'center';
 
 
+}
+
+function setupHeadToHead(playData) {
+  const modal = document.getElementById('head-to-head-modal');
+  const openButton = document.getElementById('head-to-head-open');
+  const closeButton = modal?.querySelector('.head-to-head-close');
+  const playerASelect = document.getElementById('head-to-head-player-a');
+  const playerBSelect = document.getElementById('head-to-head-player-b');
+  const gameSelect = document.getElementById('head-to-head-game');
+  const results = document.getElementById('head-to-head-results');
+  if (!modal || !openButton || !closeButton || !playerASelect || !playerBSelect || !gameSelect || !results) return;
+
+  const players = getScoredPlayers(playData);
+  const playerOptions = players
+    .map(name => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`)
+    .join('');
+  playerASelect.innerHTML = playerOptions;
+  playerBSelect.innerHTML = playerOptions;
+  const defaultPair = getMostPlayedHeadToHeadPair(playData, players);
+  if (defaultPair) {
+    playerASelect.value = defaultPair[0];
+    playerBSelect.value = defaultPair[1];
+  } else if (players.length > 1) {
+    playerBSelect.selectedIndex = 1;
+  }
+
+  const close = () => {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+  };
+
+  const keepPlayersDifferent = changedSelect => {
+    if (playerASelect.value !== playerBSelect.value || players.length < 2) return;
+    const otherSelect = changedSelect === playerASelect ? playerBSelect : playerASelect;
+    const nextPlayer = players.find(name => name !== changedSelect.value);
+    if (nextPlayer) otherSelect.value = nextPlayer;
+  };
+
+  const refresh = (refreshGames = false) => {
+    const playerA = playerASelect.value;
+    const playerB = playerBSelect.value;
+    const allMatches = getHeadToHeadMatches(playData, playerA, playerB);
+
+    if (refreshGames) {
+      const previousGame = gameSelect.value;
+      const games = [...new Set(allMatches.map(match => match.game))]
+        .sort((a, b) => a.localeCompare(b, 'zh-Hans'));
+      gameSelect.innerHTML = '<option value="">全部游戏</option>' + games
+        .map(game => `<option value="${escapeHtml(game)}">${escapeHtml(game)}</option>`)
+        .join('');
+      if (games.includes(previousGame)) gameSelect.value = previousGame;
+    }
+
+    renderHeadToHeadResults(results, allMatches, playerA, playerB, gameSelect.value);
+  };
+
+  openButton.addEventListener('click', () => {
+    refresh(true);
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+  });
+  closeButton.addEventListener('click', close);
+  modal.addEventListener('click', event => {
+    if (event.target === modal) close();
+  });
+  playerASelect.addEventListener('change', () => {
+    keepPlayersDifferent(playerASelect);
+    refresh(true);
+  });
+  playerBSelect.addEventListener('change', () => {
+    keepPlayersDifferent(playerBSelect);
+    refresh(true);
+  });
+  gameSelect.addEventListener('change', () => refresh(false));
+}
+
+function getScoredPlayers(playData) {
+  const players = new Set();
+  Object.values(playData).forEach(game => {
+    (game.records || []).forEach(record => {
+      (record.players || []).forEach(player => {
+        if (player.name && Number.isFinite(parseNumber(player.score))) players.add(player.name);
+      });
+    });
+  });
+  return [...players].sort((a, b) => a.localeCompare(b, 'zh-Hans'));
+}
+
+function getMostPlayedHeadToHeadPair(playData, players) {
+  let bestPair = null;
+  let bestCount = 0;
+  for (let first = 0; first < players.length; first += 1) {
+    for (let second = first + 1; second < players.length; second += 1) {
+      const count = getHeadToHeadMatches(playData, players[first], players[second]).length;
+      if (count > bestCount) {
+        bestCount = count;
+        bestPair = [players[first], players[second]];
+      }
+    }
+  }
+  return bestPair;
+}
+
+function getHeadToHeadMatches(playData, playerA, playerB) {
+  if (!playerA || !playerB || playerA === playerB) return [];
+  const matches = [];
+
+  Object.entries(playData).forEach(([game, gameData]) => {
+    (gameData.records || []).forEach(record => {
+      const participantA = (record.players || []).find(player => player.name === playerA);
+      const participantB = (record.players || []).find(player => player.name === playerB);
+      const scoreA = parseNumber(participantA?.score);
+      const scoreB = parseNumber(participantB?.score);
+      if (!participantA || !participantB || !Number.isFinite(scoreA) || !Number.isFinite(scoreB)) return;
+
+      matches.push({
+        game,
+        date: record.date || '',
+        scoreA,
+        scoreB,
+        winner: resolveHeadToHeadWinner(participantA, participantB, scoreA, scoreB)
+      });
+    });
+  });
+
+  return matches.sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
+function resolveHeadToHeadWinner(playerA, playerB, scoreA, scoreB) {
+  const resultA = String(playerA.result || '');
+  const resultB = String(playerB.result || '');
+  if (resultA.includes('胜') && resultB.includes('负')) return 'a';
+  if (resultB.includes('胜') && resultA.includes('负')) return 'b';
+  if (scoreA > scoreB) return 'a';
+  if (scoreB > scoreA) return 'b';
+  return 'draw';
+}
+
+function summarizeHeadToHead(matches) {
+  return matches.reduce((summary, match) => {
+    summary.total += 1;
+    if (match.winner === 'a') summary.winsA += 1;
+    else if (match.winner === 'b') summary.winsB += 1;
+    else summary.draws += 1;
+    return summary;
+  }, { total: 0, winsA: 0, winsB: 0, draws: 0 });
+}
+
+function getHeadToHeadGameStats(matches) {
+  const stats = new Map();
+  matches.forEach(match => {
+    if (!stats.has(match.game)) {
+      stats.set(match.game, { game: match.game, total: 0, winsA: 0, winsB: 0, draws: 0 });
+    }
+    const row = stats.get(match.game);
+    row.total += 1;
+    if (match.winner === 'a') row.winsA += 1;
+    else if (match.winner === 'b') row.winsB += 1;
+    else row.draws += 1;
+  });
+  return [...stats.values()];
+}
+
+function renderHeadToHeadResults(container, allMatches, playerA, playerB, selectedGame) {
+  if (!playerA || !playerB) {
+    container.innerHTML = '<div class="head-to-head-empty">至少需要两位有分数记录的玩家。</div>';
+    return;
+  }
+
+  const matches = selectedGame
+    ? allMatches.filter(match => match.game === selectedGame)
+    : allMatches;
+  if (!allMatches.length) {
+    container.innerHTML = `<div class="head-to-head-empty">${escapeHtml(playerA)} 与 ${escapeHtml(playerB)} 暂无双方都有分数的共同对局。</div>`;
+    return;
+  }
+
+  const summary = summarizeHeadToHead(matches);
+  const rateA = summary.total ? summary.winsA / summary.total * 100 : 0;
+  const rateB = summary.total ? summary.winsB / summary.total * 100 : 0;
+  const scopeTitle = selectedGame ? `《${escapeHtml(selectedGame)}》` : '全部计分对局';
+  const gameStats = getHeadToHeadGameStats(allMatches);
+
+  container.innerHTML = `
+    <div class="head-to-head-scope">${scopeTitle} · 共 ${summary.total} 局</div>
+    <div class="head-to-head-scoreboard">
+      ${renderHeadToHeadPlayerCard(playerA, rateA, summary.winsA, summary.draws, summary.winsB, 'a')}
+      <div class="head-to-head-middle">
+        <strong>${summary.winsA} : ${summary.winsB}</strong>
+        <span>${summary.draws ? `${summary.draws} 平` : '无平局'}</span>
+      </div>
+      ${renderHeadToHeadPlayerCard(playerB, rateB, summary.winsB, summary.draws, summary.winsA, 'b')}
+    </div>
+    <div class="head-to-head-strengths">
+      ${renderStrongGames(playerA, gameStats, 'a')}
+      ${renderStrongGames(playerB, gameStats, 'b')}
+    </div>
+    <div class="head-to-head-history">
+      <h4>${scopeTitle}记录</h4>
+      ${matches.length ? matches.map(match => renderHeadToHeadMatch(match, playerA, playerB)).join('') : '<div class="head-to-head-empty">该游戏暂无有效对局。</div>'}
+    </div>
+  `;
+}
+
+function renderHeadToHeadPlayerCard(name, rate, wins, draws, losses, side) {
+  return `
+    <div class="head-to-head-player-card ${side}">
+      <div class="head-to-head-player-name">${escapeHtml(name)}</div>
+      <strong class="head-to-head-rate">${formatPercentage(rate)}</strong>
+      <span>胜率</span>
+      <small>${wins} 胜 · ${draws} 平 · ${losses} 负</small>
+    </div>
+  `;
+}
+
+function renderStrongGames(playerName, gameStats, side) {
+  const winsKey = side === 'a' ? 'winsA' : 'winsB';
+  const lossesKey = side === 'a' ? 'winsB' : 'winsA';
+  const strongest = [...gameStats]
+    .filter(stat => stat[winsKey] > 0)
+    .sort((a, b) => {
+      const rateDifference = b[winsKey] / b.total - a[winsKey] / a.total;
+      return rateDifference || b[winsKey] - a[winsKey] || b.total - a.total || a.game.localeCompare(b.game, 'zh-Hans');
+    })
+    .slice(0, 3);
+  const rows = strongest.length
+    ? strongest.map(stat => `
+        <div class="head-to-head-strength-row">
+          <span>${escapeHtml(stat.game)}</span>
+          <strong>${formatPercentage(stat[winsKey] / stat.total * 100)}</strong>
+          <small>${stat[winsKey]}胜 ${stat.draws}平 ${stat[lossesKey]}负</small>
+        </div>
+      `).join('')
+    : '<div class="head-to-head-empty compact">暂无胜场</div>';
+
+  return `
+    <section class="head-to-head-strength-card">
+      <h4>${escapeHtml(playerName)} 擅长游戏</h4>
+      ${rows}
+    </section>
+  `;
+}
+
+function renderHeadToHeadMatch(match, playerA, playerB) {
+  const date = match.date && !Number.isNaN(new Date(match.date).getTime())
+    ? new Date(match.date).toLocaleDateString('zh-CN')
+    : '日期未知';
+  const result = match.winner === 'a'
+    ? `${escapeHtml(playerA)} 胜`
+    : match.winner === 'b'
+      ? `${escapeHtml(playerB)} 胜`
+      : '平局';
+  return `
+    <div class="head-to-head-match">
+      <div>
+        <strong>${escapeHtml(match.game)}</strong>
+        <small>${date}</small>
+      </div>
+      <div class="head-to-head-match-score">
+        <span>${escapeHtml(playerA)} ${formatAmount(match.scoreA)}</span>
+        <b>${result}</b>
+        <span>${formatAmount(match.scoreB)} ${escapeHtml(playerB)}</span>
+      </div>
+    </div>
+  `;
+}
+
+function formatPercentage(value) {
+  return `${Number.isInteger(value) ? value : value.toFixed(1)}%`;
+}
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function expandPlayerCounts(value) {
+  const counts = new Set();
+  String(value || '').split(',').forEach(part => {
+    const normalized = part.trim().replace('+', '');
+    if (!normalized) return;
+    const range = normalized.match(/^(\d+)\s*-\s*(\d+)$/);
+    if (range) {
+      const start = Number(range[1]);
+      const end = Number(range[2]);
+      for (let count = start; count <= Math.min(end, 14); count += 1) counts.add(count);
+      return;
+    }
+    const count = Number(normalized);
+    if (Number.isInteger(count) && count >= 1 && count <= 14) counts.add(count);
+  });
+  return counts;
+}
+
+function renderPlayerCountPanel(info, compact = false) {
+  const supported = expandPlayerCounts(info.supportedPlayers);
+  const best = expandPlayerCounts(info.bestPlayers);
+  if (!supported.size) return '';
+
+  const boxes = Array.from({ length: 14 }, (_, index) => {
+    const count = index + 1;
+    const state = best.has(count) ? 'best' : supported.has(count) ? 'supported' : '';
+    const label = count === 14 ? '14+' : String(count);
+    return `<span class="player-count-box ${state}" title="${best.has(count) ? '最佳人数' : supported.has(count) ? '可玩人数' : '不支持'}">${label}</span>`;
+  }).join('');
+
+  return `
+    <div class="player-count-panel ${compact ? 'compact' : ''}">
+      ${compact ? '' : '<div class="player-count-title">玩家人数</div>'}
+      <div class="player-count-grid">${boxes}</div>
+      <div class="player-count-legend">
+        <span><i class="supported"></i>可玩 ${info.supportedPlayers}</span>
+        <span><i class="best"></i>最佳 ${info.bestPlayers || '暂无'}</span>
+      </div>
+    </div>
+  `;
 }
 
 function parseNumber(value) {
