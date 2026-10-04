@@ -123,6 +123,7 @@ async function loadBoardgames() {
       pricePerPersonHourNumber: Number.isFinite(priceNumber) && totalPersonDuration > 0 ? priceNumber / totalPersonDuration : null,
       stars: libInfo.stars || '',
       starsNumber: parseNumber(libInfo.stars),
+      weight: parseNumber(libInfo.weight),
       supportedPlayers: libInfo.players || '',
       bestPlayers: libInfo.bestPlayers || '',
       count,
@@ -261,11 +262,12 @@ function renderGames(games, container, type) {
       // ✅ 全部桌游的 hover 样式
       const category = info.category || '未分类';
       const stars = Number.isFinite(info.starsNumber) ? `${info.starsNumber}分` : '未评分';
+      const weight = Number.isFinite(info.weight) ? `重度 ${info.weight}级` : '重度未知';
       hoverText = `
         <div class="hover-name">《${name}》</div>
         <div class="hover-line">
           <span>${category}</span>
-          <span>${stars}</span>
+          <span>${stars} · ${weight}</span>
         </div>
         <div class="hover-line hover-play-range">
           <span>First ${firstDateText || '未知'}</span>
@@ -327,6 +329,7 @@ function showModal(name, info) {
     ? `人时单价 ￥${formatAmount(info.pricePerPersonHourNumber)}/人*h`
     : '人时单价未知';
   const stars = Number.isFinite(info.starsNumber) ? `${info.starsNumber}分` : '未评分';
+  const weight = Number.isFinite(info.weight) ? `重度 ${info.weight}级` : '重度未知';
   const firstDate = formatDate(info.firstDate) || '首次游玩未知';
   const lastDate = formatDate(info.lastDate) || '最近游玩未知';
   const averageTime = info.count > 0 && Number.isFinite(info.totalDuration)
@@ -339,6 +342,7 @@ function showModal(name, info) {
       <span>${pricePerHour}</span>
       <span>${pricePerPersonHour}</span>
       <span>${stars}</span>
+      <span>${weight}</span>
       <span>${info.acquired || '入库时间未知'}</span>
       <span>First Play ${firstDate}</span>
       <span>Last Play ${lastDate}</span>
