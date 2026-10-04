@@ -290,8 +290,8 @@ function renderGames(games, container, type) {
 
     card.innerHTML = `
       ${notOwnedRibbon}
-      <img src="${info.cover || `/images/daily/boardgame/library/${name}.webp`}" 
-          onerror="this.onerror=null;this.src='/images/daily/boardgame/library/default.png';" 
+      <img src="${info.cover || `/images/boardgame/library/${name}.webp`}"
+          onerror="this.onerror=null;this.src='/images/boardgame/library/default.png';"
           alt="${name}">
       <div class="boardgame-hover">${hoverText}</div>
     `;
@@ -390,7 +390,7 @@ function showModal(name, info) {
   // ✅ 设置背景图片 + 蒙版
   content.style.background = `
     linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
-    url('/images/daily/boardgame/library/${name}.webp')
+    url('/images/boardgame/library/${name}.webp')
   `;
   content.style.backgroundSize = 'cover';
   content.style.backgroundPosition = 'center';
@@ -522,7 +522,7 @@ function getRecommendationCandidates(libraryData, playerCount, category, broaden
 }
 
 function renderGameRecommendation(name, game) {
-  const cover = game.cover || `/images/daily/boardgame/library/${name}.webp`;
+  const cover = game.cover || `/images/boardgame/library/${name}.webp`;
   const category = game.category || '未分类';
   const counts = renderPlayerCountPanel({
     supportedPlayers: game.players || '',
@@ -530,7 +530,7 @@ function renderGameRecommendation(name, game) {
   }, true);
   return `
     <button class="game-recommend-card" type="button">
-      <img src="${escapeHtml(cover)}" onerror="this.onerror=null;this.src='/images/daily/boardgame/library/default.png';" alt="${escapeHtml(name)}">
+      <img src="${escapeHtml(cover)}" onerror="this.onerror=null;this.src='/images/boardgame/library/default.png';" alt="${escapeHtml(name)}">
       <div class="game-recommend-info">
         <strong>《${escapeHtml(name)}》</strong>
         <span>${escapeHtml(category)}</span>

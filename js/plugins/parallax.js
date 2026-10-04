@@ -35,7 +35,6 @@ Parallax.start = () => {
   mirror.style.overflow = "hidden";
   Parallax.window.appendChild(mirror);
   let slider = document.createElement("img");
-  slider.src = Parallax.options.src;
   slider.alt = "parallax";
   slider.classList.add("parallax-slider");
   slider.style.opacity = 0;
@@ -48,13 +47,11 @@ Parallax.start = () => {
   mirrorItem.slider = slider;
   Parallax.mirrors.push(mirrorItem);
   Parallax.slidein();
-  slider.addEventListener(
-    "load",
-    function () {
-      Parallax.update();
-    },
-    false
-  );
+  slider.addEventListener("load", function () {
+    Parallax.window.style.backgroundImage = "none";
+    Parallax.update();
+  }, false);
+  slider.src = Parallax.options.src;
 };
 Parallax.init = () => {
   function loadDimensions() {

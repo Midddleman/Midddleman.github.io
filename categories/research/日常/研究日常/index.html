@@ -2344,7 +2344,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1791119630669),
+    lastupdate: new Date(1791123058798),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2516,6 +2516,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
                     
                   </ul>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/boardgame/" title="桌游"
+                  
+                  
+                  
+                    active-action="action-boardgame"
+                  >
+                  <i class='fa-solid fa-dice fa-fw'></i>桌游
+                </a>
                 
               </li>
             
@@ -2782,6 +2799,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
                     
                   </ul>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/boardgame/" title="桌游"
+                  
+                  
+                  
+                    active-action="action-boardgame"
+                  >
+                  <i class='fa-solid fa-dice fa-fw'></i>桌游
+                </a>
                 
               </li>
             
@@ -3351,16 +3385,24 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         </a>
       
       
-        <a class='next' href='/categories/daily/%E6%AF%8F%E6%97%A5/%E6%AF%8F%E6%97%A5%E8%AE%B0%E5%BD%95/'>
-          <p class='title'>每日记录<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>这里记录我的每一天🎭，如果每天都能想起来的话。 记录的内容为流水账📰与心流📖的不可观测态————如果你想观察的话，那他就是流水账，反之亦然。
+        <a class='next' href='/categories/daily/%E6%A1%8C%E6%B8%B8/%E6%A1%8C%E6%B8%B8%E8%AE%B0%E5%BD%95/'>
+          <p class='title'>桌游记录<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>记录每一次桌游🎲
 
 
 
-2026年01月
+2026/10/03 周六
 
 
-2026/01/3...</p>
+今日桌游:
+
+            战争之匣
+            
+
+            纸牌帮
+            
+
+...</p>
         </a>
       
     </div>
@@ -3906,10 +3948,11 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
     const loadParallax = () => {
       volantis.js('/js/plugins/parallax.js').then(parallax);
     };
-    if (document.readyState === "complete") {
-      loadParallax();
+    const scheduleParallax = () => setTimeout(loadParallax, 0);
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", scheduleParallax, { once: true });
     } else {
-      window.addEventListener("load", loadParallax, { once: true });
+      scheduleParallax();
     }
   }
 </script>
