@@ -1,0 +1,25 @@
+.fib,
+.fi {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.fi {
+  display: inline-block;
+  line-height: 1em;
+  position: relative;
+  width: 1.333333em;
+}
+
+.fi::before {
+  content: "\00a0";
+}
+
+.fi-jp {
+  background-image: url("/images/flags/jp.svg");
+}
+
+.fi-us {
+  background-image: url("/images/flags/us.svg");
+}

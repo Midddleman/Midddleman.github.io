@@ -23,7 +23,6 @@
   <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
   <!-- import head_begin begin -->
-      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700&family=DM+Sans:wght@500;700&display=swap" rel="stylesheet">
   <!-- import head_begin end -->
   <!-- Custom Files headBegin begin-->
   
@@ -1896,8 +1895,8 @@ ul.list-v >li>a:hover {
   </style>
   <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
-  <!-- flag-icons CDN -->
-  <link rel="stylesheet" href="https://unpkg.com/flag-icons/css/flag-icons.min.css">
+  <!-- Only the two flags used by the language menu are hosted locally. -->
+  <link rel="stylesheet" href="/css/flag-icons-local.css">
     <script>
       let userColorScheme=localStorage.getItem("color-scheme")
       if(userColorScheme){
@@ -2344,7 +2343,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1791117791260),
+    lastupdate: new Date(1791119630669),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -3575,6 +3574,10 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
   function parallax(){
     let ParallaxWindow = document.querySelector("#parallax-window");
     
+    if (!ParallaxWindow) return;
+    ParallaxWindow.style.backgroundImage = "url('/images/background1.jpg')";
+    ParallaxWindow.style.backgroundPosition = "center";
+    ParallaxWindow.style.backgroundSize = "cover";
     Parallax.window = ParallaxWindow;
     Parallax.options.fade = 1500;
     Parallax.cache = 1;
@@ -3600,8 +3603,10 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
       Parallax.options.src = imgs[index % imgs.length];
       Parallax.start();
       index++;
-      if (Parallax.cache) {
-        fetch(imgs[index % imgs.length] +"?t=" + new Date().getTime());
+      if (Parallax.cache && imgs.length > 1) {
+        const preloadUrl = new URL(imgs[index % imgs.length], window.location.href);
+        preloadUrl.searchParams.set("t", Date.now());
+        fetch(preloadUrl, { signal: AbortSignal.timeout(8000) }).catch(() => {});
         if (index == imgs.length) {
           Parallax.cache = 0;
         }
@@ -3611,9 +3616,14 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
   var runningOnBrowser = typeof window !== "undefined";
   var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
   if (!isBot) {
-    volantis.js('/js/plugins/parallax.js').then(()=>{
-      parallax()
-    })
+    const loadParallax = () => {
+      volantis.js('/js/plugins/parallax.js').then(parallax);
+    };
+    if (document.readyState === "complete") {
+      loadParallax();
+    } else {
+      window.addEventListener("load", loadParallax, { once: true });
+    }
   }
 </script>
 
@@ -3651,21 +3661,6 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-
-  <script>
-  volantis.css("https://unpkg.com/pace-js@1.2.4/themes/blue/pace-theme-minimal.css");
-  volantis.js("https://unpkg.com/pace-js@1.2.4/pace.min.js").then(() => {
-    Pace.options.restartOnPushState = false;
-    // 阅读进度
-    volantis.scroll.push(() => {
-      Pace.stop();
-      Pace.trigger('start');
-      Pace.bar.update(volantis.scroll.progress() * 100);
-      document.body.className = document.body.className.replaceAll("pace-running ","");
-    },"阅读进度")
-    // todo：配置项开关, 哪些页面添加阅读进度
-  })
-</script>
 
 
 

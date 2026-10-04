@@ -84,11 +84,11 @@ const boardgameSortFields = {
 
 async function loadBoardgames() {
   // ✅ 1. 读取所有拥有的游戏（静态库）
-  const libraryRes = await fetch('/boardgame_list.json');
+  const libraryRes = await fetch('/boardgame_list.json', { cache: 'no-store' });
   const libraryData = await libraryRes.json();
 
   // ✅ 2. 读取动态游玩数据（有记录的游戏）
-  const playRes = await fetch('/boardgame_data.json');
+  const playRes = await fetch('/boardgame_data.json', { cache: 'no-store' });
   const playData = await playRes.json();
 
   const containerRecent = document.getElementById('recent-boardgames');
