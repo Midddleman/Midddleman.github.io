@@ -114,6 +114,7 @@ async function loadBoardgames() {
       acquired: libInfo.acquired || '',
       acquiredDate: parseDate(libInfo.acquired),
       category: libInfo.category || '',
+      mode: libInfo.mode || '',
       extension: libInfo.extension || '0',
       extensionname: libInfo.extensionname || '',
       price: libInfo.price || '',
@@ -161,7 +162,8 @@ function setupSortControls(allGames, containerAll) {
   const playersSelect = document.getElementById('boardgame-filter-players');
   const bestPlayersSelect = document.getElementById('boardgame-filter-best-players');
   const categorySelect = document.getElementById('boardgame-filter-category');
-  if (!fieldSelect || !directionSelect || !playersSelect || !bestPlayersSelect || !categorySelect) return;
+  const modeSelect = document.getElementById('boardgame-filter-mode');
+  if (!fieldSelect || !directionSelect || !playersSelect || !bestPlayersSelect || !categorySelect || !modeSelect) return;
 
   const playerOptions = Array.from({ length: 14 }, (_, index) => {
     const count = index + 1;
@@ -172,17 +174,20 @@ function setupSortControls(allGames, containerAll) {
 
   const categories = [...new Set(allGames.flatMap(game => getGameCategories(game.category)))]
     .sort((a, b) => a.localeCompare(b, 'zh-Hans'));
-  categorySelect.innerHTML = '<option value="">种类：全部</option>' + categories
+  categorySelect.innerHTML = '<option value="">类别：全部</option>' + categories
     .map(category => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`)
     .join('');
 
+  modeSelect.innerHTML = '<option value="">模式：全部</option>' + [...new Set(allGames.flatMap(game => getGameCategories(game.mode)))].sort()
+    .map(mode => `<option value="${escapeHtml(mode)}">${escapeHtml(mode)}</option>`).join('');
   const renderSortedGames = () => {
     const sorter = createBoardgameSorter(fieldSelect.value, directionSelect.value);
     const filteredGames = filterBoardgames(
       allGames,
       playersSelect.value,
       bestPlayersSelect.value,
-      categorySelect.value
+      categorySelect.value,
+      modeSelect.value
     );
     renderGames([...filteredGames].sort(sorter), containerAll, 'all');
   };
@@ -208,16 +213,18 @@ function setupSortControls(allGames, containerAll) {
   playersSelect.onchange = renderSortedGames;
   bestPlayersSelect.onchange = renderSortedGames;
   categorySelect.onchange = renderSortedGames;
+  modeSelect.onchange = renderSortedGames;
   syncDirectionOptions();
 }
 
-function filterBoardgames(games, playablePlayers, bestPlayers, category) {
+function filterBoardgames(games, playablePlayers, bestPlayers, category, mode = '') {
   const playableCount = playablePlayers === '' ? null : Number(playablePlayers);
   const bestCount = bestPlayers === '' ? null : Number(bestPlayers);
   return games.filter(game => {
     if (Number.isFinite(playableCount) && !playerCountMatches(game.supportedPlayers, playableCount)) return false;
     if (Number.isFinite(bestCount) && !playerCountMatches(game.bestPlayers, bestCount)) return false;
     if (category && !getGameCategories(game.category).includes(category)) return false;
+    if (mode && !getGameCategories(game.mode).includes(mode)) return false;
     return true;
   });
 }
@@ -266,7 +273,7 @@ function renderGames(games, container, type) {
       hoverText = `
         <div class="hover-name">《${name}》</div>
         <div class="hover-line">
-          <span>${category}</span>
+          <span>${escapeHtml(category)} · ${escapeHtml(info.mode || '模式未知')}</span>
           <span>${stars} · ${weight}</span>
         </div>
         <div class="hover-line hover-play-range">
@@ -346,7 +353,8 @@ function showModal(name, info) {
       <span>${info.acquired || '入库时间未知'}</span>
       <span>First Play ${firstDate}</span>
       <span>Last Play ${lastDate}</span>
-      <span>${info.category || '未分类'}</span>
+      <span>类别：${escapeHtml(info.category || '未分类')}</span>
+      <span>模式：${escapeHtml(info.mode || '未知')}</span>
     </div>
   `;
   const playerCounts = renderPlayerCountPanel(info);
@@ -410,18 +418,21 @@ function setupGameRecommendation(libraryData, allGames) {
   const closeButton = modal?.querySelector('.game-recommend-close');
   const playersInput = document.getElementById('game-recommend-players');
   const categorySelect = document.getElementById('game-recommend-category');
+  const modeSelect = document.getElementById('game-recommend-mode');
   const pickButton = document.getElementById('game-recommend-pick');
   const status = document.getElementById('game-recommend-status');
   const result = document.getElementById('game-recommend-result');
-  if (!modal || !openButton || !closeButton || !playersInput || !categorySelect || !pickButton || !status || !result) return;
+  if (!modal || !openButton || !closeButton || !playersInput || !categorySelect || !modeSelect || !pickButton || !status || !result) return;
 
   const gameInfo = new Map(allGames.map(game => [game.name, game]));
   const categories = [...new Set(Object.values(libraryData).flatMap(game => getGameCategories(game.category)))]
     .sort((a, b) => a.localeCompare(b, 'zh-Hans'));
-  categorySelect.innerHTML = '<option value="">全部标签</option>' + categories
+  categorySelect.innerHTML = '<option value="">全部类别</option>' + categories
     .map(category => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`)
     .join('');
 
+  modeSelect.innerHTML = '<option value="">全部模式</option>' + [...new Set(Object.values(libraryData).flatMap(game => getGameCategories(game.mode)))].sort()
+    .map(mode => `<option value="${escapeHtml(mode)}">${escapeHtml(mode)}</option>`).join('');
   let attempts = 0;
   let seen = new Set();
 
@@ -447,6 +458,7 @@ function setupGameRecommendation(libraryData, allGames) {
   });
   playersInput.addEventListener('input', reset);
   categorySelect.addEventListener('change', reset);
+  modeSelect.addEventListener('change', reset);
 
   pickButton.addEventListener('click', () => {
     const playerCount = Number.parseInt(playersInput.value, 10);
@@ -457,10 +469,10 @@ function setupGameRecommendation(libraryData, allGames) {
 
     attempts += 1;
     const broadened = attempts > 5;
-    let candidates = getRecommendationCandidates(libraryData, playerCount, categorySelect.value, broadened);
+    let candidates = getRecommendationCandidates(libraryData, playerCount, categorySelect.value, broadened, modeSelect.value);
     let fallback = false;
     if (!candidates.length && !broadened) {
-      candidates = getRecommendationCandidates(libraryData, playerCount, categorySelect.value, true);
+      candidates = getRecommendationCandidates(libraryData, playerCount, categorySelect.value, true, modeSelect.value);
       fallback = true;
     }
     if (!candidates.length) {
@@ -512,9 +524,10 @@ function playerCountMatches(value, playerCount) {
   });
 }
 
-function getRecommendationCandidates(libraryData, playerCount, category, broadened) {
+function getRecommendationCandidates(libraryData, playerCount, category, broadened, mode = '') {
   return Object.entries(libraryData).filter(([, game]) => {
     if (game.owned === 'not owned') return false;
+    if (mode && !getGameCategories(game.mode).includes(mode)) return false;
     if (category && !getGameCategories(game.category).includes(category)) return false;
     const playerRange = broadened ? game.players : game.bestPlayers;
     return playerCountMatches(playerRange, playerCount);
@@ -533,7 +546,7 @@ function renderGameRecommendation(name, game) {
       <img src="${escapeHtml(cover)}" onerror="this.onerror=null;this.src='/images/boardgame/library/default.png';" alt="${escapeHtml(name)}">
       <div class="game-recommend-info">
         <strong>《${escapeHtml(name)}》</strong>
-        <span>${escapeHtml(category)}</span>
+        <span>${escapeHtml(category)} · ${escapeHtml(game.mode || '模式未知')}</span>
         <small>可玩 ${escapeHtml(game.players || '未知')} · 最佳 ${escapeHtml(game.bestPlayers || '暂无')}</small>
         ${counts}
       </div>

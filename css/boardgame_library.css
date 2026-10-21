@@ -1160,7 +1160,8 @@ footer.footer a,
 
 #boardgame-filter-players,
 #boardgame-filter-best-players,
-#boardgame-filter-category {
+#boardgame-filter-category,
+#boardgame-filter-mode {
   min-width: 150px;
 }
 
