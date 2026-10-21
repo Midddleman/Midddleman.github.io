@@ -144,7 +144,7 @@ async function loadBoardgames() {
   // ✅ 4. 全部桌游 —— 从 libraryData 获取，附加 playData 中的统计
   const allGames = Object.entries(libraryData)
     .map(([name, libInfo]) => buildGameInfo(name, libInfo, playData[name]))
-    .sort(createBoardgameSorter('lastPlayed', 'desc'));
+    .sort(createBoardgameSorter('price', 'desc'));
 
   // ✅ 渲染
   renderGames(recentGames, containerRecent, 'recent');
