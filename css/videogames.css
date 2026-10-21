@@ -1,0 +1,104 @@
+#videogames > .article-meta#top { display: none; }
+#videogames.article { background: #19222b; padding: clamp(20px, 4vw, 48px); }
+#videogames #post-body { margin: 0; }
+.vg-page { --vg-text: #eef2f6; --vg-muted: #a1afbf; --vg-line: #ffffff1a; --vg-cyan: #8cddd2; color: var(--vg-text); }
+#videogames .vg-page :is(h1,h2,h3,h4,p) { border: 0; padding: 0; }
+#videogames .vg-page :is(h1,h2,h3,h4)::before { display: none; }
+#videogames .vg-page a { text-decoration: none; border: 0; color: inherit; }
+.vg-eyebrow { color: var(--vg-cyan); font: 600 10px/1.6 monospace; letter-spacing: 2px; }
+.vg-hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; padding: 8px 0 40px; }
+#videogames .vg-hero h1 { margin: 18px 0 24px; font-size: clamp(38px,5vw,64px); letter-spacing: -2px; line-height: 1.2; color: var(--vg-text); }
+.vg-hero h1 em { font-style: normal; color: var(--vg-cyan); }
+#videogames .vg-lead { font-size: 19px; line-height: 1.8; color: #d9e3eb; margin: 0 0 16px; }
+#videogames .vg-description { color: var(--vg-muted); font-size: 13px; line-height: 1.95; max-width: 450px; }
+#videogames .vg-steam-link { display: inline-flex; gap: 24px; padding: 12px 16px; margin-top: 14px; background: #8cddd212; border: 1px solid #8cddd240; border-radius: 6px; color: var(--vg-cyan); font-size: 12px; }
+.vg-hero-art { border: 1px solid #8cddd23b; border-radius: 14px; overflow: hidden; background: #263744; box-shadow: 12px 12px 0 #101923; }
+#videogames .vg-hero-art img { display: block; width: 100%; height: auto; margin: 0; }
+.vg-art-caption { padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+.vg-art-caption span { color: var(--vg-muted); font-size: 12px; }
+.vg-art-caption strong { font-size: 25px; color: var(--vg-text); }
+.vg-stats { display: grid; grid-template-columns: repeat(4,1fr); padding: 22px 0; border-top: 1px solid var(--vg-line); border-bottom: 1px solid var(--vg-line); }
+.vg-stats > div { display: flex; flex-direction: column; padding: 0 20px; border-left: 1px solid var(--vg-line); gap: 6px; }
+.vg-stats > div:first-child { padding-left: 0; border-left: 0; }
+.vg-stats strong { font-size: clamp(24px,3vw,36px); font-family: monospace; font-weight: 500; }
+.vg-stats span { font-size: 10px; color: var(--vg-muted); }
+#videogames .vg-data-note, #videogames .vg-library-note { color: #8c9cac; font-size: 11px; line-height: 1.8; margin: 12px 0 20px; }
+.vg-nav { display: flex; flex-wrap: wrap; gap: 8px; }
+#videogames .vg-nav a { padding: 8px 12px; color: var(--vg-muted); border: 1px solid var(--vg-line); border-radius: 5px; font-size: 12px; }
+#videogames .vg-nav a:hover { color: var(--vg-cyan); border-color: var(--vg-cyan); }
+.vg-section { margin-top: 54px; scroll-margin-top: 100px; }
+.vg-section-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 22px; }
+#videogames .vg-section h2 { font-size: clamp(23px,3vw,30px); color: var(--vg-text); margin: 10px 0 0; line-height: 1.5; }
+.vg-section-note, #videogames .vg-section-head > a { font-size: 11px; color: var(--vg-muted); line-height: 1.8; }
+.vg-featured { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+.vg-game-feature { min-width: 0; overflow: hidden; background: #25313d; border: 1px solid var(--vg-line); border-radius: 10px; }
+#videogames .vg-game-feature > img { width: 100%; height: auto; aspect-ratio: 460/215; object-fit: cover; display: block; margin: 0; }
+.vg-feature-body { padding: 20px; }
+.vg-feature-meta { display: flex; gap: 8px; justify-content: space-between; align-items: center; color: var(--vg-muted); font-size: 10px; }
+.vg-feature-meta strong { color: var(--vg-cyan); font-size: 12px; font-family: monospace; font-weight: 400; }
+#videogames .vg-feature-body h3 { color: var(--vg-text); font-size: 17px; margin: 12px 0; line-height: 1.5; }
+#videogames .vg-feature-body h4 { color: #c9d6e0; font-size: 12px; margin: 18px 0 8px; line-height: 1.5; }
+#videogames .vg-feature-body p { color: var(--vg-muted); line-height: 1.9; font-size: 12px; margin: 0; }
+#videogames .vg-section-intro { color: var(--vg-muted); line-height: 1.9; font-size: 12px; margin: -6px 0 22px; }
+.vg-taste-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.vg-taste-card { position: relative; padding: 26px; background: #212e38; border: 1px solid var(--vg-line); border-radius: 10px; }
+.vg-taste-card > span { font-family: monospace; color: var(--vg-cyan); font-size: 12px; }
+#videogames .vg-taste-card h3 { font-size: 18px; line-height: 1.5; color: var(--vg-text); margin: 14px 0; }
+#videogames .vg-taste-card p, #videogames .vg-idle-note p { color: var(--vg-muted); font-size: 12px; line-height: 1.95; margin: 0; }
+.vg-evidence { margin-top: 20px; border-top: 1px solid var(--vg-line); padding-top: 14px; font-size: 10px; color: #8cddd2c7; }
+.vg-idle-note { background: #36332d; border-left: 3px solid #d1b782; padding: 22px 24px; margin-top: 18px; border-radius: 0 8px 8px 0; }
+.vg-idle-note strong { font-size: 13px; color: #e4d1ad; }
+#videogames .vg-idle-note p { margin-top: 10px; color: #c0b5a4; }
+.vg-recent-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+#videogames .vg-recent-card { display: block; background: #25313d; border: 1px solid var(--vg-line); border-radius: 10px; overflow: hidden; }
+#videogames .vg-recent-card img { display: block; width: 100%; height: auto; aspect-ratio: 460/215; object-fit: cover; margin: 0; }
+.vg-recent-card > div { padding: 18px; }
+.vg-recent-card span { color: var(--vg-cyan); font-size: 10px; }
+#videogames .vg-recent-card h3 { color: var(--vg-text); font-size: 17px; margin: 8px 0; }
+#videogames .vg-recent-card p { color: var(--vg-muted); font-size: 11px; margin: 0; }
+.vg-review-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+#videogames .vg-review { display: block; border: 1px solid var(--vg-line); border-radius: 9px; padding: 22px; background: #202d37; }
+.vg-review > div { display: flex; align-items: center; justify-content: space-between; }
+.vg-review time { font-family: monospace; color: #8c9cac; font-size: 10px; }
+.vg-review-verdict { font-size: 10px; color: var(--vg-cyan); }
+.vg-review-verdict.vg-negative { color: #e9a19a; }
+#videogames .vg-review h3 { color: var(--vg-text); font-size: 16px; margin: 14px 0 10px; }
+#videogames .vg-review p { font-size: 12px; line-height: 1.9; color: var(--vg-muted); margin: 0 0 16px; }
+.vg-review-source { color: var(--vg-cyan); font-size: 10px; }
+.vg-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; padding: 18px; background: #25313d; border: 1px solid var(--vg-line); border-radius: 8px; }
+.vg-controls label { display: flex; flex-direction: column; gap: 8px; min-width: 110px; }
+.vg-controls label > span { font-size: 10px; color: var(--vg-muted); }
+.vg-controls .vg-search { flex: 1; min-width: 180px; }
+.vg-controls :is(input,select) { box-sizing: border-box; background: #19232c; border: 1px solid #ffffff25; color: var(--vg-text); padding: 10px; height: 40px; border-radius: 4px; width: 100%; font-size: 12px; }
+.vg-controls :is(input,select):focus-visible { outline: 2px solid var(--vg-cyan); outline-offset: 2px; }
+.vg-library-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(min(100%,190px),1fr)); gap: 16px; }
+#videogames .vg-library-card { display: block; background: #25313d; border: 1px solid var(--vg-line); border-radius: 8px; overflow: hidden; transition: border-color .2s; }
+#videogames .vg-library-card:hover { border-color: #8cddd280; }
+#videogames .vg-library-card img { width: 100%; height: auto; aspect-ratio: 460/215; object-fit: cover; display: block; margin: 0; }
+.vg-library-card > div { padding: 14px; }
+#videogames .vg-library-card h3 { font-size: 13px; line-height: 1.6; margin: 0 0 12px; color: var(--vg-text); }
+#videogames .vg-library-card p { display: flex; flex-wrap: wrap; gap: 6px; justify-content: space-between; font-size: 10px; color: var(--vg-muted); margin: 0; }
+.vg-library-card p strong { font-family: monospace; color: var(--vg-cyan); font-weight: 400; }
+.vg-library-card small { display: block; margin-top: 8px; font-size: 9px; color: #8293a3; }
+.vg-load-more { display: block; margin: 26px auto 0; padding: 12px 32px; border: 1px solid #8cddd250; background: #8cddd210; color: var(--vg-cyan); border-radius: 6px; cursor: pointer; }
+.vg-load-more[hidden] { display: none; }
+#vg-load-state { color: var(--vg-muted); font-size: 13px; padding-top: 16px; }
+.vg-footer { display: flex; flex-wrap: wrap; gap: 20px; border-top: 1px solid var(--vg-line); margin-top: 50px; padding-top: 26px; align-items: center; }
+#videogames .vg-footer p { margin: 0 auto 0 0; color: var(--vg-muted); font-size: 12px; }
+#videogames .vg-footer a { font-size: 12px; color: var(--vg-cyan); }
+.vg-page a:focus-visible { outline: 2px solid var(--vg-cyan); outline-offset: 4px; }
+@media (max-width: 900px) { .vg-featured { grid-template-columns: repeat(2,minmax(0,1fr)); } .vg-hero { gap: 28px; } }
+@media (max-width: 600px) {
+  .vg-hero { grid-template-columns: 1fr; }
+  .vg-hero-art { max-width: 440px; }
+  .vg-stats { grid-template-columns: 1fr 1fr; gap: 24px 0; }
+  .vg-stats > div:nth-child(3) { padding-left: 0; border: 0; }
+  .vg-featured, .vg-taste-grid, .vg-recent-grid, .vg-review-list { grid-template-columns: 1fr; }
+  .vg-section-head { display: block; }
+  .vg-section-head > :last-child:not(:first-child) { display: block; margin-top: 12px; }
+  .vg-controls label { flex: 1; min-width: 120px; }
+  .vg-controls .vg-search { flex-basis: 100%; }
+  .vg-section { margin-top: 38px; }
+  #videogames .vg-hero h1 { letter-spacing: -1px; }
+}
+@media (prefers-reduced-motion: reduce) { .vg-library-card { transition: none; } }

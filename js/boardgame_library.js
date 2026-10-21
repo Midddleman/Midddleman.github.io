@@ -138,8 +138,7 @@ async function loadBoardgames() {
   // ✅ 3. 最近桌游 —— 仅有游玩记录的，从 playData 排序
   const recentGames = Object.entries(playData)
     .map(([name, play]) => buildGameInfo(name, libraryData[name] || {}, play))
-    .sort((a, b) => b.lastDate - a.lastDate)
-    .slice(0, 6);
+    .sort((a, b) => b.lastDate - a.lastDate);
 
   // ✅ 4. 全部桌游 —— 从 libraryData 获取，附加 playData 中的统计
   const allGames = Object.entries(libraryData)
@@ -147,13 +146,29 @@ async function loadBoardgames() {
     .sort(createBoardgameSorter('price', 'desc'));
 
   // ✅ 渲染
-  renderGames(recentGames, containerRecent, 'recent');
+  setupRecentGames(recentGames, containerRecent);
   renderGames(allGames, containerAll, 'all');
   setupSortControls(allGames, containerAll);
 
   setupModal();
   setupHeadToHead(playData);
   setupGameRecommendation(libraryData, allGames);
+}
+
+function setupRecentGames(games, container) {
+  let previousCount = -1;
+  const render = () => {
+    const styles = getComputedStyle(container);
+    const minWidth = parseFloat(styles.getPropertyValue('--recent-card-min-width'));
+    const gap = parseFloat(styles.columnGap) || 0;
+    const count = Math.min(games.length, Math.max(1,
+      Math.floor((container.clientWidth + gap) / (minWidth + gap))));
+    if (count === previousCount) return;
+    previousCount = count;
+    renderGames(games.slice(0, count), container, 'recent');
+  };
+  render();
+  new ResizeObserver(render).observe(container);
 }
 
 function setupSortControls(allGames, containerAll) {
@@ -239,7 +254,6 @@ function renderGames(games, container, type) {
   for (const game of games) {
     const name = game.name;
     const info = game;
-    const firstDateText = formatDate(info.firstDate);
     const lastDateText = formatDate(info.lastDate);
     const lastRecord = info.records?.[info.records.length - 1];
     const date = lastRecord ? new Date(lastRecord.date).toLocaleDateString('ja-JP') : '';
@@ -256,7 +270,6 @@ function renderGames(games, container, type) {
           <span class="hover-duration">${duration}</span>
         </div>
         <div class="hover-line hover-play-range">
-          <span>First ${firstDateText || '未知'}</span>
           <span>Last ${lastDateText || '未知'}</span>
         </div>
         <div class="hover-players">
@@ -272,12 +285,14 @@ function renderGames(games, container, type) {
       const weight = Number.isFinite(info.weight) ? `重度 ${info.weight}级` : '重度未知';
       hoverText = `
         <div class="hover-name">《${name}》</div>
-        <div class="hover-line">
+        <div class="hover-line hover-category">
           <span>${escapeHtml(category)} · ${escapeHtml(info.mode || '模式未知')}</span>
-          <span>${stars} · ${weight}</span>
+        </div>
+        <div class="hover-line hover-rating">
+          <span>${stars}</span>
+          <span>${weight}</span>
         </div>
         <div class="hover-line hover-play-range">
-          <span>First ${firstDateText || '未知'}</span>
           <span>Last ${lastDateText || '未知'}</span>
         </div>
         <div class="hover-players">共 ${info.count} 次游玩｜${info.totalDuration || 0}h</div>

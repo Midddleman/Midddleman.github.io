@@ -65,6 +65,14 @@ body{
 
 
 /* 页面主标题样式 */
+#boardgame > .article-meta#top {
+  display: none;
+}
+
+#boardgame #post-body > .boardgame-header h1 {
+  margin-top: 0;
+}
+
 .boardgame-header h1 {
   text-align: left;
   font-size: 2rem;
@@ -1078,6 +1086,15 @@ footer.footer a,
   opacity: 0.85;
 }
 
+.boardgame-card .hover-category,
+.boardgame-card .hover-rating {
+  font-size: 0.85rem;
+}
+
+.boardgame-card .hover-rating span {
+  white-space: nowrap;
+}
+
 /* Steam 风格标题线 */
 .section-header {
   display: flex;
@@ -1324,6 +1341,27 @@ footer.footer a,
   overflow-x: auto;
   padding: 1rem 0;
   scroll-behavior: smooth;
+}
+
+#recent-boardgames {
+  --recent-card-min-width: 200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--recent-card-min-width)), 1fr));
+  gap: 1.5rem;
+  align-items: center;
+  justify-items: center;
+  padding: 1rem 0;
+}
+
+#recent-boardgames .boardgame-card {
+  width: 100%;
+  margin-right: 0;
+}
+
+#recent-boardgames .boardgame-card img {
+  width: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .boardgame-row.all {
